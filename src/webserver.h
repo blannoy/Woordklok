@@ -158,6 +158,13 @@ void runClockFaceTestHours() {
   server.send(200, "text/plain", "Running clockface hour test");
 }
 
+void getStatus() {
+  String message="Version ";
+  message+=version;
+  message+="\n";
+  debug_printf("%s",message);
+  server.send(200, "text/plain", message);
+}
 void webServerSetup() {
   debug_println("Webserver setup");
   if (!serverStarted){
@@ -169,7 +176,8 @@ void webServerSetup() {
   server.on("/api/setBrightness", setBrightness);
   server.on("/api/setLedMode",setLedMode);
   server.on("/api/testClockFaceMinutes", runClockFaceTestMinutes);
-  server.on("/api/testClockFaceHours", runClockFaceTestHours);
+  server.on("/api/testClockFaceHours", runClockFaceTestHours);  
+  server.on("/api/status", getStatus);
   //server.on("/api/log", getLog);
   server.onNotFound(handleNotFound);
 

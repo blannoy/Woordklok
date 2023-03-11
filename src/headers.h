@@ -27,6 +27,7 @@
 #define NUM_LEDS NUM_ROWS* NUM_COLS + OFFSET
 #define NUMWORDS 27
 #define BOOTANIMTIME 5000
+String version="0.5";
 
 extern int PixelCount = NUMWORDS;
 

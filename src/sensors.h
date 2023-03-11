@@ -1,78 +1,76 @@
 #pragma once 
 
 #include <headers.h>
-#include <CapacitiveSensor.h>
 #include <utils.h>
-
-/*
-   CapitiveSense Library Demo Sketch
-   Paul Badger 2008
-   Uses a high value resistor e.g. 10M between send pin and receive pin
-   Resistor effects sensitivity, experiment with values, 50K - 50M. Larger resistor values yield larger sensor values.
-   Receive pin is the sensor pin - try different amounts of foil/metal on this pin
-*/
+#include <Wire.h>
+#include "Adafruit_MPR121.h"
 
 
-CapacitiveSensor   capacitiveTouchSensor = CapacitiveSensor(D5, D6);       // 10M resistor between pins 5 & 6, pin 6 is sensor pin, add a wire and or foil if desired
+#define INTERRUPTPIN D3
+#ifndef _BV
+#define _BV(bit) (1 << (bit))
+#endif
 
+// You can have up to 4 on one i2c bus but one is enough for testing!
+Adafruit_MPR121 cap = Adafruit_MPR121();
 
+// Keeps track of the last pins touched
+// so we know when buttons are 'released'
+uint16_t lasttouched = 0;
+uint16_t currtouched = 0;
 
-double sigma;
-double baseline;
-long threshold;
-long lowThreshold;
 long LDRvalue = 0;
 bool touched = false;
 bool touchtrigger = false;
-void calibrateSensor() {
-  debug_printf("Calibrating");
-  RunningStat rs;
-  for (byte loops = 0; loops < 60; loops++) {
 
-    rs.Push(capacitiveTouchSensor.capacitiveSensor(20));
-    delay(20);
-  }
-  sigma = rs.StandardDeviation();
-  baseline = rs.Mean();
-}
-
-RunningAverage touchSensorRA;
 RunningAverage LDRSensorRA;
+void IRAM_ATTR ISR_switch()
+{
+  touchtrigger = true;
+ // interrupts();
+}
 
 void setupSensors()
 {
-  calibrateSensor();
-  threshold=baseline+sigma*8;
-  lowThreshold=baseline+sigma*4;
+cap.begin(0x5A);
+  delay(1000);
+  if (!cap.begin(0x5A))
+  {
+    Serial.println("MPR121 not found, check wiring?");
+  } else {
+    Serial.println("MPR121 found!");
+      cap.setThresholds(20, 20);
+  pinMode(INTERRUPTPIN, INPUT_PULLUP);
+  attachInterrupt(INTERRUPTPIN, ISR_switch, CHANGE);
+  }
 
-//hardcoded
-// TODO: as parameters in web interface 
-  threshold=250;
-  lowThreshold=100;
-  
- /* debug_printf(sigma);
-  debug_printf("-");
-  debug_printf(baseline);
-  debug_printf(" low threshold ");
-  debug_printf(lowThreshold);
-  debug_printf(" threshold ");
-  debug_printf(threshold);*/
-  //delay(1000);
 }
 
 void sensorLoop()
 {
-  long touchSensorValue=  touchSensorRA.getAverage(capacitiveTouchSensor.capacitiveSensor(20));
   LDRvalue = LDRSensorRA.getAverage((long) analogRead(A0));
   //Serial.println(LDRvalue);
   /*debug_printf(LDRvalue);
   debug_printf(" - ");
   debug_printf(touchSensorValue);*/
-  if ((touchSensorValue > threshold) && !touched) {
-    touched = true;
-    debug_printf("Touched");
-  } else if ((touchSensorValue < lowThreshold)  && touched) {
+    if (touchtrigger)
+  {
+   // Serial.println("Interrupt");
+    currtouched = cap.touched();
+
+    if ((currtouched & _BV(5)) && !(lasttouched & _BV(5)))
+    {
+     // Serial.println(" touched");
+          touched = true;
+    }
+    // if it *was* touched and now *isnt*, alert!
+    if (!(currtouched & _BV(5)) && (lasttouched & _BV(5)))
+    {
     touched = false;
-    debug_printf("Untouched");
+    //  Serial.println(" released");
+    }
+    touchtrigger = false;
+    lasttouched = currtouched;
+    //Serial.println(LDRvalue);
   }
 }

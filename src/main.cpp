@@ -14,7 +14,7 @@
 states state = BOOT;
 long lastLedUpdate=0;
 long bootTime=0;
-String version="0.5";
+
 
 void setup() {
     Serial.begin(115200);
