@@ -34,16 +34,17 @@
         {"word" : "negen", "leds": [ 32,33,34,35,36 ],  "function": "isNineActive" },
         {"word" : "tien", "leds": [ 29,30,31,32 ],  "function": "isTenActive" },
         {"word" : "elf", "leds": [ 18,17,16 ],  "function": "isElevenActive" },
-        {"word" : "twaalf", "leds": [ 4,5,6,7,8,9 ],  "function": "isTwelveActive" }
+        {"word" : "twaalf", "leds": [ 4,5,6,7,8,9 ],  "function": "isTwelveActive" },
+        {"background" : "kzkogremaktdzoorrbodb", "leds" : [110,107,103,102,97,92,80,75,70,65,54,53,48,42,37,25,20,19,15,11,10]}
         ]
     },
     "colors" :{
         "ledMode" : "singleColor",
         "ledConfig" : {
             "singleColor" : { "color": "#12fe12", "backgroundColor": "#554422" },
-            "hourlyColor" : { "color" : [ "","","","","","","","","","","","","","","","","","","","","","","",""], "backgroundColor": ""},
-            "wordColor" : { "color" : [
-                "","","","","","","","","","","","","","","","","","","","","","","","","",""], "backgroundColor": ""}
+            "rainbowColor" : { "cycleTime" : 20, "backgroundColor": "#000000"},
+            "hourlyColor":{"color":["#00ff3b","#f600ff","","#56ff00","#00ffaf","#00d6ff","#0092ff","#009cff","#9500ff","#1200ff","#ff0077","#6aff00","#0023ff","#52ff00","#00e0ff","","#00b4ff","#00ff58","#00ff66","#2100ff","#0067ff","#009cff","#00a1ff","#00f3ff"],"backgroundColor":"#000000"},
+           "wordColor" : { "color":["#121214","#458711","#12fe12","#ff004b","#ffeb00","#12fe12","#00dbff","#ec00ff","#ff8000","#00ff83","#0062ff","#6e00ff","#00aaff","#458711","#008dff","#ff0000","#ff9400","#ff00eb","#9aff00","#00afff","#12fe12","#00ff8d","#0006ff","#00ff06","#00b4ff","#ff00bb","#00f8ff"],"backgroundColor":"#001eff"}
         }
     },
     "brightness" :{

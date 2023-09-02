@@ -1,6 +1,10 @@
 import React, { useState,useContext,useEffect } from "react";
 import SingleColor from "../Components/SingleColor";
 import { configContext,queryProviderContext } from "../Context/Context";
+import RainbowColor from "../Components/RainbowColor";
+import WordColor from "../Components/WordColor";
+import HourlyColor from "../Components/HourlyColor";
+import ClockFace from "../Components/ClockFace";
 
 export default function LEDColors() {
   const [config, setConfig] = useContext(configContext);
@@ -18,12 +22,9 @@ export default function LEDColors() {
 
   function onValueChange(event) {
     setSelectedOption(event.target.value);
+    setColorConfig({ ...config.colors.ledConfig[event.target.value] });
   }
   
-  function colorHandler(newColorConfig) {
-    setColorConfig({...newColorConfig});
-  }
-
   function testConfig() {
     var body={};
     body[selectedOption]={...colorConfig};
@@ -39,6 +40,16 @@ export default function LEDColors() {
     dispatchRequest({type:"setColor", body: body});
   }
 
+  /**
+   * Reconstruct color config and pass it to parent 
+   * @param {*} configChoice
+   * @todo lift to top level as a generic function?
+   */
+  function configHandler(configChoice) {
+    var changedPar={...colorConfig};
+    changedPar[configChoice["id"]]=configChoice.value;
+    setColorConfig(changedPar);
+  }
 
   return (
     <div>
@@ -47,18 +58,21 @@ export default function LEDColors() {
       <div>
         <div>      <button name="Test" type="button" onClick={testConfig}>Test</button><button name="Reset" type="button" onClick={resetConfig}>Reset</button><button name="Submit" type="button" onClick={submitConfig}>Submit</button></div>
         <input type="radio" value="singleColor" name="colorMode" checked={selectedOption === "singleColor"} onChange={onValueChange} /> <label>Eén kleur</label>
-        <input type="radio" value="rainBow" name="colorMode" checked={selectedOption === "rainBow"} onChange={onValueChange} /><label>Regenboog</label>
+        <input type="radio" value="rainbowColor" name="colorMode" checked={selectedOption === "rainbowColor"} onChange={onValueChange} /><label>Regenboog</label>
         <input type="radio" value="wordColor" name="colorMode" checked={selectedOption === "wordColor"} onChange={onValueChange} /><label>Woordkleur</label>
         <input type="radio" value="hourlyColor" name="colorMode" checked={selectedOption === "hourlyColor"} onChange={onValueChange} /><label>Kleur per uur</label>
       </div>
       <div>
         <div>
           {{
-            singleColor: <SingleColor colorConfig={colorConfig} onColorConfig={colorHandler} />,
-            rainBow: <p>rainbow color</p>,
-            wordColor: <p>color per word</p>,
-            hourlyColor: <p>single color every hour</p>
+            singleColor: <SingleColor colorConfig={colorConfig} onColorConfig={configHandler} />,
+            rainbowColor: <RainbowColor colorConfig={colorConfig} onColorConfig={configHandler}/>,
+            wordColor: <WordColor colorConfig={colorConfig} onColorConfig={configHandler}/>,
+            hourlyColor: <HourlyColor colorConfig={colorConfig} onColorConfig={configHandler}/>,
           }[selectedOption]}
+          <div>
+            <ClockFace colorConfig={colorConfig} colorOption={selectedOption}/>
+          </div>
         </div>
       </div>
     </div>

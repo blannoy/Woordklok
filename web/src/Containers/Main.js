@@ -9,6 +9,7 @@ import Home from "../Views/Home";
 import LEDColors from "../Views/LEDColors";
 import Brightness from "../Views/Brightness";
 import ShowConfig from "../Views/ShowConfig";
+import ClockFace from "../Components/ClockFace";
 
 
 export default function Main() {
@@ -23,6 +24,7 @@ export default function Main() {
             <li><NavLink to="/colors">Colors</NavLink></li>
             <li><NavLink to="/brightness">Brightness</NavLink></li>
             <li><NavLink to="/config">Config</NavLink></li>
+            {/* <li><NavLink to="/clockface">Clockface</NavLink></li> */}
           </ul>
           <div className="content">
             <Routes>
@@ -30,6 +32,7 @@ export default function Main() {
             <Route path="/colors" element={<LEDColors/>}/>
             <Route path="/brightness" element={<Brightness/>}/>
             <Route path="/config" element={<ShowConfig/>}/>
+            {/* <Route path="/clockface" element={<ClockFace/>}/> */}
             </Routes>
           </div>
         </div>
