@@ -11,7 +11,12 @@ export default function LEDColors() {
   const [requestState, dispatchRequest]=useContext(queryProviderContext);
   const [selectedOption, setSelectedOption] = useState(config ? config.colors.ledMode :"singleColor");
   const [colorConfig,setColorConfig]=useState(config&&selectedOption ? { selectedOption: {...config.colors.ledConfig[selectedOption]} }:{});
+  const [showPreview,setShowPreview]=useState(false);
+  const [clockColors,setClockColors]=useState({})
 
+  function previewChangeHandler(){
+    setShowPreview(!showPreview);
+  }
 
     // keep config in sync when changed
   useEffect(() => {
@@ -65,13 +70,18 @@ export default function LEDColors() {
       <div>
         <div>
           {{
-            singleColor: <SingleColor colorConfig={colorConfig} onColorConfig={configHandler} />,
-            rainbowColor: <RainbowColor colorConfig={colorConfig} onColorConfig={configHandler}/>,
-            wordColor: <WordColor colorConfig={colorConfig} onColorConfig={configHandler}/>,
-            hourlyColor: <HourlyColor colorConfig={colorConfig} onColorConfig={configHandler}/>,
+            singleColor: <SingleColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors}/>,
+            rainbowColor: <RainbowColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors}/>,
+            wordColor: <WordColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors}/>,
+            hourlyColor: <HourlyColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors}/>,
           }[selectedOption]}
           <div>
-            <ClockFace colorConfig={colorConfig} colorOption={selectedOption}/>
+            <div>
+              <input type="checkbox" value="preview" name="showPreview" checked={showPreview} onChange={previewChangeHandler}/><label>Toon voorbeeld</label>
+              </div>
+            <div>
+              { showPreview && <ClockFace clockColors={clockColors} colorConfig={colorConfig} colorOption={selectedOption}/>}
+            </div>
           </div>
         </div>
       </div>

@@ -9,28 +9,30 @@ import ColorPicker from "./ColorPicker";
  */
 export default function RainbowColor(props) {
   const [colorConfig,setColorConfig]=useState(props.colorConfig);
+  const [cycleTime,setCycleTime]=useState(10);
 
   // change in passed property, triggers update of state
    useEffect(() => {
-      setColorConfig({ ...props.colorConfig });
+    setColorConfig({ ...props.colorConfig });
+    setCycleTime(props.colorConfig.cycleTime);
     }, [props.colorConfig])
-
-    useEffect(() => {
-      const interval = setInterval(() => {
-      
-      }, colorConfig.cycleTime*1000);
   
-      return () => clearInterval(interval);
-    }, []);
+    function cycleTimeChange(event) {
+      setCycleTime(event.target.value);
+      setColorConfig({ ...props.colorConfig, cycleTime: event.target.value});
+    }
+    useEffect(() => {
+          props.onColorConfig({ id: "cycleTime", value: cycleTime });
+  }, [cycleTime])
   return (
     <div>
       <h3>Tijd (in s) waarna de klok terug van kleur verandert.</h3>
       <div>
-        <input type="number" id="cycleTime" value={colorConfig.cycleTime?? 10} min="1" max="3600" onChange={props.onColorConfig}></input>
+        <input type="number" id="cycleTime" value={cycleTime} min="1" max="3600" onChange={cycleTimeChange}/>
       </div>
       <h3>Kies een achtergrondkleur</h3>
       <div>
-        <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} complementaryColor="#xxxxxx" onColorChoice={props.onColorConfig} />
+        <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} foregroundColor= onColorChoice={props.onColorConfig} />
       </div>
     </div>
   );
