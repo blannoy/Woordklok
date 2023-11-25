@@ -49,18 +49,29 @@
     },
     "brightness" :{
         "brightnessMode" : "ldrBrightness",
-        "modes" : {
-            "ldr" : {
-                "dark" : 10,
-                "bright" : 100
+        "settings" : {
+            "fixedBrightness" : {
+                "brightness" : 150
             },
-            "standard" : {
-                "max" : 150, 
-                "min" : 16
+            "ldrBrightness" : {
+                "ldrRange" : {
+                    "dark" : 10,
+                    "bright" : 100
+                },
+                "brightness" : {
+                    "max" : 150, 
+                    "min" : 16
+                }
             },
-            "hour" : {
-                "brightnessStartHour" : 8,
-                "brightnessEndHour" : 22                
+            "hourBrightness": {
+                "hourSlot" : {
+                    "startHour" : 8,
+                    "endHour" : 22                
+                },
+                "brightness" : {
+                    "max" : 150, 
+                    "min" : 16
+                }
             }
         }
     },

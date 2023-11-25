@@ -96,7 +96,7 @@ if (static_ip != ""){
   //delay(5000);
   wifiManager.setShowStaticFields(true);
   wifiManager.setShowDnsFields(true); 
-//  wifiManager.resetSettings();
+  //wifiManager.resetSettings();
 
   bool res;
   res = wifiManager.autoConnect("Woordklok-AP");

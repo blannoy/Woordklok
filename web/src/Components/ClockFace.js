@@ -1,93 +1,36 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
-import { configContext } from "../Context/Context";
+import React, { useEffect, useState, useContext} from "react";
+import { clockFaceContext  } from "../Context/Context";
 import { calculateComplementary } from "../Utils/Utils";
-import tinycolor from "tinycolor2";
-import RainbowColor from "./RainbowColor";
+
 
 export default function ClockFace(props) {
-    const [config, setConfig] = useContext(configContext);
-    const [colorConfig, setColorConfig] = useState(props.colorConfig);
-    const [clockWords, setClockWords] = useState((config ? config.clockface.layout : []));
-    // const [colorList,setColorList]=useState(colorConfig.color?colorConfig.color:[]);
-    const [gridSize, setGridSize] = useState([0, 0, 0]);
-    const [cells, setCells] = useState([]);
-    const [rows, setRows] = useState([]);
-    const [totalLetters, setTotalLetters] = useState(0);
-    const [letterGrid, setLetterGrid] = useState([]);
-    const [backgroundIndex, setBackgroundIndex] = useState(0);
-    const [foregroundColor, setForegroundColor] = useState(tinycolor({ h: 0, s: 1, l: .5 }));
-    const [foregroundColorHex, setForegroundColorHex] = useState(foregroundColor.toHexString());
-    const rainbowCycle = useRef();
-    useEffect(() => {
-        setClockWords(config ? config.clockface.layout : []);
-    }, [config])
+    const [clockFaceConfig,setClockFaceConfig]=useContext(clockFaceContext);
+    const [letterGrid,setLetterGrid]=useState(null);
+    const [rows,setRows]=useState(0);
+    const [cols,setCols]=useState(0);
+    const [totalLetters,setTotalLetters]=useState(0);
+    const [extraLEDs,setExtraLEDs]=useState(0);
+    const [colorMap,setColorMap]=useState(null);
 
     useEffect(() => {
-        if (config) {
-            const dims = [config.clockface.wordGridHorizontal, config.clockface.wordGridVertical, config.clockface.extraLEDs];
-            setGridSize(dims);
-            setCells(new Array(dims[0]).fill(0));
-            setRows(new Array(dims[1]).fill(0));
-            setTotalLetters(dims[0] * dims[1] + dims[2]);
-            setBackgroundIndex(clockWords.findIndex(p => p.background));
-            const tempGrid = Array.from(Array(dims[0] * dims[1] + dims[2]).fill(0), () => new Array(2).fill(""));
-            clockWords.forEach((clockWord, wordPos) => {
-                const posArr = clockWord.leds;
-                let letters = [];
-                if (clockWord.word) {
-                    letters = clockWord.word.split("");
-                } else if (clockWord.background) {
-                    letters = clockWord.background.split("");
-                }
-                posArr.forEach((pos, index) => {
-                    tempGrid[pos][0] = String(letters[index]).toUpperCase();
-                    tempGrid[pos][1] = wordPos;
-                    // tempGrid[pos][2] = wordColor;
-                })
-
-            }
-            );
-            setLetterGrid(tempGrid);
-        };
-    }, [clockWords, props.colorConfig,foregroundColorHex])
-
-    useEffect(() => {
-        if (props.colorOption==="rainbowColor"){
-                if (rainbowCycle.current) {
-                    clearInterval(rainbowCycle.current);
-                    rainbowCycle.current = undefined;
-                  }
-                rainbowCycle.current = setInterval(() => {
-                            setForegroundColor(tinycolor(foregroundColor).spin(1));
-                            setForegroundColorHex(tinycolor(foregroundColor).spin(1).toHexString());
-                        }
-                        , colorConfig.cycleTime*1000);
-            }
-            return () => clearInterval(rainbowCycle.current);
-      }, [props.colorConfig]);
+        if (clockFaceConfig !== null) {
+            setRows(clockFaceConfig.metadata.rows);
+            setCols(clockFaceConfig.metadata.cols);
+            setExtraLEDs(clockFaceConfig.metadata.extraLEDs);
+            setTotalLetters(clockFaceConfig.metadata.totalLetters);
+            setLetterGrid(clockFaceConfig.letterGrid);
+            setColorMap(clockFaceConfig.colorMap)
+        }
+    }
+    ,[clockFaceConfig]);
 
     function getColor(letterPos) {
-        let backgroundIndex=clockWords.findIndex(p => p.background)
-        // if background return backgroundcolor or complementary color
-        if (letterGrid[letterPos][1] === backgroundIndex) {
-            return (props.colorConfig.backgroundColor === "#xxxxxx" ? calculateComplementary(getColor(letterGrid[0][1])) : props.colorConfig.backgroundColor);
+        const wordPos=letterGrid[letterPos][1];
+        let color=colorMap[wordPos];
+        if (color === "#xxxxxx") {
+            color=calculateComplementary(colorMap[0]);
         }
-        switch (props.colorOption) {
-            case "singleColor":
-                return props.colorConfig.color;
-            case "hourlyColor":
-
-                break;
-            case "wordColor":
-
-                break;
-            case "rainbowColor":
-                return foregroundColor.toHexString();
-                break;
-
-            default:
-                break;
-        }
+        return color; 
     }
     const handleClick = (e) => {
         const item = e.target;
@@ -100,20 +43,20 @@ export default function ClockFace(props) {
 
     return (
         <main>
-            {rows.map((row, rowIndex) => (
+            { [...Array(rows)].map((row, rowIndex) => (
                 <ul className="row" key={rowIndex}>
-                    {cells.map((cell, index) => {
-                        const pos = rowIndex * gridSize[0] + index;
-                        const letterPos = totalLetters - 1 - rowIndex * gridSize[0] - (rowIndex % 2 === 0 ? index : 10 - index);
+                    { [...Array(cols)].map((cell, index) => {
+                        const pos = rowIndex * cols + index;
+                        const letterPos = totalLetters - 1 - rowIndex * cols - (rowIndex % 2 === 0 ? index : cols - 1 - index);
                         //const letterColor= (letterGrid[letterPos][2]=="#xxxxxx"? calculateComplementary(letterGrid[0][2]):letterGrid[letterPos][2])
                         const wordClass = { color: getColor(letterPos) };
                         return <li key={pos} style={wordClass} className="item" onClick={handleClick} >{letterGrid[letterPos][0]}</li>
                     })}
                 </ul>
             ))}
-            <ul className="row" key={gridSize[0] + 1}>
-                {[...Array(gridSize[2])].map((value, index) => {
-                    const wordClass = { color: letterGrid[index][0] };
+            <ul className="row" key={extraLEDs + 1}>
+                {[...Array(extraLEDs)].map((value, index) => {
+                    const wordClass = { color: getColor(extraLEDs-1-index) };
                     return <li key={index} style={wordClass} className="item" onClick={handleClick}> {String.fromCharCode(9642)} </li>
                 })}
             </ul>

@@ -7,8 +7,8 @@ import HourlyColor from "../Components/HourlyColor";
 import ClockFace from "../Components/ClockFace";
 
 export default function LEDColors() {
-  const [config, setConfig] = useContext(configContext);
-  const [requestState, dispatchRequest]=useContext(queryProviderContext);
+  const [config,] = useContext(configContext);
+  const [, dispatchRequest]=useContext(queryProviderContext);
   const [selectedOption, setSelectedOption] = useState(config ? config.colors.ledMode :"singleColor");
   const [colorConfig,setColorConfig]=useState(config&&selectedOption ? { selectedOption: {...config.colors.ledConfig[selectedOption]} }:{});
   const [showPreview,setShowPreview]=useState(false);
@@ -75,16 +75,18 @@ export default function LEDColors() {
             wordColor: <WordColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors}/>,
             hourlyColor: <HourlyColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors}/>,
           }[selectedOption]}
-          <div>
+
+            { (selectedOption!=="hourlyColor") && (
+                        <div>
             <div>
               <input type="checkbox" value="preview" name="showPreview" checked={showPreview} onChange={previewChangeHandler}/><label>Toon voorbeeld</label>
               </div>
             <div>
               { showPreview && <ClockFace clockColors={clockColors} colorConfig={colorConfig} colorOption={selectedOption}/>}
-            </div>
+            </div> 
+            </div>)}
           </div>
         </div>
       </div>
-    </div>
   );
 }

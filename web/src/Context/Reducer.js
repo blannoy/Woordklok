@@ -28,6 +28,17 @@ export function requestReducer(state, action) {
             //  defaultRequest.body = JSON.stringify(data);
             console.log(targetState);
             break;
+        case "setBrightness":
+            targetState.url = '/brightness';
+            targetState.method = 'put';
+            targetState.data = action.body;
+            targetState.params = action.params;
+        console.log(targetState);
+        break; 
+        case "calibrateLdr":
+            targetState.url = '/calibrateLdr';  
+            targetState.method = 'get';
+        break;        
         default:
             break;
     }

@@ -1,0 +1,46 @@
+export interface ClockConfig {
+    system: {
+        ntp_server: string,
+        hostname: string
+    },
+    clockface: {
+        wordGridHorizontal: number,
+        wordGridVertical: number,
+        extraLEDs: number,
+        layout: {
+            [wordId: number]: {
+                word?: string,
+                background?: string
+                leds: number[],
+                function: string
+            };
+        }
+    },
+    colors: {
+        ledMode: "singleColor" | "rainbowColor" | "hourlyColor" | "wordColor",
+        ledConfig: {
+            singleColor: { color: string, backgroundColor: string },
+            rainbowColor: { cycleTime: number, backgroundColor: string },
+            hourlyColor: { color: string[], backgroundColor: string },
+            wordColor: { color: string[], backgroundColor: string }
+        }
+    },
+    brightness: {
+        brightnessMode: "ldrBrightness" | "fixedBrightness" | "hourBrightness",
+        settings: {
+            ldrRange: {
+                dark: number,
+                bright: number
+            },
+            brightnessValue: {
+                max: number,
+                min: number
+            },
+            hourSlot: {
+                brightnessStartHour: number,
+                brightnessEndHour: number
+            }
+        }
+    },
+    checksum: number
+}

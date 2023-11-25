@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import ColorPicker from "./ColorPicker";
-import { configContext } from "../Context/Context";
+import { configContext,clockFaceContext } from "../Context/Context";
 
 /**
  * Builds screen for selection of a color for each clock-word and a global background color for non active LEDs
@@ -9,6 +9,7 @@ import { configContext } from "../Context/Context";
  */
 export default function WordColor(props) {
   const [colorConfig,setColorConfig]=useState(props.colorConfig);
+  const [clockFaceConfig,setClockFaceConfig]=useContext(clockFaceContext);
   const [config, setConfig] = useContext(configContext);
   const [clockWords,setClockWords]=useState((config?config.clockface.layout:[]));
   const [colorList,setColorList]=useState(colorConfig.color?colorConfig.color:[]);
@@ -24,6 +25,13 @@ export default function WordColor(props) {
       setClockWords(config?config.clockface.layout:[])
     }, [config])
 
+    useEffect(() => {
+      if (clockFaceConfig){
+        let colorMapArray=colorList;
+        colorMapArray[clockFaceConfig.metadata.backgroundIndex]=colorConfig.backgroundColor;
+        setClockFaceConfig({...clockFaceConfig,"colorMap":colorMapArray});
+      }
+    },[colorList,colorConfig]);
 
     function transformConfig(event) {
       if (event.value){
