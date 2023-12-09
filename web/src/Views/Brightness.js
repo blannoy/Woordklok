@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect} from "react";
 import { configContext, queryProviderContext } from "../Context/Context";
 import BrightnessPicker from "../Components/BrightnessPicker";
 import useRequest from "../Context/Reducer";
+import LDRBrightness from "../Components/LDRBrightness";
 
 export default function Brightness() {
   const [config, setConfig] = useContext(configContext);
@@ -184,7 +185,7 @@ function setLdr(event){
       <div style={{ marginTop: "20px" }}>
          {{
           fixedBrightness: brightnessConfig&&fixedBrightness(),
-          ldrBrightness: brightnessConfig&&ldrBrightness(),
+          ldrBrightness: brightnessConfig&&<LDRBrightness/>,
           hourBrightness: brightnessConfig&&hourBrightness(),
         }[selectedOption]}
 

@@ -4,9 +4,8 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h2>Woordklok</h2>
-        <p>Met deze web-interface kan je verschillende parameters van de woordklok instellen zoals kleur, helderheid, ...</p>
-        <p>Gebaseerd op Bitlair wordclock</p>
+        <h2>Titel</h2>
+        <p>Uitleg</p>
       </div>
     );
   }

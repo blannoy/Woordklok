@@ -91,8 +91,8 @@ if (static_ip != ""){
 
 }
   //set static ip
-
   WiFi.mode(WIFI_STA);
+  WiFi.setPhyMode(WIFI_PHY_MODE_11G); 
   //delay(5000);
   wifiManager.setShowStaticFields(true);
   wifiManager.setShowDnsFields(true); 

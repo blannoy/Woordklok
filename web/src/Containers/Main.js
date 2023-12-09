@@ -9,7 +9,6 @@ import Home from "../Views/Home";
 import LEDColors from "../Views/LEDColors";
 import Brightness from "../Views/Brightness";
 import ShowConfig from "../Views/ShowConfig";
-import ClockFace from "../Components/ClockFace";
 
 
 export default function Main() {
