@@ -1,9 +1,9 @@
 import React, { useState,useContext,useEffect } from "react";
-import SingleColor from "../Components/SingleColor";
+import SingleColor from "../Components/Color/SingleColor";
 import { configContext,queryProviderContext } from "../Context/Context";
-import RainbowColor from "../Components/RainbowColor";
-import WordColor from "../Components/WordColor";
-import HourlyColor from "../Components/HourlyColor";
+import RainbowColor from "../Components/Color/RainbowColor";
+import WordColor from "../Components/Color/WordColor";
+import HourlyColor from "../Components/Color/HourlyColor";
 import ClockFace from "../Components/ClockFace";
 
 export default function LEDColors() {
@@ -31,7 +31,8 @@ export default function LEDColors() {
   }
   
   function testConfig() {
-    var body={};
+    var body={...config.colors};
+    body.ledMode=selectedOption;
     body[selectedOption]={...colorConfig};
     dispatchRequest({type:"setColor", params: {test:true},body: body});
   }
@@ -40,7 +41,8 @@ export default function LEDColors() {
   }
 
   function submitConfig() {
-    var body={};
+    var body={...config.colors};
+    body.ledMode=selectedOption;
     body[selectedOption]={...colorConfig};
     dispatchRequest({type:"setColor", body: body});
   }
@@ -82,7 +84,7 @@ export default function LEDColors() {
               <input type="checkbox" value="preview" name="showPreview" checked={showPreview} onChange={previewChangeHandler}/><label>Toon voorbeeld</label>
               </div>
             <div>
-              { showPreview && <ClockFace clockColors={clockColors} colorConfig={colorConfig} colorOption={selectedOption}/>}
+              { showPreview && <ClockFace/>}
             </div> 
             </div>)}
           </div>

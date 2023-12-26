@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import ColorPicker from "./ColorPicker";
-import { configContext } from "../Context/Context";
+import { configContext } from "../../Context/Context";
 
 /**
  * Builds screen for selection of a color for each clock-word and a global background color for non active LEDs

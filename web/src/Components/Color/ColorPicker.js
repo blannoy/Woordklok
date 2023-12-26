@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
-import { calculateComplementary } from "../Utils/Utils";
+import { calculateComplementary } from "../../Utils/Utils";
 import tinycolor from "tinycolor2";
 /**
  * Determine hasColor property based on color

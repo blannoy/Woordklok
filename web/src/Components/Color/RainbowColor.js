@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
-import { clockFaceContext } from "../Context/Context";
+import { clockFaceContext } from "../../Context/Context";
 import ColorPicker from "./ColorPicker";
 import tinycolor from "tinycolor2";
 

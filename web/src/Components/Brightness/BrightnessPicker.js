@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
+const defaultProps = { min: 0, max: 255, step: 5, minDistance: 10 };
 
 export default function BrightnessPicker(props) {
     const [brightness, setBrightness] = useState(props.currentVal);
     const [currentColor, setCurrentColor] = useState("")
-    
+    const [sliderProps, setSliderProps] = useState(defaultProps);
+
     const handleBrightnessChange = brightness => {
         setBrightness(brightness);
     };
     
     useEffect(() => {
-        setBrightness(props.currentVal);
-    }, [props.currentVal]);
+        const { id,currentVal, onBrightnessChoice, ...sliderPropsTemp } = { ...props }
+        setBrightness(currentVal);
+        setSliderProps({...defaultProps,...sliderPropsTemp});
+    }, [props]);
     
     useEffect(() => {
         setCurrentColor("hsl(0,0%," + Math.round(brightness/255*100) +"%)");
        props.onBrightnessChoice(brightness);
     }, [brightness]);
-    
+    function onValueChange(e) {
+        setBrightness(e.target.value)
+    }
 
     return (
         <div>
@@ -40,14 +46,15 @@ export default function BrightnessPicker(props) {
                             thumbClassName="thumb"
                             trackClassName="hue-track"
                             value={brightness}
-                            min={0}
-                            max={255}
-                            step={5}
-                            // renderThumb={(props, state) => <div {...props} ></div>}
                             onChange={handleBrightnessChange}
+                            {...sliderProps}
                         />
 
                     </div>
+                    <div className="smallBodyCell">
+                    <input type="number" id="brightness" name="brightness" min={sliderProps.min} max={sliderProps.max} value={brightness} onChange={onValueChange} />
+
+                </div>
             </div>
         </div>
     );
