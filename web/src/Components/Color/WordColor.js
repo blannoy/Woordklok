@@ -58,8 +58,9 @@ export default function WordColor(props) {
         {clockWords.map((clockWord, index) => {
           const colorIndex = "color_" + String(index);
           if (clockWord.word) {
-            return <div style={{ display: "flex", marginTop: "20px" }}><div style={{ flex: 0.05 }}> <label>{clockWord.word}</label></div><div style={{ flex: 0.9 }}><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
-          }
+            return <div className="section"><div className="smallLabelCell"> <label>{clockWord.word}</label></div><div className="wideBodyCell"><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
+
+        }
         })}
       </div>
       {/* <ColorPicker id="color" currentVal={colorConfig.color} onColorChoice={props.onColorConfig} /> */}

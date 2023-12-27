@@ -20,6 +20,10 @@ export function requestReducer(state, action) {
             targetState.method = 'get';
             //  defaultRequest.body = JSON.stringify(data);
             break;
+            case 'STATUS':
+                targetState.url = '/status';
+                targetState.method = 'get';
+                break;
         case 'setColor':
                 targetState.url = '/color';
                 targetState.method = 'put';

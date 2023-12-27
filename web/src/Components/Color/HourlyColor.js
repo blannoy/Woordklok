@@ -41,8 +41,8 @@ export default function HourlyColor(props) {
       <div>
       { [...Array(24)].map((value,index)=> {
         const colorIndex="color_"+String(index);
-        return <div style={{display:"flex", marginTop:"20px"}}><div style={{flex: 0.05}}> <label>{String(index)+":00"}</label></div><div style={{flex:0.9}}><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
-       })}
+      return <div className="section"><div className="smallLabelCell"> <label>{String(index)+":00"}</label></div><div className="wideBodyCell"><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
+})}
       </div> 
     </div>
   );

@@ -2,10 +2,9 @@ import React, { useState, useContext, useEffect, useRef } from "react";
 import { configContext, queryProviderContext } from "../../Context/Context";
 import BrightnessRangePicker from "./BrightnessRangePicker";
 import isEqual from 'lodash/isEqual';
-import ReactSlider from "react-slider";
 import HourRangePicker from "./HourRangePicker";
 
-export default function HourBrightness(props) {
+function HourBrightness(props) {
     const [brightnessConfig, setBrightnessConfig] = useState(props.currentVal?props.currentVal:undefined);
 
     const [hourBrightness, setHourBrightness] = useState([]);
@@ -69,3 +68,5 @@ export default function HourBrightness(props) {
         </div>
     );
 }
+
+export default React.memo(HourBrightness);

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { configContext,requestProviderContext } from "../Context/Context";
 
 
-export default function Admin() {
+function Admin() {
     const [config, setConfig] = useContext(configContext);
     const [currentStatus, setCurrentStatus] = useContext(requestProviderContext);
 
@@ -10,7 +10,7 @@ export default function Admin() {
     
     return (
         <div><h2>Admin</h2>
-                        <form method='POST' action='/api/update/flash' enctype='multipart/form-data'>
+                        <form method='POST' action='/api/update/flash' encType='multipart/form-data'>
             <div className="section">
 
                     <div className="labelCell"><label>Firmware:</label></div>
@@ -22,7 +22,7 @@ export default function Admin() {
 </div>
 
             </div>                </form>
-            <form method='POST' action='/api/update/file' enctype='multipart/form-data'>
+            <form method='POST' action='/api/update/file' encType='multipart/form-data'>
             <div className="section">
 
                     <div className="labelCell"><label>Filesystem:</label></div>
@@ -60,3 +60,5 @@ export default function Admin() {
         </div>
     );
 }
+
+export default React.memo(Admin);

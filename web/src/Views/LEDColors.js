@@ -5,14 +5,19 @@ import RainbowColor from "../Components/Color/RainbowColor";
 import WordColor from "../Components/Color/WordColor";
 import HourlyColor from "../Components/Color/HourlyColor";
 import ClockFace from "../Components/ClockFace";
+import { useMediaQuery } from 'react-responsive';
 
-export default function LEDColors() {
+function LEDColors() {
   const [config,] = useContext(configContext);
   const [, dispatchRequest]=useContext(queryProviderContext);
   const [selectedOption, setSelectedOption] = useState(config ? config.colors.ledMode :"singleColor");
   const [colorConfig,setColorConfig]=useState(config&&selectedOption ? { selectedOption: {...config.colors.ledConfig[selectedOption]} }:{});
   const [showPreview,setShowPreview]=useState(false);
   const [clockColors,setClockColors]=useState({})
+
+  const isTooSmall = !useMediaQuery({
+    query: '(min-width: 830px)'
+    })
 
   function previewChangeHandler(){
     setShowPreview(!showPreview);
@@ -37,7 +42,7 @@ export default function LEDColors() {
     dispatchRequest({type:"setColor", params: {test:true},body: body});
   }
   function resetConfig() {
-    setColorConfig({ ...config.colors.ledConfig[selectedOption] })
+    dispatchRequest({ type: 'LOADCONFIG' });
   }
 
   function submitConfig() {
@@ -78,7 +83,7 @@ export default function LEDColors() {
             hourlyColor: <HourlyColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors}/>,
           }[selectedOption]}
 
-            { (selectedOption!=="hourlyColor") && (
+            { (selectedOption!=="hourlyColor" && !isTooSmall) && (
                         <div>
             <div>
               <input type="checkbox" value="preview" name="showPreview" checked={showPreview} onChange={previewChangeHandler}/><label>Toon voorbeeld</label>
@@ -92,3 +97,5 @@ export default function LEDColors() {
       </div>
   );
 }
+
+export default React.memo(LEDColors);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BrightnessPicker from "./BrightnessPicker";
 
-export default function FixedBrightness(props) {
+function FixedBrightness(props) {
     const [fixedBrightnessValue, setFixedBrightnessValue] = useState(0);
 
     useEffect(() => {
@@ -26,3 +26,5 @@ export default function FixedBrightness(props) {
         </div>
       );
 }
+
+export default React.memo(FixedBrightness);

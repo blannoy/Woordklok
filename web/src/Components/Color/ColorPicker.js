@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 import { calculateComplementary } from "../../Utils/Utils";
 import tinycolor from "tinycolor2";
+import { useMediaQuery } from 'react-responsive';
 /**
  * Determine hasColor property based on color
  * @param {*} color 
@@ -51,8 +52,12 @@ export default function ColorPicker(props) {
     const [hasColor, setHasColor] = useState(colorToType(props.currentVal));
     const [currentHue, setCurrentHue] = useState(Math.round(tinycolor(props.currentVal).toHsl().h));
     const [currentColor, setCurrentColor] = useState(props.currentVal);
-
-
+    const isTooSmall = !useMediaQuery({
+        query: '(min-width: 830px)'
+        })
+        const isTooSmallComp = !useMediaQuery({
+            query: '(min-width: 1100px)'
+            })
     useEffect(() => {
         if (props.currentVal && props.currentVal !== colorChoice){
             setColorChoice(props.currentVal);
@@ -106,8 +111,6 @@ export default function ColorPicker(props) {
         };
 
     return (
-        <div>
-
             <div className="section">
                 <div className="normalBodyCell">  
                     <div style={{
@@ -118,7 +121,7 @@ export default function ColorPicker(props) {
                         width: '20px',
                         height: '20px'
                     }}></div>
-                    <form>
+                    <form className={foregroundColor&&isTooSmallComp?"colorFormColumn":isTooSmall?"colorFormColumn":"colorFormRow"}>
                         <label><input type="radio" value="White" name="color" checked={hasColor === "White"} onChange={colorChange} />Wit</label>
                         <label><input type="radio" value="Black" name="color" checked={hasColor === "Black"} onChange={colorChange} />Zwart</label>
                         {foregroundColor && <label><input type="radio" value="Complementary" name="color" checked={hasColor === "Complementary"} onChange={colorChange} />Complementary</label>}
@@ -129,7 +132,7 @@ export default function ColorPicker(props) {
                     {hasColor === "Color" &&                 <div style={{ '--backgroundColor':currentColor}} className="bodyCell">
                         <ReactSlider 
                             className="horizontal-hue-slider"
-                            thumbClassName="thumb"
+                            thumbClassName="coloredThumb"
                             trackClassName="hue-track"
                             value={currentHue}
                             min={0}
@@ -141,6 +144,5 @@ export default function ColorPicker(props) {
 
                     </div>}
             </div>
-        </div>
     );
 }

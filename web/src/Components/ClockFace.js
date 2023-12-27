@@ -2,8 +2,7 @@ import React, { useEffect, useState, useContext} from "react";
 import { clockFaceContext  } from "../Context/Context";
 import { calculateComplementary } from "../Utils/Utils";
 
-
-export default function ClockFace(props) {
+function ClockFace(props) {
     const [clockFaceConfig,setClockFaceConfig]=useContext(clockFaceContext);
     const [letterGrid,setLetterGrid]=useState(null);
     const [rows,setRows]=useState(0);
@@ -66,3 +65,4 @@ export default function ClockFace(props) {
 };
 
 
+export default React.memo(ClockFace);

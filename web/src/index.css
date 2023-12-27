@@ -80,12 +80,14 @@ dd {
 
   .section {
     width: 80%;
-    margin-bottom: 20px;
     padding-bottom: 20px;
+    padding-top: 20px;
     display: flex;
     flex-direction: row;
     vertical-align: middle;
     }
+
+
   div.horizontal-div {
     width: 100%;
 
@@ -94,16 +96,22 @@ dd {
   label {
       font-weight: bold;
       text-decoration: none;
-      margin-top: 20px;
-  }
 
+  }
+.section .section {
+  width: 100%;
+}
   .section .labelCell {
     flex: 0.4;
     display: flex;
     align-items: center; 
-    justify-content: left; /* Center the content horizontally */
-    margin-top: 20px;
-
+    justify-content: flex-start; /* Center the content horizontally */
+  }
+    .section .smallLabelCell {
+      flex: 0.1;
+      display: flex;
+      align-items: center; 
+      justify-content: flex-start; /* Center the content horizontally */
 }
 .section .normalBodyCell {
   flex: 0.4;
@@ -164,7 +172,7 @@ dd {
 );
   }
   
-    .thumb,  .thumbMinMax {
+    .thumb, .coloredThumb, .thumbMinMax {
       cursor: pointer;
       position: relative;
       bottom:-15px;
@@ -183,6 +191,10 @@ dd {
       box-sizing: border-box;
       
   }
+
+  .coloredThumb {
+    background: var(--backgroundColor);
+}
   .thumbMinMax-0 {
     background: var(--backgroundColorMin);
 }
@@ -217,4 +229,25 @@ dd {
     background: #83a9ff;
   }
 
+  button, input[type=button], input[type=submit], input[type=reset],  input[type=file]::file-selector-button {
+    background-color: #0099FF;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 
+  button:active, input:active{
+    background-color: #56bafd;
+  }
+.colorFormRow{
+  display: flex;
+  flex-direction: row;
+}
+
+.colorFormColumn{
+  display: flex;
+  flex-direction: column;
+}

@@ -4,7 +4,7 @@ import ReactSlider from "react-slider";
 const defaultProps = { min: 0, max: 255, step: 1, minDistance: 10 };
 
 export default function BrightnessRangePicker(props) {
-    const [brightness, setBrightness] = useState(props.currentVal);
+    const [brightness, setBrightness] = useState([0,255]);
     const [currentBrightness, setCurrentBrightness] = useState([0,100]);
     const [sliderProps, setSliderProps] = useState(defaultProps);
 
@@ -13,9 +13,11 @@ export default function BrightnessRangePicker(props) {
     };
 
     useEffect(() => {
+        if (Object.keys(props).length !== 0 && props.currentVal.length===2){
         const { id,currentVal, onBrightnessChoice, ...sliderPropsTemp } = { ...props }
         setBrightness(currentVal);
         setSliderProps({...defaultProps,...sliderPropsTemp});
+        }
     }, [props]);
 
     useEffect(() => {

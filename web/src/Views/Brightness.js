@@ -5,7 +5,7 @@ import FixedBrightness from "../Components/Brightness/FixedBrightness";
 import HourBrightness from "../Components/Brightness/HourBrightness";
 // import LDRBrightness from "../Components/LDRBrightness";
 
-export default function Brightness() {
+function Brightness() {
   const [config, setConfig] = useContext(configContext);
   const [requestState, dispatchRequest] = useContext(queryProviderContext);
 
@@ -58,43 +58,19 @@ export default function Brightness() {
   }
 
   function resetConfig() {
-    setBrightnessConfig({ ...config.brightness })
+    dispatchRequest({ type: 'LOADCONFIG' });
   }
 
   function submitConfig() {
-    let body = mapVarToBrightnessConfig();
-    dispatchRequest({ type: "setBrightness", body: {[selectedOption]: body.settings[selectedOption]} });
+    dispatchRequest({ type: "setBrightness", body: mapVarToBrightnessConfig() });
   }
 
   function onBrightnessChoice(val) {
     let tempConfig={...brightnessConfig};
     tempConfig.settings[selectedOption]={...val};
     setBrightnessConfig(tempConfig);
-/*    let id=this.id;
-    let fnString="set"+id.charAt(0).toUpperCase()+id.slice(1);
-    let fn=eval(fnString);
-    fn(val);*/
   }
 
-  // function hourBrightnessComp() {
-  //   // brightnessStartHour start of brightnessMax
-  //   // brightnessEndHour start of brightnessMin
-  //   return (
-  //     <div>
-  //       Starthour - max brightness
-  //       <div>
-  //         <input id="brightnessStartHour" type="number" min={0} max={23} value={brightnessStartHour} onBrightnessChoice={onBrightnessChoice} />
-  //         <BrightnessPicker id="hourBrightnessMax" currentVal={hourBrightnessMax} onBrightnessChoice={onBrightnessChoice} />
-  //       </div>
-  //       Endhour - min brightness
-  //       <div>
-  //         <input id="brightnessStartHour" type="number" min={0} max={23} value={brightnessEndHour} onBrightnessChoice={onBrightnessChoice} />
-  //         <BrightnessPicker id="hourBrightnessMin" currentVal={hourBrightnessMin} onBrightnessChoice={onBrightnessChoice} />
-  //       </div>
-
-  //     </div>
-  //   );
-  // }
   return (
     <div>
 
@@ -118,3 +94,4 @@ export default function Brightness() {
   );
 }
 
+export default React.memo(Brightness);

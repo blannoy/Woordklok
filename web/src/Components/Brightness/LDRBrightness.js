@@ -4,8 +4,8 @@ import BrightnessRangePicker from "./BrightnessRangePicker";
 import useRequest from "../../Context/Reducer";
 import isEqual from 'lodash/isEqual';
 
-export default function LDRBrightness(props) {
-    const [brightnessConfig, setBrightnessConfig] = useState(props.currentVal?props.currentVal:undefined);
+function LDRBrightness(props) {
+    const [brightnessConfig, setBrightnessConfig] = useState(props.currentVal?props.currentVal:{});
 
     const calibrationTime = 30;
     const [seconds, setSeconds] = useState(calibrationTime);
@@ -25,7 +25,7 @@ export default function LDRBrightness(props) {
     }, [props.currentVal])
 
     useEffect(() => {
-        if (brightnessConfig) {
+        if (Object.keys(brightnessConfig).length!==0) {
             mapBrightnessConfigToVar();
         }
     }, [brightnessConfig])
@@ -117,7 +117,11 @@ export default function LDRBrightness(props) {
     return (
         <div>
             <div className="section">
-                <button id="calibrateLdr" onClick={calibrateLdr}>Calibrate LDR</button>{doCalibrate && "Calibrating..." + ldrCalibrated[0] + " / " + ldrCalibrated[1]}
+                <div className="BodyCell">
+                <button id="calibrateLdr" onClick={calibrateLdr}>Calibrate LDR</button>
+                </div>
+                <div className="labelCell"><label>{doCalibrate && "Calibrating...  " + ldrCalibrated[0] + " / " + ldrCalibrated[1]}</label>
+                </div>
             </div>
  
     
@@ -127,3 +131,5 @@ export default function LDRBrightness(props) {
         </div>
     );
 }
+
+export default React.memo(LDRBrightness);
