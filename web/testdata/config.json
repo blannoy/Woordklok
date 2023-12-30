@@ -63,8 +63,8 @@
                     "max" : 150
                 }
             },
-            "hourBrightness": {
-                "hourSlot" : {
+            "timeBrightness": {
+                "timeSlot" : {
                     "startHour" : 8,
                     "endHour" : 22                
                 },

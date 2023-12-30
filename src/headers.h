@@ -11,63 +11,13 @@
 #include <NeoPixelBus.h>
 #include <NeoPixelAnimator.h>
 
-#define DEBUG true // flag to turn on/off debugging
-#define debug_begin(...) do { if (DEBUG) { Serial.begin(__VA_ARGS__); while(!Serial); }} while (0)
-#define debug_print(...) do { if (DEBUG) Serial.print(__VA_ARGS__); } while (0)
-#define debug_println(...) do { if (DEBUG) Serial.println(__VA_ARGS__); } while (0)
-#define debug_printf(...) do { if (DEBUG) printf(__VA_ARGS__); } while (0)
-
 #define numReadings 20
-
-#define HOSTNAME_MAX 256
 #define NUM_ROWS 10
 #define NUM_COLS 11
 #define OFFSET 4  // 4 minute dots
 #define MATRIX_LEDS NUM_ROWS* NUM_COLS
 #define NUM_LEDS NUM_ROWS* NUM_COLS + OFFSET
 #define NUMWORDS 27
-#define BOOTANIMTIME 5000
-String version="0.5";
-
-extern int PixelCount = NUMWORDS;
-
-enum LedMode {
-  single,
-  words,
-  hourly,
-  rainbow
-};
-
-enum BrightnessMode {
-  fixedBrightness,
-  ldrBrightness,
-  timeBrightness
-};
-
-struct ClockfaceWord {
-  std::vector<int> leds;
-  int colorCodeInTable;
-  String label;
-  bool (*isActive)(int, int);
-};
-
-struct Configuration {
-  char ntp_server[256];
-  char hostname[HOSTNAME_MAX];
-  ClockfaceWord clockface[NUMWORDS];
-  LedMode ledMode;
-  int singleColorHue;
-  int hourlyColors[24];
-  int wordColors[NUMWORDS];
-  BrightnessMode brightnessMode;
-  uint8_t ldrDark;
-  uint8_t ldrBright;
-  uint8_t maxBrightness;
-  uint8_t minBrightness;
-  uint8_t brightnessStartHour;
-  uint8_t brightnessEndHour;
-  uint8_t checksum;
-};
 
 typedef enum { BOOT,
                STARTUP,
@@ -81,6 +31,99 @@ typedef enum { BOOT,
 static char* statesStrings[] = { "BOOT", "STARTUP", "TOUCHED", "SPLASH", "CLOCK", "TESTPIXEL", "TESTFULL", "TESTHOURS", "TESTMINUTES" };
 
 extern states state;
+
+
+#define HOSTNAME_MAX 256
+#define CONFIGSIZE 6200
+#define NUMKEYS 5
+String configKeys[NUMKEYS] = {"system", "clockface", "colors", "brightness","checksum"};
+
+
+struct ClockfaceWord {
+  std::vector<int> leds;
+  int colorCodeInTable;
+  String label;
+  bool (*isActive)(int, int);
+};
+
+
+#define BOOTANIMTIME 5000
+String version="0.5";
+
+extern int PixelCount; 
+
+enum LedMode {
+  singleColor,
+  wordColor,
+  hourlyColor,
+  rainbowColor
+};
+
+enum BrightnessMode {
+  fixedBrightness,
+  ldrBrightness,
+  timeBrightness
+};
+
+struct WifiConfig
+{
+  char static_ip[16]="";
+  char static_gw[16]="";
+  char static_sn[16]="";
+  char static_dns1[16]="";
+  char static_dns2[16]="";
+};
+struct SingleColorConfig {
+  char color[8];
+  char backgroundColor[8]="";
+};
+
+struct RainbowColorConfig {
+  int16_t cycleTime=20;
+  char backgroundColor[8]="";
+};
+
+struct WordColorConfig {
+  char color[NUMWORDS][8];
+  char backgroundColor[8]="";
+};
+
+struct HourlyColorConfig {
+  char color[24][8];
+  char backgroundColor[8]="";
+};
+
+struct FixedBrightnessConfig {
+  uint8_t brightness=100;
+};
+
+struct LDRBrightnessConfig {
+  uint8 ldrRange[2]={0,100};
+  uint8 brightness[2]={0,255};
+};
+struct TimeBrightnessConfig {
+  uint8 timeSlot[2]={6,22};
+  uint8 brightness[2]={0,255};
+};
+
+struct Configuration {
+  char ntp_server[256];
+  char hostname[HOSTNAME_MAX];
+  ClockfaceWord clockface[NUMWORDS+1];
+  LedMode ledMode;
+  WifiConfig wifiConfig;
+  SingleColorConfig singleColor;
+  RainbowColorConfig rainbowColor;
+  WordColorConfig wordColor;
+  HourlyColorConfig hourlyColor;
+  BrightnessMode brightnessMode;
+  FixedBrightnessConfig fixedBrightness;
+  LDRBrightnessConfig ldrBrightness;
+  TimeBrightnessConfig timeBrightness;
+  uint16_t checksum;
+};
+
+
 
 enum statusLedList {
   WIFI,
@@ -152,7 +195,7 @@ void configurationSetup();
 void saveConfiguration();
 void loadConfiguration();
 void loadDefaultConfiguration();
-uint8_t calculateConfigChecksum();
+uint16_t calculateConfigChecksum();
 void calibrateSensor();
 void setupSensors();
 void sensorLoop();
@@ -189,4 +232,9 @@ struct RCCoord calcCoord(int);
 byte calcBrightness();
 RgbColor getColor(NeoBuffer<NeoBufferMethod<NeoGrbFeature>>&, int);
 bool doAnimation();
-HslColor valueToColor(int);
+RgbColor HueToRgbColor(int);
+RgbColor hexToRgb(char*);
+RgbColor hexToRgb(char*,RgbColor);
+DynamicJsonDocument config2JSON(Configuration&);
+Configuration JSON2config(DynamicJsonDocument);
+bool JSON2config(DynamicJsonDocument, Configuration&);

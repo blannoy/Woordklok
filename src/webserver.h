@@ -83,7 +83,7 @@ void setBrightness() {
   message+="\n";
   debug_printf("%s",message);
   server.send(200, "text/plain", message);
-  config.maxBrightness=brightness;
+  config.fixedBrightness.brightness=brightness;
 }
 
 void setLedMode() {
@@ -93,16 +93,16 @@ void setLedMode() {
   message+="\n";
   debug_printf("%s",message);
   server.send(200, "text/plain", message);
-  if(arg == "single") {
-    config.ledMode = single;
-  } else if (arg == "words") {
-    config.ledMode = words;
-  } else if (arg == "hourly") {
-    config.ledMode = hourly;
-  } else if (arg == "rainbow") {
-    config.ledMode = rainbow;
+  if(arg == "singleColor") {
+    config.ledMode = singleColor;
+  } else if (arg == "wordColor") {
+    config.ledMode = wordColor;
+  } else if (arg == "hourlyColor") {
+    config.ledMode = hourlyColor;
+  } else if (arg == "rainbowColor") {
+    config.ledMode = rainbowColor;
   } else {
-    apiSendError("Unknown mode, valid options: 'single', 'hourly', 'rainbow', 'words'");
+    apiSendError("Unknown mode, valid options: 'singleColor', 'hourlyColor', 'rainbowColor', 'wordColor'");
     return;
   }
 }
@@ -119,6 +119,13 @@ void apiSendJSON(int status, JsonObject object) {
  serializeJson(object, json);
   server.send(status, "application/json", json); 
   jsonBuffer.clear();
+}
+
+void apiSendJSON(int status, DynamicJsonDocument doc) {
+  String json;
+ serializeJson(doc, json);
+  server.send(status, "application/json", json); 
+  doc.clear();
 }
 
 /*void apiSendJSONArray(int status, JsonArray object) {
@@ -165,6 +172,11 @@ void getStatus() {
   debug_printf("%s",message);
   server.send(200, "text/plain", message);
 }
+
+void getConfig() {
+  apiSendJSON(200, config2JSON(config));
+}
+
 void webServerSetup() {
   debug_println("Webserver setup");
   if (!serverStarted){
@@ -178,6 +190,7 @@ void webServerSetup() {
   server.on("/api/testClockFaceMinutes", runClockFaceTestMinutes);
   server.on("/api/testClockFaceHours", runClockFaceTestHours);  
   server.on("/api/status", getStatus);
+  server.on("/api/config", getConfig);
   //server.on("/api/log", getLog);
   server.onNotFound(handleNotFound);
 

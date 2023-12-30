@@ -1,6 +1,7 @@
 #pragma once 
 #include <headers.h>
 
+int PixelCount = NUMWORDS;
 bool alwaysOn(int hour, int minute);
 
 
@@ -140,6 +141,10 @@ bool isTwelveActive(int hour, int minute) {
   return isHourActive( 0, hour, minute);
 }
 
+bool hasBackground(int hour, int minute) {
+  return true;
+}
+
 
 ClockfaceWord clockface[] = {
  { { 113,112,111 }, 0, "het", alwaysOn },
@@ -168,6 +173,7 @@ ClockfaceWord clockface[] = {
  { { 32,33,34,35,36 }, 23, "negen", isNineActive },
  { { 29,30,31,32 }, 24, "tien", isTenActive },
  { { 18,17,16 }, 25, "elf", isElevenActive },
- { { 4,5,6,7,8,9 }, 26, "twaalf", isTwelveActive }
+ { { 4,5,6,7,8,9 }, 26, "twaalf", isTwelveActive },
+ { { 110,107,103,102,97,92,80,75,70,65,54,53,48,42,37,25,20,19,15,11,10 }, 27, "kzkogremaktdzoorrbodb", hasBackground }
 };
 
