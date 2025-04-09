@@ -7,7 +7,7 @@ import useRequest, {requestReducer,defaultRequest } from "../Context/Reducer";
 export default function Root() {
     const [initialConfig,setInitialConfig]=useState(null);
     const [clockFace,setClockFace]=useState(null);
-    const [error,setError]=useState(null);
+    const [error,setError]=useState({currentUrl:"",object:{}});
     const [response, err, runRequest]  = useRequest();
     const [requestState, dispatchRequest] = useReducer(requestReducer, defaultRequest)
     const [responseObject, setResponseObject] = useState(null);
@@ -15,13 +15,14 @@ export default function Root() {
     useEffect(() => {
       if (requestState.url !== ""){
         runRequest(requestState);
-      }
+      } 
   }, [requestState]);
   
   useEffect(() => {
     if (initialConfig === null && response === null) {
       dispatchRequest({ type: 'LOADCONFIG' });
     } else if (response !== null) {
+
       switch (response.config.url) {
         case "/config":
           setInitialConfig(response.data);
@@ -39,10 +40,9 @@ export default function Root() {
           }
           break;
       }
-
     }
     if (err) {
-      setError(err);
+      setError({ currentUrl: window.location.href, object: {...err}});
     }
   }, [response, err])
 
@@ -52,9 +52,14 @@ export default function Root() {
           <queryProviderContext.Provider value={[requestState,dispatchRequest]}>
           <requestProviderContext.Provider value={[responseObject, setResponseObject]}>
             <Main />
+            {(Object.keys(error.object).length >0)&&
             <div>
-            <pre>{error}</pre>
+             {(error.currentUrl === window.location.href) &&
+             (<pre>
+              {error.object.message}<br/>
+          {(error.object.response?JSON.stringify(error.object.response.data):"")}</pre>) }
             </div>
+            }
             </requestProviderContext.Provider>
             </queryProviderContext.Provider>
             </clockFaceContext.Provider>

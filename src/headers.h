@@ -1,23 +1,27 @@
-#pragma once 
+
+#pragma once
 
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 #include <ESP8266HTTPUpdateServer.h>
 #include <ESP8266WebServer.h>
 #include <ArduinoJson.h>
-#include <FS.h>
-#include <LittleFS.h>
 #include <ESP8266mDNS.h>
-#include <EEPROM.h>
 #include <NeoPixelBus.h>
 #include <NeoPixelAnimator.h>
+#include <FS.h>
+#include <LittleFS.h>
 
 #define numReadings 20
-#define NUM_ROWS 10
-#define NUM_COLS 11
-#define OFFSET 4  // 4 minute dots
-#define MATRIX_LEDS NUM_ROWS* NUM_COLS
-#define NUM_LEDS NUM_ROWS* NUM_COLS + OFFSET
-#define NUMWORDS 27
+#define BACKGROUNDDIMFACTOR 100
+
+#define TESTTIMER 30000
+long testStart=0;
+#define filesystem (LittleFS)
+
+#define HOSTNAME_MAX 256
+#define CONFIGSIZE 8192
+#define NUMKEYS 5
+String configKeys[NUMKEYS] = {"system", "clockface", "colors", "brightness", "checksum"};
 
 typedef enum { BOOT,
                STARTUP,
@@ -27,89 +31,171 @@ typedef enum { BOOT,
                TESTPIXEL,
                TESTFULL,
                TESTHOURS,
-               TESTMINUTES } states;
-static char* statesStrings[] = { "BOOT", "STARTUP", "TOUCHED", "SPLASH", "CLOCK", "TESTPIXEL", "TESTFULL", "TESTHOURS", "TESTMINUTES" };
+               TESTMINUTES,
+               TESTCOLORS } states;
+static char* statesStrings[] = { "BOOT", "STARTUP", "TOUCHED", "SPLASH", "CLOCK", "TESTPIXEL", "TESTFULL", "TESTHOURS", "TESTMINUTES", "TESTCOLORS" };
 
 extern states state;
+typedef enum
+{
+  alwaysOn,
+  isJust,
+  fiveMinute,
+  tenMinute,
+  quarter,
+  past,
+  before,
+  wholeHour,
+  halfHour,
+  tenMinute_20,
+  twenty,
+  past_20,
+  before_20,
+  halfHour_20,
+  firstMinute,
+  secondMinute,
+  thirdMinute,
+  fourthMinute,
+  isOneActive,
+  isTwoActive,
+  isThreeActive,
+  isFourActive,
+  isFiveActive,
+  isSixActive,
+  isSevenActive,
+  isEightActive,
+  isNineActive,
+  isTenActive,
+  isElevenActive,
+  isTwelveActive
+} isActiveMethod;
+const char *isActiveMethodStrings[] = {"alwaysOn", "isJust", "fiveMinute", "tenMinute", "quarter", "past", "before", "wholeHour", "halfHour", "tenMinute_20", "twenty", "past_20", "before_20", "halfHour_20","firstMinute", "secondMinute", "thirdMinute", "fourthMinute", "isOneActive", "isTwoActive", "isThreeActive", "isFourActive", "isFiveActive", "isSixActive", "isSevenActive", "isEightActive", "isNineActive", "isTenActive", "isElevenActive", "isTwelveActive"};
 
+struct ClockfaceWord
+{
+  uint8_t *leds;
+  uint8_t colorCodeInTable;
+  const char *label;
+  isActiveMethod isActive;
+};
 
-#define HOSTNAME_MAX 256
-#define CONFIGSIZE 6200
-#define NUMKEYS 5
-String configKeys[NUMKEYS] = {"system", "clockface", "colors", "brightness","checksum"};
+struct ClockfaceLayout
+{
+  uint8_t wordGridCols;
+  uint8_t wordGridRows;
+  uint8_t extraLEDs;
+  uint16_t totalLeds;
+  uint8_t totalWords;
+  bool hasTwenty;
+};
+#define BOOTANIMTIME 5000
+String version = "0.5";
 
+extern uint8_t PixelCount;
 
-struct ClockfaceWord {
-  std::vector<int> leds;
-  int colorCodeInTable;
-  String label;
-  bool (*isActive)(int, int);
+enum statusLedList {
+  WIFI,
+  Time,
+  AP
 };
 
 
-#define BOOTANIMTIME 5000
-String version="0.5";
-
-extern int PixelCount; 
-
-enum LedMode {
+enum LedMode
+{
   singleColor,
   wordColor,
   hourlyColor,
   rainbowColor
 };
 
-enum BrightnessMode {
+enum BrightnessMode
+{
   fixedBrightness,
   ldrBrightness,
   timeBrightness
 };
 
+struct colorDef
+{
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+  bool complementary=false;
+};
+
+struct BrightnessDef
+{
+  uint8_t min;
+  uint8_t max;
+};
+
+struct LdrRangeDef
+{
+  uint8_t dark;
+  uint8_t bright;
+};
+
 struct WifiConfig
 {
-  char static_ip[16]="";
-  char static_gw[16]="";
-  char static_sn[16]="";
-  char static_dns1[16]="";
-  char static_dns2[16]="";
+  char static_ip[16] = "";
+  char static_gw[16] = "";
+  char static_sn[16] = "";
+  char static_dns1[16] = "";
+  char static_dns2[16] = "";
 };
-struct SingleColorConfig {
-  char color[8];
-  char backgroundColor[8]="";
-};
-
-struct RainbowColorConfig {
-  int16_t cycleTime=20;
-  char backgroundColor[8]="";
+struct SingleColorConfig
+{
+  colorDef color;
+  colorDef backgroundColor;
 };
 
-struct WordColorConfig {
-  char color[NUMWORDS][8];
-  char backgroundColor[8]="";
+struct RainbowColorConfig
+{
+  unsigned long cycleTime;
+  colorDef backgroundColor;
 };
 
-struct HourlyColorConfig {
-  char color[24][8];
-  char backgroundColor[8]="";
+struct WordColorConfig
+{
+  colorDef *color;
+  colorDef backgroundColor;
 };
 
-struct FixedBrightnessConfig {
-  uint8_t brightness=100;
+struct HourlyColorConfig
+{
+  colorDef color[24];
+  colorDef backgroundColor;
 };
 
-struct LDRBrightnessConfig {
-  uint8 ldrRange[2]={0,100};
-  uint8 brightness[2]={0,255};
-};
-struct TimeBrightnessConfig {
-  uint8 timeSlot[2]={6,22};
-  uint8 brightness[2]={0,255};
+struct FixedBrightnessConfig
+{
+  uint8_t brightness;
 };
 
-struct Configuration {
-  char ntp_server[256];
-  char hostname[HOSTNAME_MAX];
-  ClockfaceWord clockface[NUMWORDS+1];
+struct LDRBrightnessConfig
+{
+  LdrRangeDef ldrRange;
+  BrightnessDef brightness;
+};
+
+struct TimeSlotDef
+{
+  uint8_t startHour;
+  uint8_t endHour;
+};
+
+struct TimeBrightnessConfig
+{
+  TimeSlotDef timeSlot;
+  BrightnessDef brightness;
+};
+
+struct Configuration
+{
+  char ntp_server[64];
+  char hostname[64];
+  ClockfaceLayout clockfaceLayout;
+  ClockfaceWord *clockface;
   LedMode ledMode;
   WifiConfig wifiConfig;
   SingleColorConfig singleColor;
@@ -120,19 +206,12 @@ struct Configuration {
   FixedBrightnessConfig fixedBrightness;
   LDRBrightnessConfig ldrBrightness;
   TimeBrightnessConfig timeBrightness;
-  uint16_t checksum;
 };
 
+Configuration config;
+Configuration workingConfig;
+DynamicJsonDocument json(CONFIGSIZE);
 
-
-enum statusLedList {
-  WIFI,
-  Time,
-  AP
-};
-
-extern Configuration config;
-extern ClockfaceWord clockface[];
 extern bool serverStarted;
 extern ESP8266WebServer server;
 extern ESP8266HTTPUpdateServer flashUpdateServer;
@@ -156,60 +235,16 @@ extern RgbColor green;
 extern RgbColor blue;
 extern RgbColor white;
 extern RgbColor black;
-extern int splashScreen[];
+extern uint8_t splashScreen[];
 extern long lastLedUpdate;
 
-extern int testState;
-extern int currentPixel;
+extern uint8_t testState;
+extern uint8_t currentPixel;
 extern long timeStamp;
 struct RCCoord {
-  int row = 0;
-  int col = 0;
+  uint8_t row = 0;
+  uint8_t col = 0;
 };
-
-void APModeCallback (WiFiManager*);
-void saveConfigCallback();
-void wifiSetup();
-void wifiLoop();
-void configWifi();
-
-void handleRoot();
-void handleNotFound();
-void dumpLittleFS();
-void setBrightness();
-void setLedMode();
-void apiSendError(String message);
-void apiSendJSON(int status, JsonObject object);
-void setPixelCount();
-void runTestPixels();
-void runTestAllPixels();
-void runClockFaceTestMinutes();
-void runClockFaceTestHours();
-void webServerSetup();
-void stopServer();
-void getLog();
-void webServerLoop();
-bool webserverServeFileFromFS(String);
-
-void configurationSetup();
-void saveConfiguration();
-void loadConfiguration();
-void loadDefaultConfiguration();
-uint16_t calculateConfigChecksum();
-void calibrateSensor();
-void setupSensors();
-void sensorLoop();
-
-void showTime();
-void time_is_set_scheduled();
-void timeSetup();
-void timeLoop();
-
-void changeState(states);
-void logLoop();
-void flushLog();
-void putchar_(char);
-
 void ledSetup();
 void clearLEDS();
 void FadeAll(uint8_t);
@@ -217,24 +252,38 @@ void showSplash();
 void FadeAnimUpdate(const AnimationParam&);
 void MoveAnimUpdate(const AnimationParam&);
 void stopRain();
-void dropLetter(int);
+void dropLetter(uint8_t);
 void setupRain();
 void rainLoop();
 void ledShowClockface();
 void clockLoop();
 void statusLed(statusLedList, NeoBufferMethod<NeoGrbFeature>::ColorObject);
-void setColor(int, NeoBufferMethod<NeoGrbFeature>::ColorObject);
-void clearLEDTo(NeoBuffer<NeoBufferMethod<NeoGrbFeature>>&, NeoBufferMethod<NeoGrbFeature>::ColorObject);
 void SetupAnimationSet();
-void showFace(bool);
 void setStatusLeds();
-struct RCCoord calcCoord(int);
+struct RCCoord calcCoord(uint8_t);
 byte calcBrightness();
-RgbColor getColor(NeoBuffer<NeoBufferMethod<NeoGrbFeature>>&, int);
+RgbColor getColor(NeoBuffer<NeoBufferMethod<NeoGrbFeature>>&, uint8_t);
 bool doAnimation();
-RgbColor HueToRgbColor(int);
-RgbColor hexToRgb(char*);
-RgbColor hexToRgb(char*,RgbColor);
-DynamicJsonDocument config2JSON(Configuration&);
-Configuration JSON2config(DynamicJsonDocument);
-bool JSON2config(DynamicJsonDocument, Configuration&);
+
+void setColor(uint8_t, NeoBufferMethod<NeoGrbFeature>::ColorObject);
+RgbColor getColor(NeoBuffer<NeoBufferMethod<NeoGrbFeature>> &, uint8_t);
+void clearLEDTo(NeoBuffer<NeoBufferMethod<NeoGrbFeature>> &, NeoBufferMethod<NeoGrbFeature>::ColorObject);
+void showFace(bool);
+RgbColor HueToRgbColor(uint8_t);
+isActiveMethod methodStringToMethod(String);
+isActiveMethod methodStringToMethod(const char *);
+
+void flushLog();
+void webServerSetup();
+void stopServer();
+bool webserverServeFileFromFS(String);
+void handleRoot();
+void handleNotFound();
+void dumpLittleFS();
+void setBrightness();
+void apiSendError(String message);
+void apiSendJSON(int status, JsonObject object);
+void runTestPixels();
+void runTestAllPixels();
+void runClockFaceTestMinutes();
+void runClockFaceTestHours();

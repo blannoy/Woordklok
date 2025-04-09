@@ -36,8 +36,9 @@ function LEDColors() {
   }
   
   function testConfig() {
-    var body={...config.colors};
-    body.ledMode=selectedOption;
+//    var body={...config.colors};
+    let body={};
+    //body.ledMode=selectedOption;
     body[selectedOption]={...colorConfig};
     dispatchRequest({type:"setColor", params: {test:true},body: body});
   }
@@ -46,8 +47,9 @@ function LEDColors() {
   }
 
   function submitConfig() {
-    var body={...config.colors};
-    body.ledMode=selectedOption;
+  //  var body={...config.colors};
+    let body={};
+    //body.ledMode=selectedOption;
     body[selectedOption]={...colorConfig};
     dispatchRequest({type:"setColor", body: body});
   }

@@ -38,7 +38,7 @@ void APModeCallback (WiFiManager* myWiFiManager) {
 void wifiSetup() {
   debug_println("wifiSetup");
   // Read configfile
-  if (LittleFS.exists("/config.json")) {
+/*  if (LittleFS.exists("/config.json")) {
     //file exists, reading and loading
     debug_print("reading config file");
     File configFile = LittleFS.open("/config.json", "r");
@@ -76,12 +76,12 @@ void wifiSetup() {
         debug_print("failed to load json config");
       }
     }
-  }
+  }*/
   wifiManager.setAPCallback(APModeCallback);
  // wifiManager.setConfigPortalBlocking(false);
   wifiManager.setSaveConfigCallback(saveConfigCallback);
  wifiManager.setConnectTimeout(180);
-if (static_ip != ""){
+if (!strcmp(static_ip,"")){
   IPAddress _ip, _gw, _sn, _dns;
   _ip.fromString(static_ip);
   _gw.fromString(static_gw);
@@ -157,9 +157,9 @@ void wifiLoop(){
 void configWifi(){
         server.send(200, "text/plain", "Starting wifi config portal");
         wifiManager.resetSettings();
-        if (LittleFS.exists("/config.json")) {
+      /*  if (LittleFS.exists("/config.json")) {
           LittleFS.remove("/config.json");
-         }
+         }*/
       ESP.restart();
       delay(5000);
 }

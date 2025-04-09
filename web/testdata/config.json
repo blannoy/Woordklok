@@ -4,8 +4,8 @@
         "hostname": "woordklok"
     },
     "clockface": {
-        "wordGridHorizontal" : 11,
-        "wordGridVertical" : 10,
+        "wordGridCols" : 11,
+        "wordGridRows" : 10,
         "extraLEDs" : 4,
         "layout": [
         {"word" : "het", "leds": [ 113,112,111 ],  "function": "alwaysOn" },

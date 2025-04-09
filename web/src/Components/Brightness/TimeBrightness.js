@@ -4,10 +4,10 @@ import BrightnessRangePicker from "./BrightnessRangePicker";
 import isEqual from 'lodash/isEqual';
 import HourRangePicker from "./HourRangePicker";
 
-function HourBrightness(props) {
+function TimeBrightness(props) {
     const [brightnessConfig, setBrightnessConfig] = useState(props.currentVal?props.currentVal:undefined);
 
-    const [hourBrightness, setHourBrightness] = useState([]);
+    const [timeBrightness, setTimeBrightness] = useState([]);
     const [hourRange, setHourRange] = useState([]);
 
     useEffect(() => {
@@ -23,33 +23,33 @@ function HourBrightness(props) {
     }, [brightnessConfig])
 
     function mapBrightnessConfigToVar() {
-        setHourRange([brightnessConfig.hourSlot.startHour, brightnessConfig.hourSlot.endHour]);
-        setHourBrightness([brightnessConfig.brightness.min, brightnessConfig.brightness.max]);
+        setHourRange([brightnessConfig.timeSlot.startHour, brightnessConfig.timeSlot.endHour]);
+        setTimeBrightness([brightnessConfig.brightness.min, brightnessConfig.brightness.max]);
     }
 
     function mapVarToBrightnessConfig() {
         let newConfig = {
-                "hourSlot": {
+                "timeSlot": {
                     "startHour": hourRange[0],
                     "endHour": hourRange[1]
                 },
                 "brightness": {
-                    "min": hourBrightness[0],
-                    "max": hourBrightness[1]
+                    "min": timeBrightness[0],
+                    "max": timeBrightness[1]
                 }
         }        
         return newConfig;
     }
 
     useEffect(() => {
-        if (!isEqual(brightnessConfig,mapVarToBrightnessConfig()) & hourRange.length===2 & hourBrightness.length===2){
+        if (!isEqual(brightnessConfig,mapVarToBrightnessConfig()) & hourRange.length===2 & timeBrightness.length===2){
             props.onBrightnessChoice(mapVarToBrightnessConfig());
         }
-    },[hourBrightness,hourRange]);
+    },[timeBrightness,hourRange]);
 
-    function treatHourBrightness(val) {
-        if (JSON.stringify(hourBrightness) !== JSON.stringify(val)){
-            setHourBrightness(val);
+    function treattimeBrightness(val) {
+        if (JSON.stringify(timeBrightness) !== JSON.stringify(val)){
+            setTimeBrightness(val);
         }
     }
     function treatHourRange(val) {
@@ -62,11 +62,10 @@ function HourBrightness(props) {
     return (
         <div>  
             <HourRangePicker id="hourRange" currentVal={hourRange} onChange={treatHourRange} />
-            <BrightnessRangePicker id="hourRange" currentVal={hourRange} min={0} max={24} minDistance={1} onBrightnessChoice={treatHourRange} />
-            <BrightnessRangePicker id="hourBrightness" currentVal={hourBrightness} onBrightnessChoice={treatHourBrightness} />
+            <BrightnessRangePicker id="timeBrightness" currentVal={timeBrightness} onBrightnessChoice={treattimeBrightness} />
 
         </div>
     );
 }
 
-export default React.memo(HourBrightness);
+export default React.memo(TimeBrightness);

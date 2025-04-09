@@ -1,6 +1,6 @@
 
 export function mapClockFace(clockConfig) {
-    const dims = [clockConfig.wordGridHorizontal, clockConfig.wordGridVertical, clockConfig.extraLEDs];
+    const dims = [clockConfig.wordGridCols, clockConfig.wordGridRows, clockConfig.extraLEDs];
     const clockWords = clockConfig.layout;
     const nrWords = clockWords.length;
     const totalLetters = dims[0] * dims[1] + dims[2];

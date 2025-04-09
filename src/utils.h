@@ -1,7 +1,5 @@
 #pragma once
 #include <headers.h>
-#define DEBUGMEM false
-#define DEBUG true
 
 #define debug_begin(...)         \
   do                             \
@@ -39,6 +37,46 @@
     delay(2000);                   \
   } while (0)
 
+#ifdef ESP32
+#define reportmem(...)
+#else
+#define reportmem(...)                                                     \
+  do                                                                       \
+  {                                                                        \
+    if (DEBUGMEM)                                                          \
+    {                                                                      \
+      char stack;                                                          \
+      float ratio = (float)ESP.getFreeContStack() / (float)beginFreeStack; \
+        Serial.print(__VA_ARGS__);                                         \
+        Serial.print(F(" - "));                                            \
+        Serial.print(F(" stack "));                                        \
+        Serial.print(stack_start - &stack);                                \
+        Serial.print(F(" - "));                                            \
+        Serial.print(ESP.getFreeContStack());                              \
+        Serial.print(F(" / "));                                            \
+        Serial.print(beginFreeStack);                                      \
+        Serial.print(F(" heap "));                                         \
+        Serial.print(ESP.getFreeHeap());                                   \
+        Serial.print(F(" !!!!!!WARNING!!!!!"));                            \
+        Serial.print(ratio);                                               \
+        Serial.println();                                                  \
+    }                                                                      \
+  } while (0)
+#endif
+
+char *stack_start;
+uint32_t beginFreeStack;
+
+void initMemLog()
+{
+#ifndef ESP32
+#ifdef DEBUGMEM
+  char stack;
+  stack_start = &stack;
+  beginFreeStack = ESP.getFreeContStack();
+#endif
+#endif
+}
 class RunningAverage
 {
 private:
@@ -150,43 +188,6 @@ void putchar_(char character)
    logPointer++;*/
 }
 
-#define reportmem(...)                                                     \
-  do                                                                       \
-  {                                                                        \
-    if (DEBUGMEM)                                                          \
-    {                                                                      \
-      char stack;                                                          \
-      float ratio = (float)ESP.getFreeContStack() / (float)beginFreeStack; \
-      if (ratio < 0.20)                                                    \
-      {                                                                    \
-        Serial.print(__VA_ARGS__);                                         \
-        Serial.print(F(" - "));                                            \
-        Serial.print(F(" stack "));                                        \
-        Serial.print(stack_start - &stack);                                \
-        Serial.print(F(" - "));                                            \
-        Serial.print(ESP.getFreeContStack());                              \
-        Serial.print(F(" / "));                                            \
-        Serial.print(beginFreeStack);                                      \
-        Serial.print(F(" heap "));                                         \
-        Serial.print(ESP.getFreeHeap());                                   \
-        Serial.print(F(" !!!!!!WARNING!!!!!"));                            \
-        Serial.print(ratio);                                               \
-        Serial.println();                                                  \
-      }                                                                    \
-    }                                                                      \
-  } while (0)
-
-char *stack_start;
-uint32_t beginFreeStack;
-
-void initMemLog()
-{
-#ifdef DEBUGMEM
-  char stack;
-  stack_start = &stack;
-  beginFreeStack = ESP.getFreeContStack();
-#endif
-}
 
 void randomColor(char hexArray[8])
 {
@@ -195,30 +196,55 @@ void randomColor(char hexArray[8])
   snprintf(hexArray, 8, "#%02X%02X%02X", randomRgbColor.R, randomRgbColor.G, randomRgbColor.B);
 }
 
-RgbColor hexToRgb(char *hex)
+RgbColor colorDefToRgb(colorDef &targetColor)
 {
-  return hexToRgb(hex, NULL);
+  return RgbColor(targetColor.r, targetColor.g, targetColor.b);
 }
-
-RgbColor hexToRgb(char *hex, RgbColor color)
+RgbColor colorDefToRgb(colorDef &targetColor, RgbColor color)
 {
   long long r;
   long long g;
   long long b;
 
 // Complementary color
-  if ((strcmp(hex,"#xxxxxx")) && (color != NULL)){
+  if (targetColor.complementary){
     r=255-color.R;
     g=255-color.G;
     b=255-color.B;
   } else {
-    long long number = strtoll(&hex[1], NULL, 16);
-
-    // Split them up into r, g, b values
-    r = number >> 16;
-    g = number >> 8 & 0xFF;
-    b = number & 0xFF;
+    r=targetColor.r;
+    g=targetColor.g;
+    b=targetColor.b;
   }
 
 return RgbColor(r,g,b);
+}
+
+void hexToColorDef(const char *hex,colorDef* rgb)
+{
+  long long number = strtoll(&hex[1], NULL, 16);
+
+  // Split them up into r, g, b values
+  rgb->r = (uint8_t) (number >> 16);
+  rgb->g = (uint8_t) (number >> 8 & 0xFF);
+  rgb->b = (uint8_t) (number & 0xFF);
+  }
+
+void copyColorToJson(const colorDef& color,JsonObject& jsonColor, const char* key){
+   char hexColor[8];
+   sprintf(hexColor,"#%02X%02X%02X",color.r,color.g,color.b);
+   jsonColor[key]=hexColor;
+}
+
+void copyColorToJson(const colorDef& color,JsonArray& jsonColor){
+   char hexColor[8];
+   sprintf(hexColor,"#%02X%02X%02X",color.r,color.g,color.b);
+   jsonColor.add(hexColor);
+}
+
+RgbColor hexToRgb(const char *hex)
+{
+  colorDef rgb;
+  hexToColorDef(hex,&rgb);
+  return RgbColor(rgb.r, rgb.g, rgb.b);
 }

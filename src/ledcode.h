@@ -1,12 +1,15 @@
 #pragma once
-
+#define MAXLEDS 144
 #include <headers.h>
-#include <clockface.h>
-
-NeoPixelBus<NeoGrbFeature, NeoEsp8266Dma800KbpsMethod> strip(NUM_LEDS);
-NeoBuffer<NeoBufferMethod<NeoGrbFeature>> klokImage(NUM_LEDS, 1, NULL);
-NeoBuffer<NeoBufferMethod<NeoGrbFeature>> targetKlokImage(NUM_LEDS, 1, NULL);
-NeoPixelAnimator animations(NUM_LEDS, NEO_CENTISECONDS);
+#define colorSaturation 64
+#ifdef ESP32
+NeoPixelBus<NeoGrbFeature, DotStarEsp32DmaSpiMethod> strip(config.clockfaceLayout.totalLeds);
+#else
+NeoPixelBus<NeoGrbFeature, NeoEsp8266Dma800KbpsMethod> strip(MAXLEDS);
+#endif
+NeoBuffer<NeoBufferMethod<NeoGrbFeature>> klokImage(MAXLEDS, 1, NULL);
+NeoBuffer<NeoBufferMethod<NeoGrbFeature>> targetKlokImage(MAXLEDS, 1, NULL);
+NeoPixelAnimator animations(MAXLEDS, NEO_CENTISECONDS);
 NeoPixelAnimator rainAnimations(MAXDROPS + 1);
 
 RgbColor red(colorSaturation, 0, 0);
@@ -18,21 +21,21 @@ RgbColor black(0);
 AnimEaseFunction moveEase = NeoEase::Linear;
 struct RainDrop
 {
-  int column;
-  int lastPixel;
+  uint8_t column;
+  uint8_t lastPixel;
 };
 
 struct RainDrop drops[MAXDROPS];
-int nrDrops = 0;
+uint8_t nrDrops = 0;
 
 #define LED_RAINBOW_TIME 1000
 #define LED_UPDATE_TIME 500
 
-int ledRandomHue = 0;
+uint8_t ledRandomHue = 0;
 long ledRandomTime = 0;
-byte remapLEDS[NUM_ROWS][NUM_COLS];
+byte **remapLEDS;
 byte counter = 1;
-int speed = 1;
+uint8_t speed = 1;
 bool ledTransit = false;
 
 // define a custom shader object that provides brightness support
@@ -91,8 +94,10 @@ void ledSetup()
   randomSeed(analogRead(0));
   strip.Begin();
   clearLEDS();
-
-  for (int ledNr = 0 + OFFSET; ledNr < NUM_LEDS; ledNr++)
+  remapLEDS = (byte **)malloc(config.clockfaceLayout.wordGridRows * sizeof(byte *));
+  for (uint8_t i = 0; i < config.clockfaceLayout.wordGridRows; i++)
+    remapLEDS[i] = (byte *)malloc(config.clockfaceLayout.wordGridCols * sizeof(byte));
+  for (uint8_t ledNr = 0 + config.clockfaceLayout.extraLEDs; ledNr < config.clockfaceLayout.totalLeds; ledNr++)
   {
     RCCoord coord = calcCoord(ledNr);
     remapLEDS[coord.row][coord.col] = ledNr;
@@ -104,17 +109,17 @@ void ledSetup()
 
 // LEDs are chained from the bottom right -> left, left -> right, right -> left, ...
 // calculate row/col based on led number
-struct RCCoord calcCoord(int pos)
+struct RCCoord calcCoord(uint8_t pos)
 {
   RCCoord coord;
-  coord.row = int((NUM_LEDS - pos - 1) / NUM_COLS);
+  coord.row = int((config.clockfaceLayout.totalLeds - pos - 1) / config.clockfaceLayout.wordGridCols);
   if ((coord.row % 2) == 0)
   {
-    coord.col = (NUM_LEDS - pos - 1) % NUM_COLS;
+    coord.col = (config.clockfaceLayout.totalLeds - pos - 1) % config.clockfaceLayout.wordGridCols;
   }
   else
   {
-    coord.col = (NUM_COLS - 1) - (NUM_LEDS - pos - 1) % NUM_COLS;
+    coord.col = (config.clockfaceLayout.wordGridCols - 1) - (config.clockfaceLayout.totalLeds - pos - 1) % config.clockfaceLayout.wordGridCols;
   }
 
   return coord;
@@ -135,7 +140,7 @@ void clearLEDS()
 void FadeAll(uint8_t darkenBy)
 {
   RgbColor color;
-  for (int indexPixel = OFFSET; indexPixel < strip.PixelCount(); indexPixel++)
+  for (uint8_t indexPixel = config.clockfaceLayout.extraLEDs; indexPixel < strip.PixelCount(); indexPixel++)
   {
     color = strip.GetPixelColor(indexPixel);
     color.Darken(darkenBy);
@@ -146,7 +151,7 @@ void FadeAll(uint8_t darkenBy)
 void showSplash()
 {
   clearLEDS();
-  for (int pos = 0; pos < sizeof(splashScreen) / sizeof(int); pos++)
+  for (uint8_t pos = 0; pos < sizeof(splashScreen); pos++)
   {
     dropLetter(splashScreen[pos]);
     /*    klokImage.SetPixelColor(splashScreen[pos], blue);
@@ -171,18 +176,18 @@ void MoveAnimUpdate(const AnimationParam &param)
   // apply the movement animation curve
   float progress = moveEase(param.progress);
   byte dropNr = param.index - 1;
-  int lastPixel = drops[dropNr].lastPixel;
+  uint8_t lastPixel = drops[dropNr].lastPixel;
   // use the curved progress to calculate the pixel to effect
-  int nextPixel;
-  nextPixel = int(progress * NUM_ROWS);
-  if (nextPixel < NUM_ROWS)
+  uint8_t nextPixel;
+  nextPixel = int(progress * config.clockfaceLayout.wordGridRows);
+  if (nextPixel < config.clockfaceLayout.wordGridRows)
   {
     // if progress moves fast enough, we may move more than
     // one pixel, so we update all between the calculated and
     // the last
     if (lastPixel != nextPixel)
     {
-      for (int i = lastPixel + 1; i != nextPixel; i++)
+      for (uint8_t i = lastPixel + 1; i != nextPixel; i++)
       {
         setColor(remapLEDS[i][drops[dropNr].column], green);
       }
@@ -193,7 +198,7 @@ void MoveAnimUpdate(const AnimationParam &param)
   }
   if (param.state == AnimationState_Completed)
   {
-    drops[dropNr].column = random(NUM_COLS);
+    drops[dropNr].column = random(config.clockfaceLayout.wordGridCols);
     // Serial.print("new drop ");
     // Serial.println(drops[dropNr].column);
     // drops[dropNr].column=1;
@@ -213,15 +218,14 @@ void stopRain()
   }
 }
 
-void dropLetter(int targetPosition)
+void dropLetter(uint8_t targetPosition)
 {
   RCCoord coord = calcCoord(targetPosition);
-  int previousLED = 0;
-  bool keepPrevious = false;
+  uint8_t previousLED = 0;
   RgbColor previousColor = black;
-  for (int row = 0; row < coord.row + 1; row++)
+  for (uint8_t row = 0; row < coord.row + 1; row++)
   {
-    int LEDpos = remapLEDS[row][coord.col];
+    uint8_t LEDpos = remapLEDS[row][coord.col];
     if (row > 0)
     {
       setColor(previousLED, previousColor);
@@ -238,9 +242,9 @@ void setupRain()
 {
 
   rainAnimations.StartAnimation(0, 20, FadeAnimUpdate);
-  drops[0].column = random(NUM_COLS);
-  drops[1].column = random(NUM_COLS);
-  drops[2].column = random(NUM_COLS);
+  drops[0].column = random(config.clockfaceLayout.wordGridCols);
+  drops[1].column = random(config.clockfaceLayout.wordGridCols);
+  drops[2].column = random(config.clockfaceLayout.wordGridCols);
   nrDrops = 3;
   rainAnimations.StartAnimation(1, 1000, MoveAnimUpdate);
 }
@@ -252,7 +256,7 @@ void rainLoop()
     // Serial.println("Generate drop");
     if (random(40) == 2)
     {
-      drops[nrDrops].column = random(NUM_COLS);
+      drops[nrDrops].column = random(config.clockfaceLayout.wordGridCols);
       rainAnimations.StartAnimation(nrDrops + 1, 1000, MoveAnimUpdate);
       drops[nrDrops].lastPixel = 0;
       nrDrops++;
@@ -275,49 +279,60 @@ void ledShowClockface()
   switch (config.ledMode)
   {
   case singleColor:
-    color = hexToRgb(config.singleColor.color);
-    backgroundColor = hexToRgb(config.singleColor.backgroundColor, color);
+    color = colorDefToRgb(config.singleColor.color);
+    backgroundColor = colorDefToRgb(config.singleColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
     break;
   case hourlyColor:
-    color = hexToRgb(config.hourlyColor.color[dateHours]);
-    backgroundColor = hexToRgb(config.hourlyColor.backgroundColor, color);
+    color = colorDefToRgb(config.hourlyColor.color[dateHours]);
+    backgroundColor = colorDefToRgb(config.hourlyColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
     break;
   case rainbowColor:
     color = HueToRgbColor(ledRandomHue);
-    backgroundColor = hexToRgb(config.hourlyColor.backgroundColor, color);
+    backgroundColor = colorDefToRgb(config.hourlyColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
     break;
   case wordColor:
-    backgroundColor = hexToRgb(config.wordColor.backgroundColor);
+    backgroundColor = colorDefToRgb(config.wordColor.backgroundColor).Dim(BACKGROUNDDIMFACTOR);
     break;
   }
-
-  for (ClockfaceWord word : clockface)
+  for (uint8_t iWord = 0; iWord < config.clockfaceLayout.totalWords + 1; iWord++)
   {
-    // last word is background
-    if (word.colorCodeInTable == NUMWORDS)
+    ClockfaceWord word = config.clockface[iWord];
+    if (iWord == config.clockfaceLayout.totalWords)
     {
-      for (int pos : word.leds)
-        {
-          setColor(pos, backgroundColor);
-        }
+      for (uint8_t pos = 0; pos < strlen(word.label); pos++)
+      {
+        setColor(word.leds[pos], backgroundColor);
+      }
     }
     else
     {
-      if (word.isActive(dateHours % 12, dateMinutes))
+      if (isActiveCheck(word.isActive, dateHours % 12, dateMinutes))
       {
-        for (int pos : word.leds)
+        for (uint8_t pos = 0; pos < strlen(word.label); pos++)
         {
-          if (config.ledMode != wordColor)
           {
-            setColor(pos, color);
-          }
-          else
-          {
-            color = hexToRgb(config.wordColor.color[word.colorCodeInTable]);
-            setColor(pos, color);
+            if (config.ledMode != wordColor)
+            {
+              setColor(word.leds[pos], color);
+            }
+            else
+            {
+              color = colorDefToRgb(config.wordColor.color[word.colorCodeInTable]);
+              setColor(word.leds[pos], color);
+            }
           }
         }
-        // debug_printf(word.label);
+      }
+      else
+      {
+        for (uint8_t pos = 0; pos < strlen(word.label); pos++)
+        {
+          {
+                    if (getColor(targetKlokImage,word.leds[pos])==black){
+            setColor(word.leds[pos], backgroundColor);
+                    }
+          }
+        }
       }
     }
   }
@@ -364,27 +379,27 @@ void statusLed(statusLedList status, NeoBufferMethod<NeoGrbFeature>::ColorObject
 
 byte calculateTimeBrightness()
 {
-  if (dateHours > config.timeBrightness.timeSlot[0] && dateHours < config.timeBrightness.timeSlot[1])
+  if (dateHours > config.timeBrightness.timeSlot.startHour && dateHours < config.timeBrightness.timeSlot.endHour)
   {
-    return config.timeBrightness.brightness[1];
+    return config.timeBrightness.brightness.max;
   }
-  else if (dateHours < config.timeBrightness.timeSlot[0] || dateHours > config.timeBrightness.timeSlot[1])
+  else if (dateHours < config.timeBrightness.timeSlot.startHour || dateHours > config.timeBrightness.timeSlot.endHour)
   {
-    return config.timeBrightness.brightness[0];
+    return config.timeBrightness.brightness.min;
   }
-  else if (dateHours == config.timeBrightness.timeSlot[0])
-  {
-    return constrain(
-        map(dateMinutes, 0, 29, config.timeBrightness.brightness[0], config.timeBrightness.brightness[1]),
-        config.timeBrightness.brightness[0], config.timeBrightness.brightness[1]);
-  }
-  else if (dateHours == config.timeBrightness.timeSlot[1])
+  else if (dateHours == config.timeBrightness.timeSlot.startHour)
   {
     return constrain(
-        map(dateMinutes, 0, 29, config.timeBrightness.brightness[1], config.timeBrightness.brightness[0]),
-        config.timeBrightness.brightness[0], config.timeBrightness.brightness[1]);
+        map(dateMinutes, 0, 29, config.timeBrightness.brightness.min, config.timeBrightness.brightness.max),
+        config.timeBrightness.brightness.min, config.timeBrightness.brightness.max);
   }
-  return config.timeBrightness.brightness[0];
+  else if (dateHours == config.timeBrightness.timeSlot.endHour)
+  {
+    return constrain(
+        map(dateMinutes, 0, 29, config.timeBrightness.brightness.max, config.timeBrightness.brightness.min),
+        config.timeBrightness.brightness.min, config.timeBrightness.brightness.max);
+  }
+  return config.timeBrightness.brightness.min;
 }
 
 byte calcBrightness()
@@ -397,8 +412,8 @@ byte calcBrightness()
     break;
   case ldrBrightness:
     brightness = constrain(
-        map(LDRvalue, config.ldrBrightness.ldrRange[0], config.ldrBrightness.ldrRange[1], config.ldrBrightness.brightness[0], config.ldrBrightness.brightness[1]),
-        config.ldrBrightness.brightness[0], config.ldrBrightness.brightness[1]);
+        map(LDRvalue, config.ldrBrightness.ldrRange.dark, config.ldrBrightness.ldrRange.bright, config.ldrBrightness.brightness.min, config.ldrBrightness.brightness.max),
+        config.ldrBrightness.brightness.min, config.ldrBrightness.brightness.max);
     break;
   case timeBrightness:
     brightness = calculateTimeBrightness();
@@ -407,7 +422,7 @@ byte calcBrightness()
   return brightness;
 }
 
-void setColor(int ledNr, NeoBufferMethod<NeoGrbFeature>::ColorObject color)
+void setColor(uint8_t ledNr, NeoBufferMethod<NeoGrbFeature>::ColorObject color)
 {
   // check if color changed
   RgbColor currentColor = getColor(klokImage, ledNr);
@@ -420,7 +435,7 @@ void setColor(int ledNr, NeoBufferMethod<NeoGrbFeature>::ColorObject color)
   }
 }
 
-RgbColor getColor(NeoBuffer<NeoBufferMethod<NeoGrbFeature>> &image, int ledNr)
+RgbColor getColor(NeoBuffer<NeoBufferMethod<NeoGrbFeature>> &image, uint8_t ledNr)
 {
   return image.GetPixelColor(ledNr, 0);
 }
@@ -433,7 +448,7 @@ void clearLEDTo(NeoBuffer<NeoBufferMethod<NeoGrbFeature>> &image, NeoBufferMetho
 void SetupAnimationSet()
 {
   uint16_t time = 200;
-  for (int pixel = 0; pixel < NUM_LEDS; pixel++)
+  for (uint8_t pixel = 0; pixel < config.clockfaceLayout.totalLeds; pixel++)
   {
     RgbColor originalColor = getColor(klokImage, pixel);
     RgbColor targetColor = getColor(targetKlokImage, pixel);
@@ -462,6 +477,7 @@ bool doAnimation()
 void showFace(bool doTransit)
 {
   shader.setBrightness(calcBrightness());
+
   // Serial.println("ShowFace");
 
   if (doTransit && ledTransit)
@@ -480,6 +496,11 @@ void showFace(bool doTransit)
   if (ledTransit)
   {
     klokImage.Render<BrightnessShader<NeoGrbFeature>>(strip, shader);
+    //   for (uint8_t i=0;i<config.clockfaceLayout.totalLeds;i++){
+    //     RgbColor color = strip.GetPixelColor(i);
+    //     color=color.Dim(random(120));
+    //     strip.SetPixelColor(i, color);
+    // }
     strip.Show();
   }
 }
@@ -513,7 +534,7 @@ void setStatusLeds()
   showFace(false);
 }
 
-RgbColor HueToRgbColor(int colorValue)
+RgbColor HueToRgbColor(uint8_t colorValue)
 {
   if (colorValue == -1)
   {

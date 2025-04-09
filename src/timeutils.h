@@ -23,13 +23,20 @@ uint8_t dateYear;
 
 static esp8266::polledTimeout::periodicMs showTimeNow(20000);
 
+String getCurrentTime(){
+      time_t currentTime = time(NULL);
+    char timeString[26]; // Maximum size for ctime string is 26 characters
+    strcpy(timeString, ctime(&currentTime));
+
+  return timeString;
+}
 
 void showTime() {   // This function is used to print stuff to the serial port, it's not mandatory
   now = time(nullptr);      // Updates the 'now' variable to the current time value
 
   // human readable
   
-  //debug_printf("ctime:   %s \n",ctime(&now));
+ // debug_printf("ctime:   %s \n",ctime(&now));
   /*// Here is one example showing how you can get the current month
   debug_printf("current month: ");
   debug_printf(localtime(&now)->tm_mon);

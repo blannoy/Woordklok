@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const client = axios.create({
-    baseURL: 'http://localhost:3010/api'
+    baseURL: process.env.REACT_APP_BASE_URL
 });
 
 
@@ -29,20 +29,24 @@ export function requestReducer(state, action) {
                 targetState.method = 'put';
                 targetState.data = action.body;
                 targetState.params = action.params;
-            //  defaultRequest.body = JSON.stringify(data);
-            console.log(targetState);
             break;
         case "setBrightness":
             targetState.url = '/brightness';
             targetState.method = 'put';
             targetState.data = action.body;
             targetState.params = action.params;
-        console.log(targetState);
         break; 
         case "calibrateLdr":
             targetState.url = '/calibrateLdr';  
             targetState.method = 'get';
         break;        
+        case "testError":
+            targetState.url = '/error';  
+            targetState.method = 'get';
+        break;       
+        case "RESET":
+            targetState = {...defaultRequest};
+        break;       
         default:
             break;
     }
@@ -51,14 +55,17 @@ export function requestReducer(state, action) {
 
 export default function useRequest(request) {
     const [response, setResponse] = useState(null);
-    const [error, setError] = useState('');
-    const handleRequest = async (request) => {
+    const [error, setError] = useState({});
 
+    const handleRequest = async (request) => {
         try {
-            var data = await client.request(request);
+
+                        var data = await client.request(request);
+                        setError({});
             setResponse(data);
+
         } catch (error) {
-            setError(error.message);
+            setError(error);
         }
 
     }

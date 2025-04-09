@@ -56,11 +56,12 @@ function LDRBrightness(props) {
     },[ldrBrightness,ldrRange]);
 
 
-    useEffect(() => {
-        if (requestState.url !== "") {
-            runRequest(requestState);
-        }
-    }, [requestState]);
+     useEffect(() => {
+         if (requestState.url === "/calibrateLdr") {
+             runRequest(requestState);
+             dispatchRequest({ type: 'RESET' });
+         }
+     }, [requestState]);
 
     useEffect(() => {
         if (response !== null) {

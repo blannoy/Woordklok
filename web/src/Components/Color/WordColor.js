@@ -30,7 +30,7 @@ export default function WordColor(props) {
   useEffect(() => {
     if (clockFaceConfig) {
       let colorMapArray = colorList;
-      colorMapArray[clockFaceConfig.metadata.backgroundIndex] = colorConfig.backgroundColor;
+      //colorMapArray[clockFaceConfig.metadata.backgroundIndex] = colorConfig.backgroundColor;
       setClockFaceConfig({ ...clockFaceConfig, "colorMap": colorMapArray });
     }
   }, [colorList, colorConfig]);

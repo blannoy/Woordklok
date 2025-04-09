@@ -1,3 +1,27 @@
 {
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "Enabled",
+    "files.associations": {
+        "string": "cpp",
+        "array": "cpp"
+    },
+    "CodeGPT.apiKey": "Mistral",
+    "CodeGPT.Autocomplete.provider": "OpenAI - gpt-3.5-turbo-instruct",
+    "MicroPython.executeButton": [
+        {
+            "text": "▶",
+            "tooltip": "Run",
+            "alignment": "left",
+            "command": "extension.executeFile",
+            "priority": 3.5
+        }
+    ],
+    "MicroPython.syncButton": [
+        {
+            "text": "$(sync)",
+            "tooltip": "sync",
+            "alignment": "left",
+            "command": "extension.execute",
+            "priority": 4
+        }
+    ]
 }

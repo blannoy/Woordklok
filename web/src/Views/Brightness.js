@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { configContext, queryProviderContext } from "../Context/Context";
 import LDRBrightness from "../Components/Brightness/LDRBrightness";
 import FixedBrightness from "../Components/Brightness/FixedBrightness";
-import HourBrightness from "../Components/Brightness/HourBrightness";
+import TimeBrightness from "../Components/Brightness/TimeBrightness";
 // import LDRBrightness from "../Components/LDRBrightness";
 
 function Brightness() {
@@ -14,7 +14,7 @@ function Brightness() {
 
   const [fixedBrightnessConfig, setFixedBrightnessConfig] = useState({});
   const [ldrBrightnessConfig, setLdrBrightnessConfig] = useState({});
-  const [hourBrightnessConfig, setHourBrightnessConfig] = useState({});
+  const [timeBrightnessConfig, settimeBrightnessConfig] = useState({});
 
 
   function onValueChange(event) {
@@ -30,21 +30,16 @@ function Brightness() {
 
   function mapBrightnessConfigToVar() {
     setSelectedOption(brightnessConfig.brightnessMode);
-    let settings={...brightnessConfig.settings};
+    let settings = { ...brightnessConfig.settings };
     setFixedBrightnessConfig(settings.fixedBrightness);
     setLdrBrightnessConfig(settings.ldrBrightness);
-    setHourBrightnessConfig(settings.hourBrightness);
+    settimeBrightnessConfig(settings.timeBrightness);
   }
 
-  function mapVarToBrightnessConfig(){
-    let newConfig={"brightnessMode" : selectedOption,
-    "settings" : {
-        "fixedBrightness" : fixedBrightnessConfig,
-        "ldrBrightness" : ldrBrightnessConfig,
-        "hourBrightness": hourBrightnessConfig
-  }
-}
-  return newConfig;
+  function mapVarToBrightnessConfig() {
+    let newConfig = {};
+    newConfig[selectedOption] = {...brightnessConfig.settings[selectedOption]};
+    return newConfig;
   }
 
   useEffect(() => {
@@ -66,8 +61,8 @@ function Brightness() {
   }
 
   function onBrightnessChoice(val) {
-    let tempConfig={...brightnessConfig};
-    tempConfig.settings[selectedOption]={...val};
+    let tempConfig = { ...brightnessConfig };
+    tempConfig.settings[selectedOption] = { ...val };
     setBrightnessConfig(tempConfig);
   }
 
@@ -81,12 +76,12 @@ function Brightness() {
         <button name="Test" type="button" onClick={testConfig}>Test</button><button name="Reset" type="button" onClick={resetConfig}>Reset</button><button name="Submit" type="button" onClick={submitConfig}>Submit</button></div>
       <input type="radio" value="fixedBrightness" name="brightnessMode" checked={selectedOption === "fixedBrightness"} onChange={onValueChange} /> <label>Vaste helderheid</label>
       <input type="radio" value="ldrBrightness" name="brightnessMode" checked={selectedOption === "ldrBrightness"} onChange={onValueChange} /><label>Helderheid volgens omgevingslicht</label>
-      <input type="radio" value="hourBrightness" name="brightnessMode" checked={selectedOption === "hourBrightness"} onChange={onValueChange} /><label>Helderheid volgens tijdstip</label>
+      <input type="radio" value="timeBrightness" name="brightnessMode" checked={selectedOption === "timeBrightness"} onChange={onValueChange} /><label>Helderheid volgens tijdstip</label>
       <div style={{ marginTop: "20px" }}>
-         {{
-          fixedBrightness: brightnessConfig&&<FixedBrightness currentVal={fixedBrightnessConfig} onBrightnessChoice={onBrightnessChoice}/>,
-          ldrBrightness: brightnessConfig&&<LDRBrightness currentVal={ldrBrightnessConfig} onBrightnessChoice={onBrightnessChoice}/>,
-          hourBrightness: brightnessConfig&&<HourBrightness currentVal={hourBrightnessConfig} onBrightnessChoice={onBrightnessChoice}/>,
+        {{
+          fixedBrightness: brightnessConfig && <FixedBrightness currentVal={fixedBrightnessConfig} onBrightnessChoice={onBrightnessChoice} />,
+          ldrBrightness: brightnessConfig && <LDRBrightness currentVal={ldrBrightnessConfig} onBrightnessChoice={onBrightnessChoice} />,
+          timeBrightness: brightnessConfig && <TimeBrightness currentVal={timeBrightnessConfig} onBrightnessChoice={onBrightnessChoice} />,
         }[selectedOption]}
 
       </div>
