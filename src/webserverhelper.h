@@ -2,9 +2,9 @@
 
 #include <headers.h>
 
-ESP8266WebServer server(80);
-ESP8266HTTPUpdateServer flashUpdateServer;
-ESP8266HTTPUpdateServer fsUpdateServer;
+
+#include <ElegantOTA.h>
+
 bool serverStarted = false;
 char* JSONStringRep;
 
@@ -99,15 +99,6 @@ bool webserverServeFileFromFS(String path)
   return false;
 }
 
-void dumpLittleFS()
-{
-  Dir dir = LittleFS.openDir("");
-  while (dir.next())
-  {
-    debug_printf("%s, (%d)\n", dir.fileName().c_str(), dir.fileSize());
-  }
-}
-
 void apiSendError(String message)
 {
   DynamicJsonDocument json(2048);
@@ -170,6 +161,7 @@ void getStatus()
   char timeString[6];
   sprintf(timeString, "%02d:%02d", dateHours, dateMinutes);
   root[F("currentTime")] = timeString;
+  
   apiSendJSON(200, root);
   jsonDoc.clear();
 }
@@ -177,6 +169,12 @@ void getStatus()
 void getConfig()
 {
   config2JSON(config,json);
+  apiSendJSON(200,json);
+}
+
+void getClockface()
+{
+  clockface2JSON(config,json);
   apiSendJSON(200,json);
 }
 
@@ -326,12 +324,42 @@ void setBrightness()
   getConfig();
 }
 
+void getSensorValue()
+{
+  DynamicJsonDocument json(256);
+  JsonObject root = json.createNestedObject();
+  if (!server.hasArg("sensor"))
+  {
+    apiSendError("Missing 'sensor' argument");
+    return;
+  }
+  char sensorArg[10];
+  server.arg("sensor").toCharArray(sensorArg, sizeof(sensorArg));
+  bool sensorFound = false;
+  for (int i = 0; i < config.sensorCount; i++)
+  {
+    if (strcmp(sensorArg, config.availableSensors[i]) == 0)
+    {
+      sensorFound = true;
+      break;
+    }
+  }
+  if (!sensorFound)
+  {
+    apiSendError("Sensor not found in configuration");
+    return;
+  }
+  uint32_t sensorValue=readSensor(sensorArg);
+  debug_printf("Sensor %s value: %d\n", sensorArg, sensorValue);
+  root["sensorValue"] = sensorValue;
+  apiSendJSON(200, root);
+  json.clear();
+}
 void webServerSetup()
 {
   debug_println("Webserver setup");
   if (!serverStarted)
   {
-    // dumpLittleFS();
     server.on("/api/TestAllPixels", runTestAllPixels);
     server.on("/api/TestPixels", runTestPixels);
     server.on("/api/testClockFaceMinutes", runClockFaceTestMinutes);
@@ -340,16 +368,19 @@ void webServerSetup()
 
     server.on("/api/status", getStatus);
     server.on("/api/config", getConfig);
+    server.on("/api/clockface", getClockface);
     server.on("/api/color", setLedColor);
     server.on("/api/brightness", setBrightness);
+    server.on("/api/getSensorValue", getSensorValue);
 
     // server.on("/api/log", getLog);
     server.onNotFound(handleNotFound);
 
-    flashUpdateServer.setup(&server, String("/api/update/flash"));
-    fsUpdateServer.setup(&server, String("/api/update/file"));
+//    flashUpdateServer.setup(&server, String("/api/update/flash"));
+//    fsUpdateServer.setup(&server, String("/api/update/file"));
+    ElegantOTA.begin(&server);
     server.begin();
-    debug_printf("HTTP server started\n");
+    debug_printf("HTTP server started on %s\n", WiFi.localIP().toString().c_str());
     // Serial.println("HTTP server started\n");
     serverStarted = true;
   }
@@ -371,6 +402,8 @@ void webServerLoop()
   if (serverStarted)
   {
     server.handleClient();
+    #if defined(ESP8266)
     MDNS.update();
+    #endif
   }
 }

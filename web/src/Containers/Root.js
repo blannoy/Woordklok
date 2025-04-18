@@ -1,5 +1,8 @@
 import React, {useState, useEffect,useReducer} from "react";
 import Main from "./Main";
+import { Provider } from 'react-redux'
+import { store } from '../Context/store'
+
 import {configContext, queryProviderContext, clockFaceContext, requestProviderContext} from "../Context/Context";
 import {mapClockFace} from "../Utils/ClockFaceMapper";
 import useRequest, {requestReducer,defaultRequest } from "../Context/Reducer";
@@ -26,14 +29,14 @@ export default function Root() {
       switch (response.config.url) {
         case "/config":
           setInitialConfig(response.data);
-          setClockFace(mapClockFace(response.data.clockface));
+          //setClockFace(mapClockFace(response.data.clockface));
           dispatchRequest({ type: 'STATUS' });
           break;
           case "/status":
             setResponseObject(response.data);
             break;
         default:
-          if (response.config.url !== "/calibrateLdr") {
+          if (response.config.url !== "/calibrateSensor") {
            if (response.data!==undefined){
              setInitialConfig(response.data);
             }
@@ -47,6 +50,7 @@ export default function Root() {
   }, [response, err])
 
     return (
+      <Provider store={store}>
         <configContext.Provider value={[initialConfig,setInitialConfig]}>
           <clockFaceContext.Provider value={[clockFace,setClockFace]}>
           <queryProviderContext.Provider value={[requestState,dispatchRequest]}>
@@ -64,5 +68,6 @@ export default function Root() {
             </queryProviderContext.Provider>
             </clockFaceContext.Provider>
         </configContext.Provider>
+        </Provider>
     );
 }

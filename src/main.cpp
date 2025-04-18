@@ -5,8 +5,20 @@
 //@todo wifi.h: remove config.json logic
 //@todo weather representation
 
-#define DEBUG false
+#define DEBUG true
 #define DEBUGMEM false
+
+#define LEDSTRIPPIN 13
+
+// clock has light sensor
+#define HASLDR 
+#define LDRPIN A1
+
+// clock has touch sensor
+#define HASTOUCHBUTTON
+#if defined(ESP32)
+#define TOUCHPIN T12
+#endif
 
 #include <Arduino.h>
 #include <utils.h>
@@ -15,8 +27,8 @@
 #include "configuration.h"
 #include "ledcode.h"
 #include <sensors.h>
-#include <wifi.h>
-#include <webserver.h>
+#include <wifihelper.h>
+#include <webserverhelper.h>
 #include <timeutils.h>
 #include <tests.h>
 
@@ -82,20 +94,20 @@ void loop()
 
     break;
   case TOUCHED:
-    touchtrigger = true; // execute touch event only once
-    changeState(SPLASH);
-    break;
+    // touchtrigger = true; // execute touch event only once
+    // changeState(SPLASH);
+    // break;
   case SPLASH:
     showSplash();
     changeState(CLOCK);
     break;
   case CLOCK:
-    if (touchtrigger & !touched)
-      touchtrigger = false;
-    if (touched & !touchtrigger)
-    { // execute touch event only once
-      changeState(TOUCHED);
-    }
+    // if (touchtrigger & !touched)
+    //   touchtrigger = false;
+    // if (touched & !touchtrigger)
+    // { // execute touch event only once
+    //   changeState(TOUCHED);
+    // }
     clockLoop();
     break;
   case TESTPIXEL:

@@ -77,7 +77,7 @@ export default function ColorPicker(props) {
     }, [props.foregroundColor]);
 
      useEffect(() => {
-        if (colorChoice!== undefined){ //&& colorChoice !== props.currentVal) {
+        if (colorChoice!== undefined && colorChoice !== props.currentVal) {
             props.onColorChoice({ id: props.id, value: colorChoice });
          }
          if (hasColor === "Complementary"){

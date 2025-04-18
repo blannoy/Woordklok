@@ -1,11 +1,7 @@
 
 #pragma once
-
-#include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
-#include <ESP8266HTTPUpdateServer.h>
-#include <ESP8266WebServer.h>
+#include "Arduino.h"
 #include <ArduinoJson.h>
-#include <ESP8266mDNS.h>
 #include <NeoPixelBus.h>
 #include <NeoPixelAnimator.h>
 #include <FS.h>
@@ -14,12 +10,15 @@
 #define numReadings 20
 #define BACKGROUNDDIMFACTOR 100
 
+#ifdef HASTOUCHBUTTON
+#define TOUCH_THRESHOLD 50000
+#endif
 #define TESTTIMER 30000
 long testStart=0;
 #define filesystem (LittleFS)
 
 #define HOSTNAME_MAX 256
-#define CONFIGSIZE 8192
+#define CONFIGSIZE 6144
 #define NUMKEYS 5
 String configKeys[NUMKEYS] = {"system", "clockface", "colors", "brightness", "checksum"};
 
@@ -89,7 +88,7 @@ struct ClockfaceLayout
   bool hasTwenty;
 };
 #define BOOTANIMTIME 5000
-String version = "0.5";
+String version = "0.9";
 
 extern uint8_t PixelCount;
 
@@ -206,16 +205,35 @@ struct Configuration
   FixedBrightnessConfig fixedBrightness;
   LDRBrightnessConfig ldrBrightness;
   TimeBrightnessConfig timeBrightness;
+  char** availableSensors;
+  uint8_t sensorCount;
+  uint32_t touchThreshold;
 };
 
 Configuration config;
 Configuration workingConfig;
 DynamicJsonDocument json(CONFIGSIZE);
 
+#include <WiFi.h>
+#include <WiFiClient.h>
+
+#if defined(ESP8266)
+#include <ESP8266HTTPUpdateServer.h>
+#include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
+ESP8266WebServer server(80);
+ESP8266HTTPUpdateServer flashUpdateServer;
+ESP8266HTTPUpdateServer fsUpdateServer;
+#endif
+
+#if defined(ESP32)
+#include <WebServer.h>
+#include <ESPmDNS.h>
+WebServer server(80);
+// Update flashUpdateServer;
+// Update fsUpdateServer;
+#endif
 extern bool serverStarted;
-extern ESP8266WebServer server;
-extern ESP8266HTTPUpdateServer flashUpdateServer;
-extern ESP8266HTTPUpdateServer fsUpdateServer;
 
 extern uint8_t dateHours;
 extern uint8_t dateMinutes;

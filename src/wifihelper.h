@@ -2,6 +2,19 @@
 
 #include <headers.h>
 
+#include <WiFiClient.h>
+#if defined(ESP8266)
+#include <ESP8266mDNS.h>
+#endif
+
+#if defined(ESP32)
+#include <ESPmDNS.h>
+#endif
+
+
+#include <WiFi.h>
+#include "WiFiManager.h"
+
 WiFiManager wifiManager;
 void APModeCallback (WiFiManager* myWiFiManager);
 
@@ -37,46 +50,7 @@ void APModeCallback (WiFiManager* myWiFiManager) {
 
 void wifiSetup() {
   debug_println("wifiSetup");
-  // Read configfile
-/*  if (LittleFS.exists("/config.json")) {
-    //file exists, reading and loading
-    debug_print("reading config file");
-    File configFile = LittleFS.open("/config.json", "r");
-    if (configFile) {
-      debug_print("opened config file");
-      size_t size = configFile.size();
-      // Allocate a buffer to store contents of the file.
-      std::unique_ptr<char[]> buf(new char[size]);
-
-      configFile.readBytes(buf.get(), size);
-#if defined(ARDUINOJSON_VERSION_MAJOR) && ARDUINOJSON_VERSION_MAJOR >= 6
-      DynamicJsonDocument json(1024);
-      auto deserializeError = deserializeJson(json, buf.get());
-      serializeJson(json, Serial);
-      if ( ! deserializeError ) {
-#else
-      DynamicJsonBuffer jsonBuffer;
-      JsonObject& json = jsonBuffer.parseObject(buf.get());
-      json.printTo(Serial);
-      if (json.success()) {
-#endif
-        debug_print("\nparsed json");
-        if (json["ip"]) {
-          debug_print("setting custom ip from config");
-          strcpy(static_ip, json["ip"]);
-          strcpy(static_gw, json["gateway"]);
-          strcpy(static_sn, json["subnet"]);
-          strcpy(static_dns1, json["dns1"]);
-          strcpy(static_dns2, json["dns2"]);
-          debug_print(static_ip);
-        } else {
-          debug_print("no custom ip in config");
-        }
-      } else {
-        debug_print("failed to load json config");
-      }
-    }
-  }*/
+  
   wifiManager.setAPCallback(APModeCallback);
  // wifiManager.setConfigPortalBlocking(false);
   wifiManager.setSaveConfigCallback(saveConfigCallback);
@@ -92,7 +66,15 @@ if (!strcmp(static_ip,"")){
 }
   //set static ip
   WiFi.mode(WIFI_STA);
+
+  // in order to avoid issues with Assu router, we need to set the phy mode to 11g
+  #if defined(ESP8266)
   WiFi.setPhyMode(WIFI_PHY_MODE_11G); 
+  #endif
+  #if defined(ESP32)
+  esp_wifi_set_protocol(WIFI_IF_STA, WIFI_PROTOCOL_11G);
+  #endif
+  
   //delay(5000);
   wifiManager.setShowStaticFields(true);
   wifiManager.setShowDnsFields(true); 
@@ -109,40 +91,11 @@ if (!strcmp(static_ip,"")){
     debug_println("connected...yeey :)");
     //statusLed(WIFI,green);
     //wifiConnected=true;
-    if (MDNS.begin("woordklok2")) {
+    if (MDNS.begin(config.hostname)) {
       debug_println("MDNS responder started");
     }
   }
-  //save the custom parameters to FS
-  if (shouldSaveConfig) {
-    debug_print("saving config");
- #if defined(ARDUINOJSON_VERSION_MAJOR) && ARDUINOJSON_VERSION_MAJOR >= 6
-    DynamicJsonDocument json(1024);
-#else
-    DynamicJsonBuffer jsonBuffer;
-    JsonObject& json = jsonBuffer.createObject();
-#endif
-    json["ip"] = WiFi.localIP().toString();
-    json["gateway"] = WiFi.gatewayIP().toString();
-    json["subnet"] = WiFi.subnetMask().toString();
-    json["dns1"] = WiFi.dnsIP().toString();
-    json["dns2"] = WiFi.dnsIP(1).toString();
-    
-    File configFile = LittleFS.open("/config.json", "w");
-    if (!configFile) {
-      debug_print("failed to open config file for writing");
-    }
-
- #if defined(ARDUINOJSON_VERSION_MAJOR) && ARDUINOJSON_VERSION_MAJOR >= 6
-    serializeJson(json, Serial);
-    serializeJson(json, configFile);
-#else
-    json.printTo(Serial);
-    json.printTo(configFile);
-#endif
-    configFile.close();
-    //end save
-  }
+  
 }
 void wifiLoop(){
   //wifiManager.process();

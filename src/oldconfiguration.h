@@ -1,16 +1,12 @@
 #pragma once
-
 #include "headers.h"
-//#define DEBUG true
-//#include "utils.h"
-
 bool validJSON = true;
 
 void verifyConfigFile()
 {
 
   debug_println(F("Verifying config"));
-  File configFile = LittleFS.open("/miniconfig.json", "r");
+  File configFile = LittleFS.open("/config.json", "r");
   if (configFile)
   {
     auto deserializeError = deserializeJson(json, configFile);
@@ -74,7 +70,7 @@ void copyColor(JsonVariantConst variant, colorDef &configVal)
   hexToColorDef(value, &configVal);
 }
 
-void clockface2JSON(Configuration &conf, DynamicJsonDocument &doc)
+void config2JSON(Configuration &conf, DynamicJsonDocument &doc)
 {
   doc.clear();
   doc.garbageCollect();
@@ -110,13 +106,6 @@ void clockface2JSON(Configuration &conf, DynamicJsonDocument &doc)
     ledLayout.add(conf.clockface[conf.clockfaceLayout.totalWords].leds[j]);
   } 
   background[F("function")]=isActiveMethodStrings[conf.clockface[conf.clockfaceLayout.totalWords].isActive];
-  JsonObject colors = doc[F("colors")].to<JsonObject>();
-}
-
-void config2JSON(Configuration &conf, DynamicJsonDocument &doc)
-{
-  doc.clear();
-  doc.garbageCollect();
   JsonObject colors = doc[F("colors")].to<JsonObject>();
 
   switch (conf.ledMode)
@@ -200,23 +189,27 @@ void config2JSON(Configuration &conf, DynamicJsonDocument &doc)
   brightness_settings_timeBrightness_brightness[F("min")] = conf.timeBrightness.brightness.min;
   brightness_settings_timeBrightness_brightness[F("max")] = conf.timeBrightness.brightness.max;
 
+  if (strlen(conf.wifiConfig.static_ip) != 0)
+  {
+    doc[F("wifi")][F("static_ip")] = conf.wifiConfig.static_ip;
+    doc[F("wifi")][F("static_gw")] = conf.wifiConfig.static_gw;
+    doc[F("wifi")][F("static_sn")] = conf.wifiConfig.static_sn;
+    doc[F("wifi")][F("static_dns1")] = conf.wifiConfig.static_dns1;
+    doc[F("wifi")][F("static_dns2")] = conf.wifiConfig.static_dns2;
+  }
   if (conf.sensorCount > 0)
   {
     JsonArray sensors = doc[F("sensors")].to<JsonArray>();
     for (uint8_t i = 0; i < conf.sensorCount; i++)
     {
       sensors.add(conf.availableSensors[i]);
-      // if (strcmp(conf.availableSensors[i], "touch") == 0)
-      // {
-      //   doc[F("touchThreshold")] = conf.touchThreshold;
-      // }
     }
   }
 
-// json[F("checksum")] = conf.checksum;
+  // json[F("checksum")] = conf.checksum;
 }
 
-bool clockface2config(const JsonDocument &doc, Configuration &conf)
+bool JSON2config(const JsonDocument &doc, Configuration &conf)
 {
   reportmem("Start config");
   // debug_println(F("Got following JSON"));
@@ -224,24 +217,25 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
 
   bool validJSON = true;
   // debug_println(json[F("system")][F("ntp_server")].as<String>());
-  // for (uint8_t i = 0; i < NUMKEYS; i++)
-  // {
-  //   if (!doc.containsKey(configKeys[i]))
-  //   {
-  //     // debug_print(F("Missing key "));
-  //     // debug_println(configKeys[i]);
-  //     validJSON = false;
-  //   }
-  // }
+  for (uint8_t i = 0; i < NUMKEYS; i++)
+  {
+    if (!doc.containsKey(configKeys[i]))
+    {
+      // debug_print(F("Missing key "));
+      // debug_println(configKeys[i]);
+      validJSON = false;
+    }
+  }
   if (validJSON)
   {
+
     conf.clockfaceLayout.wordGridCols = json[F("clockface")][F("wordGridCols")].as<unsigned int>();
     conf.clockfaceLayout.wordGridRows = json[F("clockface")][F("wordGridRows")].as<unsigned int>();
     conf.clockfaceLayout.extraLEDs = json[F("clockface")][F("extraLEDs")].as<unsigned int>();
     conf.clockfaceLayout.totalLeds = conf.clockfaceLayout.wordGridCols * conf.clockfaceLayout.wordGridRows + conf.clockfaceLayout.extraLEDs;
     JsonArray layout = json[F("clockface")][F("layout")];
     conf.clockfaceLayout.totalWords = layout.size() - 1;
-    conf.clockfaceLayout.hasTwenty = false;
+    conf.clockfaceLayout.hasTwenty= false;
     // debug_printf("Total words: %d\n", totalWords);
     // debug_printf("Total leds: %d\n", totalLeds);
     reportmem("Conversion started");
@@ -259,7 +253,7 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
     reportmem("hostname");
 
     /// Load clockface
-    conf.clockface = (ClockfaceWord *)malloc((conf.clockfaceLayout.totalWords + 1) * sizeof(ClockfaceWord));
+    conf.clockface = (ClockfaceWord *)malloc((conf.clockfaceLayout.totalWords + 1)*sizeof(ClockfaceWord));
     if (!conf.clockface)
     {
       Serial.println("ERROR malloc conf.clockface");
@@ -271,15 +265,14 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
       if (layout[iWord].containsKey(F("word")))
       {
         conf.clockface[iWord].label = createString(layout[iWord][F("word")]);
-        conf.clockface[iWord].leds = (uint8_t *)malloc(jsonLeds.size() * sizeof(uint8_t));
+        conf.clockface[iWord].leds = (uint8_t *)malloc(jsonLeds.size() * sizeof(uint8_t ));
         for (uint8_t i = 0; i < jsonLeds.size(); i++)
         {
           conf.clockface[iWord].leds[i] = jsonLeds[i].as<int>();
         }
-        if (strcmp(layout[iWord][F("function")], "twenty") == 0)
-        {
+        if (strcmp(layout[iWord][F("function")],"twenty")==0){
           debug_println("Clock with twenty");
-          conf.clockfaceLayout.hasTwenty = true;
+          conf.clockfaceLayout.hasTwenty=true;
         }
         conf.clockface[iWord].isActive = methodStringToMethod(createString(layout[iWord][F("function")]));
         conf.clockface[iWord].colorCodeInTable = iWord;
@@ -293,7 +286,7 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
     {
       JsonArrayConst jsonLeds = layout[backgroundKey]["leds"].as<JsonArray>();
       conf.clockface[backgroundKey].label = createString(layout[backgroundKey][F("background")]);
-      conf.clockface[backgroundKey].leds = (uint8_t *)malloc(jsonLeds.size() * sizeof(uint8_t));
+      conf.clockface[backgroundKey].leds = (uint8_t *)malloc(jsonLeds.size() * sizeof(uint8_t ));
       for (uint8_t i = 0; i < jsonLeds.size(); i++)
       {
         conf.clockface[backgroundKey].leds[i] = jsonLeds[i].as<int>();
@@ -301,45 +294,24 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
       conf.clockface[backgroundKey].isActive = methodStringToMethod(createString(layout[backgroundKey][F("function")]));
       conf.clockface[backgroundKey].colorCodeInTable = backgroundKey;
     }
-  }
-  return true;
-}
 
-bool JSON2config(const JsonDocument &doc, Configuration &conf)
-{
-  reportmem("Start config");
-  // debug_println(F("Got following JSON"));
-  // serializeJson(doc,Serial);
-
-  bool validJSON = true;
-  // debug_println(json[F("system")][F("ntp_server")].as<String>());
-  // for (uint8_t i = 0; i < NUMKEYS; i++)
-  // {
-  //   if (!doc.containsKey(configKeys[i]))
-  //   {
-  //     // debug_print(F("Missing key "));
-  //     // debug_println(configKeys[i]);
-  //     validJSON = false;
-  //   }
-  // }
-  if (validJSON)
-  {
+    ///
 
     JsonObjectConst jsonColors = json[F("colors")].as<JsonObjectConst>();
-    const char *ledMode = jsonColors[F("ledMode")].as<const char *>();
-    if (strcmp(ledMode, "singleColor") == 0)
+    const char* ledMode = jsonColors[F("ledMode")].as<const char*>();
+    if (strcmp(ledMode,"singleColor")==0)
     {
       conf.ledMode = LedMode::singleColor;
     }
-    else if (strcmp(ledMode, "hourlyColor") == 0)
+    else if (strcmp(ledMode,"hourlyColor")==0)
     {
       conf.ledMode = LedMode::hourlyColor;
     }
-    else if (strcmp(ledMode, "wordColor") == 0)
+    else if (strcmp(ledMode,"wordColor")==0)
     {
       conf.ledMode = LedMode::wordColor;
     }
-    else if (strcmp(ledMode, "rainbowColor") == 0)
+    else if (strcmp(ledMode,"rainbowColor")==0)
     {
       conf.ledMode = LedMode::rainbowColor;
     }
@@ -369,15 +341,15 @@ bool JSON2config(const JsonDocument &doc, Configuration &conf)
 
     JsonVariantConst jsonBrightnessMode = json[F("brightness")][F("brightnessMode")];
     const char *brightnessMode = jsonBrightnessMode.as<const char *>();
-    if (strcmp(brightnessMode, "fixedBrightness") == 0)
+    if (strcmp(brightnessMode, "fixedBrightness")==0)
     {
       conf.brightnessMode = BrightnessMode::fixedBrightness;
     }
-    else if (strcmp(brightnessMode, "ldrBrightness") == 0)
+    else if (strcmp(brightnessMode, "ldrBrightness")==0)
     {
       conf.brightnessMode = BrightnessMode::ldrBrightness;
     }
-    else if (strcmp(brightnessMode, "timeBrightness") == 0)
+    else if (strcmp(brightnessMode, "timeBrightness")==0)
     {
       conf.brightnessMode = BrightnessMode::timeBrightness;
     }
@@ -421,43 +393,42 @@ bool JSON2config(const JsonDocument &doc, Configuration &conf)
     debug_println(F("Invalid JSON config"));
   }
   conf.sensorCount = 0;
-#ifdef HASTOUCHBUTTON
+  #ifdef HASTOUCHBUTTON
   conf.sensorCount++;
-#endif
-#ifdef HASLDR
+  #endif
+  #ifdef HASLDR
   conf.sensorCount++;
-#endif
+  #endif
   conf.availableSensors = (char **)malloc(conf.sensorCount * sizeof(char *));
   if (!conf.availableSensors)
   {
     debug_println("ERROR malloc conf.availableSensors");
   }
   uint8_t i = 0;
-#ifdef HASTOUCHBUTTON
+  #ifdef HASTOUCHBUTTON
   conf.availableSensors[i] = (char *)malloc(10 * sizeof(char));
   if (!conf.availableSensors[i])
   {
     debug_println("ERROR malloc conf.availableSensors[i]");
   }
   strcpy(conf.availableSensors[i], "touch");
-    conf.touchThreshold = TOUCH_THRESHOLD;
   i++;
-#endif
-#ifdef HASLDR
+  #endif
+  #ifdef HASLDR
   conf.availableSensors[i] = (char *)malloc(10 * sizeof(char));
   if (!conf.availableSensors[i])
   {
     debug_println("ERROR malloc conf.availableSensors[i]");
   }
   strcpy(conf.availableSensors[i], "ldr");
-#endif
+  #endif
 
   return true;
 }
 
 void printConfig(Configuration &conf)
 {
-  config2JSON(conf, json);
+  config2JSON(conf,json);
   serializeJson(json, Serial);
 }
 
@@ -466,7 +437,7 @@ void loadConfiguration(Configuration *conf)
 
   debug_println(F("Loading configuration from filesystem"));
   validJSON = false;
-  File configFile = LittleFS.open("/miniconfig.json", "r");
+  File configFile = LittleFS.open("/config.json", "r");
   if (configFile)
   {
     Serial.println(F("opened config file"));
@@ -504,48 +475,7 @@ void loadConfiguration(Configuration *conf)
 
   // copyConfig(config, oldConfig);
 }
-void loadClockface(Configuration *conf)
-{
 
-  debug_println(F("Loading clockface from filesystem"));
-  validJSON = false;
-  File configFile = LittleFS.open("/clockface.json", "r");
-  if (configFile)
-  {
-    Serial.println(F("opened clockface file"));
-    /*size_t size = configFile.size();
-    std::unique_ptr<char[]> buf(new char[size]);
-    configFile.readBytes(buf.get(), size);*/
-    reportmem(F("file voor deserialize"));
-    auto deserializeError = deserializeJson(json, configFile);
-    reportmem(F("file na  deserialize"));
-    configFile.close();
-    if (!deserializeError)
-    {
-      // serializeJson(json,Serial);
-      // serializeJsonPretty(json, Serial);
-      validJSON = true;
-      clockface2config(json, *conf);
-    }
-    else
-    {
-      debug_println(deserializeError.c_str());
-      debug_println(F("failed to load json clockface"));
-    }
-  }
-  else
-  {
-    debug_println(F("Cannot open clockface file"));
-  }
-
-  if (!validJSON)
-  {
-    debug_println(F("Invalid clockface JSON"));
-    // loadDefaultConfiguration();
-  }
-
-  // copyConfig(config, oldConfig);
-}
 void configurationSetup()
 {
   reportmem("test");
@@ -556,7 +486,6 @@ void configurationSetup()
   } */
 
   reportmem("test");
-  loadClockface(&config);
   loadConfiguration(&config);
 }
 
@@ -564,12 +493,12 @@ void saveConfiguration(Configuration &conf)
 {
 
   debug_println(F("Need to save configuration to Filesystem"));
-  File configFile = LittleFS.open("/miniconfig.json", "w");
+  File configFile = LittleFS.open("/config.json", "w");
   if (!configFile)
   {
     debug_println(F("failed to open config file for writing"));
   }
-  config2JSON(conf, json);
+  config2JSON(conf,json);
   serializeJson(json, configFile);
   configFile.close();
   debug_println(F("Closed file"));

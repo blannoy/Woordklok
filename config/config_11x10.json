@@ -1,7 +1,7 @@
 {
     "system": {
         "ntp_server": "pool.ntp.org",
-        "hostname": "woordkloktest"
+        "hostname": "woordklok"
     },
     "clockface": {
         "wordGridCols" : 11,
@@ -74,7 +74,8 @@
                 }
             }
         }
-    }
+    },
+    "checksum" : 12541
 }
 
 

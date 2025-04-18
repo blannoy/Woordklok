@@ -3,7 +3,8 @@
 #include <headers.h>
 #define colorSaturation 64
 #ifdef ESP32
-NeoPixelBus<NeoGrbFeature, DotStarEsp32DmaSpiMethod> strip(config.clockfaceLayout.totalLeds);
+//NeoPixelBus<NeoGrbFeature, DotStarEsp32DmaSpiMethod> strip(config.clockfaceLayout.totalLeds);
+NeoPixelBus<NeoGrbFeature, NeoEsp32Rmt0800KbpsMethod> strip(MAXLEDS,LEDSTRIPPIN);
 #else
 NeoPixelBus<NeoGrbFeature, NeoEsp8266Dma800KbpsMethod> strip(MAXLEDS);
 #endif
@@ -91,7 +92,7 @@ BrightnessShader<NeoGrbFeature> shader;
 
 void ledSetup()
 {
-  randomSeed(analogRead(0));
+  randomSeed(analogRead(LDRPIN));
   strip.Begin();
   clearLEDS();
   remapLEDS = (byte **)malloc(config.clockfaceLayout.wordGridRows * sizeof(byte *));

@@ -1,4 +1,4 @@
-import React,{useReducer,useEffect} from "react";
+import React,{useReducer,useEffect, useState, useContext} from "react";
 import {
     Route,
     NavLink,
@@ -9,12 +9,24 @@ import Home from "../Views/Home";
 import LEDColors from "../Views/LEDColors";
 import Brightness from "../Views/Brightness";
 import ShowConfig from "../Views/ShowConfig";
-import TestCode from "../Views/TestCode";
+import TestCode from "../Views/Sensors";
 import Admin from "../Views/Admin";
+import Firmware from "../Views/Firmware";
+import Sensors from "../Views/Sensors";
 
+import {useGetClockfaceQuery} from "../Components/ClockAPI";
+import {mapClockFace} from "../Utils/ClockFaceMapper";
+import {clockFaceContext} from "../Context/Context";
 
 export default function Main() {
-
+  
+      const { data: clockfaceData, error: clockfaceError, isLoading: clockfaceIsLoading } = useGetClockfaceQuery();
+      const [clockFaceConfig,setClockFaceConfig] = useContext(clockFaceContext);
+      useEffect(() => {
+    if (clockfaceData !== undefined) {
+        setClockFaceConfig(mapClockFace(clockfaceData.clockface));
+    }
+  }, [clockfaceData]);
 
     return (
         <HashRouter>
@@ -26,7 +38,8 @@ export default function Main() {
             <li><NavLink to="/brightness">Brightness</NavLink></li>
             <li><NavLink to="/admin">Admin</NavLink></li>
             <li><NavLink to="/config">Config</NavLink></li>
-            <li><NavLink to="/test">Test</NavLink></li>
+            <li><NavLink to="/firmware">Firmware</NavLink></li>
+            <li><NavLink to="/sensor">Sensors</NavLink></li>
             {/* <li><NavLink to="/clockface">Clockface</NavLink></li> */}
           </ul>
           <div className="content">
@@ -36,7 +49,8 @@ export default function Main() {
             <Route path="/brightness" element={<Brightness/>}/>
             <Route path="/admin" element={<Admin/>}/>
             <Route path="/config" element={<ShowConfig/>}/>
-            <Route path="/test" element={<TestCode/>}/>
+            <Route path="/firmware" element={<Firmware/>}/>
+            <Route path="/sensor" element={<Sensors/>}/>
             {/* <Route path="/clockface" element={<ClockFace/>}/> */}
             </Routes>
           </div>

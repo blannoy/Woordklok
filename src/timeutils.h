@@ -1,16 +1,19 @@
 #pragma once 
 
-#include <headers.h>
-
+#include <Arduino.h>  
+#include "headers.h"                
+#if defined(ESP8266)
 #include <coredecls.h>                  // settimeofday_cb()
-#include <PolledTimeout.h>
-#include <time.h>                       // time() ctime()
-#include <sys/time.h>                   // struct timeval
-
-extern "C" int clock_gettime(clockid_t unused, struct timespec *tp);
 #include <TZ.h>
 #define MYTZ TZ_Europe_Brussels
-#define SECS_YR_2000  (946684800UL) // the time at the start of y2k
+#endif
+
+#if defined(ESP32)
+#define MYTZ "CET-1CEST,M3.5.0,M10.5.0/3"
+#endif
+
+#include <time.h>                       // time() ctime()
+#include <sys/time.h>                   // struct timeval
 
 static time_t now;
 
@@ -21,44 +24,45 @@ uint8_t dateDay;
 uint8_t dateMonth;
 uint8_t dateYear;
 
-static esp8266::polledTimeout::periodicMs showTimeNow(20000);
+long lastTimeUpdate = 0;
+long timeUpdateInterval = 20000; // 20 seconds
 
-String getCurrentTime(){
-      time_t currentTime = time(NULL);
-    char timeString[26]; // Maximum size for ctime string is 26 characters
-    strcpy(timeString, ctime(&currentTime));
+void printLocalTime(){
+  struct tm timeinfo;
+  if(!getLocalTime(&timeinfo)){
+    Serial.println("Failed to obtain time 1");
+    return;
+  }
+  // debug_printf("%s, %s %02d %04d %02d:%02d:%02d zone %s %s\n", 
+  //   &timeinfo, 
+  //   timeinfo.tm_wday, 
+  //   timeinfo.tm_mon, 
+  //   timeinfo.tm_mday, 
+  //   timeinfo.tm_year, 
+  //   timeinfo.tm_hour, 
+  //   timeinfo.tm_min, 
+  //   timeinfo.tm_sec);
 
-  return timeString;
-}
-
-void showTime() {   // This function is used to print stuff to the serial port, it's not mandatory
-  now = time(nullptr);      // Updates the 'now' variable to the current time value
-
-  // human readable
-  
- // debug_printf("ctime:   %s \n",ctime(&now));
-  /*// Here is one example showing how you can get the current month
-  debug_printf("current month: ");
-  debug_printf(localtime(&now)->tm_mon);
-  // Here is another example showing how you can get the current year*/
-  //debug_printf("current year: %d",localtime(&now)->tm_year);
-}
-
-void time_is_set_scheduled() {    // This function is set as the callback when time data is retrieved
-  // In this case we will print the new time to serial port, so the user can see it change (from 1970)
-  showTime();
-  //TODOstatusLed(Time,green);
-  //TODOLog.flush();
-  //delay(1000);
 }
 
 void timeSetup() {
-  settimeofday_cb(time_is_set_scheduled);
+  struct tm timeinfo;
+  #if defined(ESP8266)
+ // settimeofday_cb(time_is_set_scheduled);
   configTime(MYTZ, config.ntp_server);
-  debug_printf("Setting time via %s\n",config.ntp_server);
+  #endif
+  #if defined(ESP32)
+  configTime(0, 0, config.ntp_server);
+  setenv("TZ",MYTZ,1);  //  Now adjust the TZ.  Clock settings are adjusted to show the new local time
+  tzset();
+  #endif
+//  debug_printf("Setting time via %s\n",config.ntp_server);
+  if(!getLocalTime(&timeinfo)){
+    Serial.println("  Failed to obtain time");
+    return;
+  }
+  Serial.println("  Got the time from NTP");
   yield();
-
-  showTime();
 }
 
 void timeLoop() {
@@ -70,7 +74,11 @@ void timeLoop() {
   dateDay = tm->tm_mday;
   dateMonth = tm->tm_mon;
   dateYear = tm->tm_year;
-  if (showTimeNow) {
-    showTime();
+  // if (showTimeNow) {
+  //   showTime();
+  // }
+  if (millis() - lastTimeUpdate > timeUpdateInterval) {
+    lastTimeUpdate = millis();
+    printLocalTime();
   }
 }

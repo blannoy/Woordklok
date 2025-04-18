@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import ColorPicker from "./ColorPicker";
 import { configContext } from "../../Context/Context";
-
+const deepEqual = require('deep-equal');
 /**
  * Builds screen for selection of a color for each clock-word and a global background color for non active LEDs
  * @param {*} props Should receive the JSON representation of a "wordColor" configuration
@@ -9,25 +9,30 @@ import { configContext } from "../../Context/Context";
  */
 export default function HourlyColor(props) {
   const [colorConfig,setColorConfig]=useState(props.colorConfig);
-  const [config, setConfig] = useContext(configContext);
   const [colorList,setColorList]=useState(colorConfig.color?colorConfig.color:[]);
 
 
   // change in passed property, triggers update of state
    useEffect(() => {
+    if (!deepEqual(props.colorConfig, colorConfig)) {
       setColorConfig({ ...props.colorConfig });
       setColorList(props.colorConfig.color);
+    }
     }, [props.colorConfig])
 
 
     function transformConfig(event) {
-      if (event.value){
-        const pos=Number((event.id).split("_")[1]);
-        const color=event.value;
-        var tempConfig={...colorConfig};
-        tempConfig.color[pos]=color;
-        props.onColorConfig({id:"color", value: tempConfig.color});
-    }
+      if (event.value) {
+        const pos = Number((event.id).split("_")[1]);
+        const color = event.value;
+        if (color !== colorList[pos]) {
+          var tempConfig= [...colorConfig.color];
+          //var tempConfig = { ...colorConfig };
+          //tempConfig.color[pos] = color;
+          tempConfig[pos] = color;
+          props.onColorConfig({ id: "color", value: tempConfig });
+        }
+      }
     }
   return (
     <div>
@@ -37,13 +42,13 @@ export default function HourlyColor(props) {
         <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} onColorChoice={props.onColorConfig} />
       </div>
       <h3>Kies een kleur voor elk uur (0 - 23h)</h3>
-      
+      {colorList &&
       <div>
       { [...Array(24)].map((value,index)=> {
         const colorIndex="color_"+String(index);
       return <div className="section"><div className="smallLabelCell"> <label>{String(index)+":00"}</label></div><div className="wideBodyCell"><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
 })}
-      </div> 
+      </div> }
     </div>
   );
 }

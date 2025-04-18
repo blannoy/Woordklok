@@ -11,7 +11,7 @@ export default function WordColor(props) {
   const [colorConfig, setColorConfig] = useState(props.colorConfig);
   const [clockFaceConfig, setClockFaceConfig] = useContext(clockFaceContext);
   const [config, setConfig] = useContext(configContext);
-  const [clockWords, setClockWords] = useState((config ? config.clockface.layout : []));
+  const [clockWords, setClockWords] = useState((clockFaceConfig ? clockFaceConfig.layout : []));
   const [colorList, setColorList] = useState(colorConfig.color ? colorConfig.color : []);
 
 
@@ -24,8 +24,8 @@ export default function WordColor(props) {
   }, [props.colorConfig])
   // 
   useEffect(() => {
-    setClockWords(config ? config.clockface.layout : [])
-  }, [config])
+    setClockWords(clockFaceConfig ? clockFaceConfig.layout : [])
+  }, [clockFaceConfig])
 
   useEffect(() => {
     if (clockFaceConfig) {
@@ -40,9 +40,11 @@ export default function WordColor(props) {
       const pos = Number((event.id).split("_")[1]);
       const color = event.value;
       if (color !== colorList[pos]) {
-        var tempConfig = { ...colorConfig };
-        tempConfig.color[pos] = color;
-        props.onColorConfig({ id: "color", value: tempConfig.color });
+        var tempConfig= [...colorConfig.color];
+        //var tempConfig = { ...colorConfig };
+        //tempConfig.color[pos] = color;
+        tempConfig[pos] = color;
+        props.onColorConfig({ id: "color", value: tempConfig });
       }
     }
   }
@@ -54,6 +56,7 @@ export default function WordColor(props) {
         <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} onColorChoice={props.onColorConfig} />
       </div>
       <h3>Kies een kleur voor elk woord</h3>
+      { clockWords &&
       <div>
         {clockWords.map((clockWord, index) => {
           const colorIndex = "color_" + String(index);
@@ -62,7 +65,7 @@ export default function WordColor(props) {
 
         }
         })}
-      </div>
+      </div>}
       {/* <ColorPicker id="color" currentVal={colorConfig.color} onColorChoice={props.onColorConfig} /> */}
     </div>
   );

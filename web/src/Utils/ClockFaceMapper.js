@@ -24,6 +24,7 @@ export function mapClockFace(clockConfig) {
     const clockFaceConfig = { "metadata": 
     { "nrWords": nrWords, "totalLetters": totalLetters, "rows": dims[1], "cols": dims[0], "backgroundIndex": backgroundIndex, "extraLEDs": dims[2] }, 
     "letterGrid": letterGrid, 
+    "layout": clockWords,
     "colorMap": [] };
     return clockFaceConfig;
 }

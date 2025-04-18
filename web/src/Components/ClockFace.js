@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useContext} from "react";
 import { clockFaceContext  } from "../Context/Context";
 import { calculateComplementary } from "../Utils/Utils";
+import { useGetClockfaceQuery } from "../Components/ClockAPI";
+import { mapClockFace } from "../Utils/ClockFaceMapper";
+
 
 function ClockFace(props) {
+
     const [clockFaceConfig,setClockFaceConfig]=useContext(clockFaceContext);
     const [letterGrid,setLetterGrid]=useState(null);
     const [rows,setRows]=useState(0);
@@ -11,8 +15,14 @@ function ClockFace(props) {
     const [extraLEDs,setExtraLEDs]=useState(0);
     const [colorMap,setColorMap]=useState(null);
 
+    // useEffect(() => {
+    //     if (data !== undefined) {
+    //         setClockFaceConfig(mapClockFace(data.clockface));
+    //     }
+    // }, [data]);
+
     useEffect(() => {
-        if (clockFaceConfig !== null) {
+        if (clockFaceConfig !== undefined) {
             setRows(clockFaceConfig.metadata.rows);
             setCols(clockFaceConfig.metadata.cols);
             setExtraLEDs(clockFaceConfig.metadata.extraLEDs);

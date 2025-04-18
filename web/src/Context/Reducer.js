@@ -36,9 +36,10 @@ export function requestReducer(state, action) {
             targetState.data = action.body;
             targetState.params = action.params;
         break; 
-        case "calibrateLdr":
-            targetState.url = '/calibrateLdr';  
+        case "calibrateSensor":
+            targetState.url = '/getSensorValue';  
             targetState.method = 'get';
+            targetState.params = action.params;
         break;        
         case "testError":
             targetState.url = '/error';  

@@ -239,6 +239,16 @@ dd {
     cursor: pointer;
   }
 
+  input[type=number] {
+    background-color:none;
+    border: 1px solid #0099FF;
+    color: black;
+    padding: 4px 4px 4px 2px;
+    text-decoration: none;
+    text-align: right;
+    margin: 4px 2px;
+    width: 50px;
+  }
   button:active, input:active{
     background-color: #56bafd;
   }

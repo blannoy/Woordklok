@@ -117,13 +117,13 @@ function LDRBrightness(props) {
 
     return (
         <div>
-            <div className="section">
+{/*             <div className="section">
                 <div className="BodyCell">
                 <button id="calibrateLdr" onClick={calibrateLdr}>Calibrate LDR</button>
                 </div>
                 <div className="labelCell"><label>{doCalibrate && "Calibrating...  " + ldrCalibrated[0] + " / " + ldrCalibrated[1]}</label>
                 </div>
-            </div>
+            </div> */}
  
     
             <BrightnessRangePicker id="ldrRange" currentVal={ldrRange} min={0} max={100} minDistance={1} onBrightnessChoice={treatLdrRange} />
