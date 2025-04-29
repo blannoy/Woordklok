@@ -2,17 +2,17 @@
 
 #include <headers.h>
 
-
 #include <ElegantOTA.h>
 
 bool serverStarted = false;
-char* JSONStringRep;
+char *JSONStringRep;
 
 void sendResponse(int code, const char *content_type, const char *message)
-{
-  server.sendHeader("Access-Control-Allow-Origin", "*");
-  server.sendHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
-  server.sendHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
+
+{ // server.sendHeader("Access-Control-Allow-Origin", "*");
+  // server.sendHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+  // server.sendHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
+
   server.send(code, content_type, message);
 }
 
@@ -121,10 +121,10 @@ void apiSendJSON(int status, JsonObject object)
 
 void apiSendJSON(int status, DynamicJsonDocument doc)
 {
-  JSONStringRep=(char *)malloc(doc.memoryUsage()+1);
-  serializeJson(doc, JSONStringRep,doc.memoryUsage()+1);
-  //debug_printf("Sending JSON %s\n", JSONStringRep);
-  // server.send(status, "application/json", json);
+  JSONStringRep = (char *)malloc(doc.memoryUsage() + 1);
+  serializeJson(doc, JSONStringRep, doc.memoryUsage() + 1);
+  // debug_printf("Sending JSON %s\n", JSONStringRep);
+  //  server.send(status, "application/json", json);
   sendResponse(status, "application/json", JSONStringRep);
   doc.clear();
 }
@@ -161,21 +161,21 @@ void getStatus()
   char timeString[6];
   sprintf(timeString, "%02d:%02d", dateHours, dateMinutes);
   root[F("currentTime")] = timeString;
-  
+
   apiSendJSON(200, root);
   jsonDoc.clear();
 }
 
 void getConfig()
 {
-  config2JSON(config,json);
-  apiSendJSON(200,json);
+  config2JSON(config, json);
+  apiSendJSON(200, json);
 }
 
 void getClockface()
 {
-  clockface2JSON(config,json);
-  apiSendJSON(200,json);
+  clockface2JSON(config, json);
+  apiSendJSON(200, json);
 }
 
 void setLedColor()
@@ -206,20 +206,20 @@ void setLedColor()
     if (ledMode.equals("singleColor"))
     {
       debug_println("Setting single color");
-      copyColor(json[ledMode][F("color")],config.singleColor.color);
-      copyColor(json[ledMode][F("backgroundColor")],config.singleColor.backgroundColor);
+      copyColor(json[ledMode][F("color")], config.singleColor.color);
+      copyColor(json[ledMode][F("backgroundColor")], config.singleColor.backgroundColor);
       config.ledMode = LedMode::singleColor;
     }
     else if (ledMode.equals("wordColor"))
     {
       debug_println("Setting word color");
-      copyColor(json[ledMode][F("backgroundColor")],config.wordColor.backgroundColor);
+      copyColor(json[ledMode][F("backgroundColor")], config.wordColor.backgroundColor);
       JsonArray array = json[ledMode][F("color")].as<JsonArray>();
       if (array.size() == config.clockfaceLayout.totalWords)
       {
         for (int i = 0; i < config.clockfaceLayout.totalWords; i++)
         {
-          copyColor(array[i],config.wordColor.color[i]);
+          copyColor(array[i], config.wordColor.color[i]);
         }
         config.ledMode = LedMode::wordColor;
       }
@@ -231,13 +231,13 @@ void setLedColor()
     else if (ledMode.equals("hourlyColor"))
     {
       debug_println("Setting hourly color");
-      copyColor(json[ledMode][F("backgroundColor")],config.hourlyColor.backgroundColor);
+      copyColor(json[ledMode][F("backgroundColor")], config.hourlyColor.backgroundColor);
       JsonArray array = json[ledMode][F("color")].as<JsonArray>();
       if (array.size() == 24)
       {
         for (int i = 0; i < 24; i++)
         {
-          copyColor(array[i],config.hourlyColor.color[i]);
+          copyColor(array[i], config.hourlyColor.color[i]);
         }
         config.ledMode = LedMode::hourlyColor;
       }
@@ -249,7 +249,7 @@ void setLedColor()
     else if (ledMode.equals("rainbowColor"))
     {
       debug_println("Setting rainbowcolor");
-      copyColor(json[ledMode][F("backgroundColor")],config.rainbowColor.backgroundColor);
+      copyColor(json[ledMode][F("backgroundColor")], config.rainbowColor.backgroundColor);
       config.rainbowColor.cycleTime = json[ledMode][F("cycleTime")];
       config.ledMode = LedMode::rainbowColor;
     }
@@ -262,6 +262,9 @@ void setLedColor()
     {
       debug_println("Test cycle: change state to TESTCOLORS");
       changeState(states::TESTCOLORS);
+    } else {
+    
+      saveConfiguration(config);
     }
   }
   getConfig();
@@ -349,7 +352,7 @@ void getSensorValue()
     apiSendError("Sensor not found in configuration");
     return;
   }
-  uint32_t sensorValue=readSensor(sensorArg);
+  uint32_t sensorValue = readSensor(sensorArg);
   debug_printf("Sensor %s value: %d\n", sensorArg, sensorValue);
   root["sensorValue"] = sensorValue;
   apiSendJSON(200, root);
@@ -360,6 +363,9 @@ void webServerSetup()
   debug_println("Webserver setup");
   if (!serverStarted)
   {
+
+    server.enableCORS();
+
     server.on("/api/TestAllPixels", runTestAllPixels);
     server.on("/api/TestPixels", runTestPixels);
     server.on("/api/testClockFaceMinutes", runClockFaceTestMinutes);
@@ -376,8 +382,8 @@ void webServerSetup()
     // server.on("/api/log", getLog);
     server.onNotFound(handleNotFound);
 
-//    flashUpdateServer.setup(&server, String("/api/update/flash"));
-//    fsUpdateServer.setup(&server, String("/api/update/file"));
+    //    flashUpdateServer.setup(&server, String("/api/update/flash"));
+    //    fsUpdateServer.setup(&server, String("/api/update/file"));
     ElegantOTA.begin(&server);
     server.begin();
     debug_printf("HTTP server started on %s\n", WiFi.localIP().toString().c_str());
@@ -402,8 +408,8 @@ void webServerLoop()
   if (serverStarted)
   {
     server.handleClient();
-    #if defined(ESP8266)
+#if defined(ESP8266)
     MDNS.update();
-    #endif
+#endif
   }
 }

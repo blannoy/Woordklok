@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import ColorPicker from "./ColorPicker";
 import { calculateComplementary } from "../../Utils/Utils";
 import { useContext } from "react";
-import { clockFaceContext } from "../../Context/Context";
+import { clockContext } from "../../Context/Context";
+import isEqual from 'lodash/isEqual';
 
 /**
  * Builds screen for selection of a single color for clock-words and background color for non active LEDs
@@ -11,24 +12,31 @@ import { clockFaceContext } from "../../Context/Context";
  * @returns 
  */
 export default function SingleColor(props) {
-  const [colorConfig,setColorConfig]=useState(props.colorConfig);
-  const [clockFaceConfig,setClockFaceConfig]=useContext(clockFaceContext);
-  const [colorMap,setColorMap]=useState(null);
-  // change in passed property, triggers update of state
-   useEffect(() => {
-      setColorConfig({ ...props.colorConfig });
-      props.setClockColors({ 'singleColor': { 'foreground' : colorConfig.color, 'background' : colorConfig.backgroundColor}});
-      // loop over number of words, assign singlecolor; on index backgroundindex, assign backgroundcolor
-   }, [props.colorConfig]);
+  const [colorConfig, setColorConfig] = useState(props.colorConfig);
+  const [fullConfig, setFullConfig] = useContext(clockContext);
+  const [clockFaceConfig, setClockFaceConfig] = useState(undefined);
+  const [colorMap, setColorMap] = useState(null);
 
-   useEffect(() => {
-    if (clockFaceConfig){
-      let colorMapArray=Array(clockFaceConfig.metadata.nrWords).fill(colorConfig.color);
-      colorMapArray[clockFaceConfig.metadata.backgroundIndex]=colorConfig.backgroundColor;
-      setColorMap(colorMapArray);
-      setClockFaceConfig({...clockFaceConfig,"colorMap":colorMapArray});
+
+  // change in passed property, triggers update of state
+  useEffect(() => {
+    console.log("SingleColor: props.colorConfig", JSON.stringify(props.colorConfig), "-", JSON.stringify(colorConfig));
+    setColorConfig({ ...props.colorConfig });
+    props.setClockColors({ 'singleColor': { 'foreground': colorConfig.color, 'background': colorConfig.backgroundColor } });
+  }, [props.colorConfig]);
+
+  useEffect(() => {
+    console.log("SingleColor: colorConfig", JSON.stringify(colorConfig));
+    if (fullConfig !== undefined && fullConfig.clockface !== undefined) {
+      let colorMapArray = Array(fullConfig.clockface.metadata.nrWords).fill(colorConfig.color);
+      colorMapArray[fullConfig.clockface.metadata.backgroundIndex] = colorConfig.backgroundColor;
+      if (isEqual(colorMapArray, colorMap) === false) {
+        setColorMap(colorMapArray);
+        //setClockFaceConfig({ ...clockFaceConfig, "colorMap": colorMapArray });
+        setFullConfig({ ...fullConfig, colorMap: colorMapArray });
+      }
     }
-  },[colorConfig]);
+  }, [colorConfig]);
 
   return (
     <div>
@@ -40,6 +48,7 @@ export default function SingleColor(props) {
       <div>
         <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} foregroundColor={colorConfig.color} onColorChoice={props.onColorConfig} />
       </div>
+      {JSON.stringify(colorMap)}
     </div>
   );
 }

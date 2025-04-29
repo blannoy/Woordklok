@@ -1,8 +1,8 @@
 #pragma once
 
 #include "headers.h"
-//#define DEBUG true
-//#include "utils.h"
+// #define DEBUG true
+// #include "utils.h"
 
 bool validJSON = true;
 
@@ -99,17 +99,17 @@ void clockface2JSON(Configuration &conf, DynamicJsonDocument &doc)
     {
       ledLayout.add(conf.clockface[i].leds[j]);
     }
-    wordConfig[F("function")]=isActiveMethodStrings[conf.clockface[i].isActive];
+    wordConfig[F("function")] = isActiveMethodStrings[conf.clockface[i].isActive];
   }
 
   JsonObject background = layout.createNestedObject();
-  background[F("background")]=conf.clockface[conf.clockfaceLayout.totalWords].label;
+  background[F("background")] = conf.clockface[conf.clockfaceLayout.totalWords].label;
   JsonArray ledLayout = background[F("leds")].to<JsonArray>();
   for (uint8_t j = 0; j < background[F("background")].as<String>().length(); j++)
   {
     ledLayout.add(conf.clockface[conf.clockfaceLayout.totalWords].leds[j]);
-  } 
-  background[F("function")]=isActiveMethodStrings[conf.clockface[conf.clockfaceLayout.totalWords].isActive];
+  }
+  background[F("function")] = isActiveMethodStrings[conf.clockface[conf.clockfaceLayout.totalWords].isActive];
   JsonObject colors = doc[F("colors")].to<JsonObject>();
 }
 
@@ -202,18 +202,31 @@ void config2JSON(Configuration &conf, DynamicJsonDocument &doc)
 
   if (conf.sensorCount > 0)
   {
-    JsonArray sensors = doc[F("sensors")].to<JsonArray>();
+    // JsonArray sensors = doc[F("sensors")].to<JsonArray>();
+    // for (uint8_t i = 0; i < conf.sensorCount; i++)
+    // {
+    //   sensors.add(conf.availableSensors[i]);
+    //   // if (strcmp(conf.availableSensors[i], "touch") == 0)
+    //   // {
+    //   //   doc[F("touchThreshold")] = conf.touchThreshold;
+    //   // }
+    // }
+    JsonArray sensors = doc.createNestedArray(F("sensors"));
     for (uint8_t i = 0; i < conf.sensorCount; i++)
     {
-      sensors.add(conf.availableSensors[i]);
-      // if (strcmp(conf.availableSensors[i], "touch") == 0)
-      // {
-      //   doc[F("touchThreshold")] = conf.touchThreshold;
-      // }
+      JsonObject sensor = sensors.createNestedObject();
+      sensor[F("name")] = conf.sensors[i].name;
+      JsonArray attributes = sensor.createNestedArray(F("attributes"));
+      for (uint8_t j = 0; j < conf.sensors[i].attributeCount; j++)
+      {
+        JsonObject attribute = attributes.createNestedObject();
+        attribute[F("name")] = conf.sensors[i].attributeNames[j];
+        attribute[F("value")] = conf.sensors[i].attributeValues[j];
+      }
     }
   }
 
-// json[F("checksum")] = conf.checksum;
+  // json[F("checksum")] = conf.checksum;
 }
 
 bool clockface2config(const JsonDocument &doc, Configuration &conf)
@@ -394,63 +407,148 @@ bool JSON2config(const JsonDocument &doc, Configuration &conf)
     conf.timeBrightness.timeSlot.endHour = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("timeSlot")][F("endHour")].as<int>();
 
     reportmem("brightness");
+    if (json[F("sensors")])
+    {
+      JsonArrayConst sensors = json[F("sensors")].as<JsonArrayConst>();
+      conf.sensorCount = sensors.size();
+      conf.sensors = (Sensor *)malloc(conf.sensorCount * sizeof(Sensor));
+      if (!conf.sensors)
+      {
+        Serial.println("ERROR malloc conf.sensors");
+      }
+      for (uint8_t i = 0; i < conf.sensorCount; i++)
+      {
+        JsonObjectConst sensor = sensors[i].as<JsonObjectConst>();
+        conf.sensors[i].name = (char *)malloc(SENSORNAME_MAX * sizeof(char));
+        strlcpy(conf.sensors[i].name, sensors[i][F("name")], SENSORNAME_MAX);
 
-    if (json[F("wifi")][F("static_ip")])
-    {
-      copyString(json[F("wifi")][F("static_ip")], conf.wifiConfig.static_ip);
+        conf.sensors[i].attributeCount = sensor[F("attributes")].size();
+        conf.sensors[i].attributeNames = (char **)malloc(conf.sensors[i].attributeCount * sizeof(char *));
+        if (!conf.sensors[i].attributeNames)
+        {
+          Serial.println("ERROR malloc conf.sensors[i].attributeNames");
+        }
+        conf.sensors[i].attributeValues = (uint32_t *)malloc(conf.sensors[i].attributeCount * sizeof(uint32_t));
+        if (!conf.sensors[i].attributeValues)
+        {
+          Serial.println("ERROR malloc conf.sensors[i].attributeValues");
+        }
+        for (uint8_t j = 0; j < conf.sensors[i].attributeCount; j++)
+        {
+          JsonObjectConst attribute = sensor[F("attributes")][j].as<JsonObjectConst>();
+          conf.sensors[i].attributeNames[j] = (char *)malloc(ATTRIBUTENAME_MAX * sizeof(char));
+          if (!conf.sensors[i].attributeNames[j])
+          {
+            Serial.println("ERROR malloc conf.sensors[i].attributeNames[j]");
+          }
+          strlcpy(conf.sensors[i].attributeNames[j], attribute[F("name")], ATTRIBUTENAME_MAX);
+          conf.sensors[i].attributeValues[j] = attribute[F("value")];
+        }
+      }
     }
-    if (json[F("wifi")][F("static_gw")])
+    else
     {
-      copyString(json[F("wifi")][F("static_gw")], conf.wifiConfig.static_gw);
+      /// if no sensors are defined, set default values
+      conf.sensorCount = 0;
+#ifdef HASTOUCHBUTTON
+      conf.sensorCount++;
+#endif
+#ifdef HASLDR
+      conf.sensorCount++;
+#endif
+      conf.availableSensors = (char **)malloc(conf.sensorCount * sizeof(char *));
+      if (!conf.availableSensors)
+      {
+        debug_println("ERROR malloc conf.availableSensors");
+      }
+      uint8_t i = 0;
+#ifdef HASTOUCHBUTTON
+      conf.availableSensors[i] = (char *)malloc(10 * sizeof(char));
+      if (!conf.availableSensors[i])
+      {
+        debug_println("ERROR malloc conf.availableSensors[i]");
+      }
+      strcpy(conf.availableSensors[i], "touch");
+      conf.touchThreshold = TOUCH_THRESHOLD;
+      i++;
+#endif
+#ifdef HASLDR
+      conf.availableSensors[i] = (char *)malloc(10 * sizeof(char));
+      if (!conf.availableSensors[i])
+      {
+        debug_println("ERROR malloc conf.availableSensors[i]");
+      }
+      strcpy(conf.availableSensors[i], "ldr");
+#endif
+      //////////// start sensor code
+      conf.sensors = (Sensor *)malloc(conf.sensorCount * sizeof(Sensor));
+      if (!conf.sensors)
+      {
+        debug_println("ERROR malloc conf.sensors");
+      }
+
+#ifdef HASTOUCHBUTTON
+      conf.sensors[0].name = (char *)malloc(SENSORNAME_MAX * sizeof(char));
+      if (!conf.sensors[0].name)
+      {
+        debug_println("ERROR malloc conf.sensors[0].name");
+      }
+      strlcpy(conf.sensors[0].name, "touch", SENSORNAME_MAX);
+      conf.sensors[0].attributeCount = 1;
+      conf.sensors[0].attributeNames = (char **)malloc(conf.sensors[0].attributeCount * sizeof(char *));
+      if (!conf.sensors[0].attributeNames)
+      {
+        debug_println("ERROR malloc conf.sensors[0].attributeNames");
+      }
+      conf.sensors[0].attributeNames[0] = (char *)malloc(ATTRIBUTENAME_MAX * sizeof(char));
+      if (!conf.sensors[0].attributeNames[0])
+      {
+        debug_println("ERROR malloc conf.sensors[0].attributeNames[0]");
+      }
+      strlcpy(conf.sensors[0].attributeNames[0], "threshold", ATTRIBUTENAME_MAX);
+      conf.sensors[0].attributeValues = (uint32_t *)malloc(conf.sensors[0].attributeCount * sizeof(uint32_t));
+      if (!conf.sensors[0].attributeValues)
+      {
+        debug_println("ERROR malloc conf.sensors[0].attributeValues");
+      }
+      conf.sensors[0].attributeValues[0] = TOUCH_THRESHOLD;
+#endif
+#ifdef HASLDR
+      conf.sensors[1].name = (char *)malloc(SENSORNAME_MAX * sizeof(char));
+      if (!conf.sensors[1].name)
+      {
+        debug_println("ERROR malloc conf.sensors[1].name");
+      }
+      strlcpy(conf.sensors[1].name, "ldr", SENSORNAME_MAX);
+      conf.sensors[1].attributeCount = 2;
+      conf.sensors[1].attributeNames = (char **)malloc(conf.sensors[1].attributeCount * sizeof(char *));
+      conf.sensors[1].attributeValues = (uint32_t *)malloc(conf.sensors[1].attributeCount * sizeof(uint32_t));
+      if (!conf.sensors[1].attributeNames)
+      {
+        debug_println("ERROR malloc conf.sensors[1].attributeNames");
+      }
+      conf.sensors[1].attributeNames[0] = (char *)malloc(ATTRIBUTENAME_MAX * sizeof(char));
+      if (!conf.sensors[1].attributeNames[0])
+      {
+        debug_println("ERROR malloc conf.sensors[1].attributeNames[0]");
+      }
+      strlcpy(conf.sensors[1].attributeNames[0], "ldrDark", ATTRIBUTENAME_MAX);
+      conf.sensors[1].attributeValues[0] = conf.ldrBrightness.ldrRange.dark;
+      conf.sensors[1].attributeNames[1] = (char *)malloc(ATTRIBUTENAME_MAX * sizeof(char));
+      if (!conf.sensors[1].attributeNames[1])
+      {
+        debug_println("ERROR malloc conf.sensors[1].attributeNames[1]");
+      }
+      strlcpy(conf.sensors[1].attributeNames[1], "ldrBright", ATTRIBUTENAME_MAX);
+      conf.sensors[1].attributeValues[1] = conf.ldrBrightness.ldrRange.bright;
+#endif
     }
-    if (json[F("wifi")][F("static_sn")])
-    {
-      copyString(json[F("wifi")][F("static_sn")], conf.wifiConfig.static_sn);
-    }
-    if (json[F("wifi")][F("static_dns1")])
-    {
-      copyString(json[F("wifi")][F("static_dns1")], conf.wifiConfig.static_dns1);
-    }
-    if (json[F("wifi")][F("static_dns2")])
-    {
-      copyString(json[F("wifi")][F("static_dns2")], conf.wifiConfig.static_dns2);
-    }
+    ///////// end sensor code
   }
   else
   {
     debug_println(F("Invalid JSON config"));
   }
-  conf.sensorCount = 0;
-#ifdef HASTOUCHBUTTON
-  conf.sensorCount++;
-#endif
-#ifdef HASLDR
-  conf.sensorCount++;
-#endif
-  conf.availableSensors = (char **)malloc(conf.sensorCount * sizeof(char *));
-  if (!conf.availableSensors)
-  {
-    debug_println("ERROR malloc conf.availableSensors");
-  }
-  uint8_t i = 0;
-#ifdef HASTOUCHBUTTON
-  conf.availableSensors[i] = (char *)malloc(10 * sizeof(char));
-  if (!conf.availableSensors[i])
-  {
-    debug_println("ERROR malloc conf.availableSensors[i]");
-  }
-  strcpy(conf.availableSensors[i], "touch");
-    conf.touchThreshold = TOUCH_THRESHOLD;
-  i++;
-#endif
-#ifdef HASLDR
-  conf.availableSensors[i] = (char *)malloc(10 * sizeof(char));
-  if (!conf.availableSensors[i])
-  {
-    debug_println("ERROR malloc conf.availableSensors[i]");
-  }
-  strcpy(conf.availableSensors[i], "ldr");
-#endif
 
   return true;
 }

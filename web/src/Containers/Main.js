@@ -9,24 +9,13 @@ import Home from "../Views/Home";
 import LEDColors from "../Views/LEDColors";
 import Brightness from "../Views/Brightness";
 import ShowConfig from "../Views/ShowConfig";
-import TestCode from "../Views/Sensors";
 import Admin from "../Views/Admin";
 import Firmware from "../Views/Firmware";
 import Sensors from "../Views/Sensors";
 
-import {useGetClockfaceQuery} from "../Components/ClockAPI";
-import {mapClockFace} from "../Utils/ClockFaceMapper";
-import {clockFaceContext} from "../Context/Context";
+
 
 export default function Main() {
-  
-      const { data: clockfaceData, error: clockfaceError, isLoading: clockfaceIsLoading } = useGetClockfaceQuery();
-      const [clockFaceConfig,setClockFaceConfig] = useContext(clockFaceContext);
-      useEffect(() => {
-    if (clockfaceData !== undefined) {
-        setClockFaceConfig(mapClockFace(clockfaceData.clockface));
-    }
-  }, [clockfaceData]);
 
     return (
         <HashRouter>

@@ -1,18 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
-import { configContext, requestProviderContext,queryProviderContext } from "../Context/Context";
+import React, { useEffect, useState } from "react";
+import { useGetStatusQuery } from "../Components/ClockAPI";
+
 
 function Home() {
-  const [currentStatus, setCurrentStatus] = useContext(requestProviderContext);
-  const [requestState, dispatchRequest] = useContext(queryProviderContext);
+  const { data: statusData, error: statusError, isLoading: statusIsLoading } = useGetStatusQuery();
+
   const [clock, setClock] = useState(null);
   const [version, setVersion] = useState(null);
 
   useEffect(() => {
-    if (currentStatus !== null) {
-      setClock(currentStatus.currentTime);
-      setVersion(currentStatus.version);
+    if (statusData !== undefined) {
+      setClock(statusData.currentTime);
+      setVersion(statusData.version);
     }
-  }, [currentStatus]);
+  }, [statusData]);
+
       return (
         <div>
           <h2>Huidige status</h2>

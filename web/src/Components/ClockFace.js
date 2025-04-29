@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext} from "react";
-import { clockFaceContext  } from "../Context/Context";
+import { clockContext  } from "../Context/Context";
 import { calculateComplementary } from "../Utils/Utils";
-import { useGetClockfaceQuery } from "../Components/ClockAPI";
-import { mapClockFace } from "../Utils/ClockFaceMapper";
+
 
 
 function ClockFace(props) {
-
-    const [clockFaceConfig,setClockFaceConfig]=useContext(clockFaceContext);
+  const [fullConfig,setFullConfig]=useContext(clockContext);
+  const [config, setConfig] = useState(fullConfig?fullConfig.config:undefined);
+  const [clockFaceConfig,setClockFaceConfig]=useState((fullConfig!==undefined)?fullConfig.clockface:undefined);
     const [letterGrid,setLetterGrid]=useState(null);
     const [rows,setRows]=useState(0);
     const [cols,setCols]=useState(0);
@@ -15,11 +15,18 @@ function ClockFace(props) {
     const [extraLEDs,setExtraLEDs]=useState(0);
     const [colorMap,setColorMap]=useState(null);
 
-    // useEffect(() => {
-    //     if (data !== undefined) {
-    //         setClockFaceConfig(mapClockFace(data.clockface));
-    //     }
-    // }, [data]);
+      
+      useEffect(() => {
+        if (fullConfig !== undefined && fullConfig.config !== undefined) {
+          setConfig({ ...fullConfig.config });
+        }
+        if (fullConfig !== undefined && fullConfig.clockFaceConfig !== undefined) {
+          setClockFaceConfig({ ...fullConfig.clockface });
+        }
+        if (fullConfig !== undefined && fullConfig.colorMap !== undefined) {
+          setColorMap({ ...fullConfig.colorMap });
+        }
+    }, [fullConfig]); 
 
     useEffect(() => {
         if (clockFaceConfig !== undefined) {
@@ -28,7 +35,7 @@ function ClockFace(props) {
             setExtraLEDs(clockFaceConfig.metadata.extraLEDs);
             setTotalLetters(clockFaceConfig.metadata.totalLetters);
             setLetterGrid(clockFaceConfig.letterGrid);
-            setColorMap(clockFaceConfig.colorMap)
+      //      setColorMap(clockFaceConfig.colorMap)
         }
     }
     ,[clockFaceConfig]);
@@ -75,4 +82,4 @@ function ClockFace(props) {
 };
 
 
-export default React.memo(ClockFace);
+export default ClockFace;

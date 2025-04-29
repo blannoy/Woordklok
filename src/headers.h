@@ -189,6 +189,15 @@ struct TimeBrightnessConfig
   BrightnessDef brightness;
 };
 
+#define ATTRIBUTENAME_MAX 15
+#define SENSORNAME_MAX 10
+struct Sensor{
+  char* name;
+  char** attributeNames;
+  uint32_t* attributeValues;
+  uint8_t attributeCount;
+};
+
 struct Configuration
 {
   char ntp_server[64];
@@ -208,6 +217,7 @@ struct Configuration
   char** availableSensors;
   uint8_t sensorCount;
   uint32_t touchThreshold;
+  Sensor* sensors;
 };
 
 Configuration config;
