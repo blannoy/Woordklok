@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { configContext, queryProviderContext } from "../../Context/Context";
 import BrightnessRangePicker from "./BrightnessRangePicker";
-import useRequest from "../../Context/Reducer";
+import { clockContext } from "../../Context/Context";
 import isEqual from 'lodash/isEqual';
 
 function LDRBrightness(props) {
@@ -11,8 +10,6 @@ function LDRBrightness(props) {
     const [seconds, setSeconds] = useState(calibrationTime);
     const [doCalibrate, setDoCalibrate] = useState(false);
     const intervalRef = useRef();
-    const [requestState, dispatchRequest] = useContext(queryProviderContext);
-    const [response, err, runRequest] = useRequest();
 
     const [ldrBrightness, setLdrBrightness] = useState([]);
     const [ldrRange, setLdrRange] = useState([]);
@@ -56,48 +53,6 @@ function LDRBrightness(props) {
     },[ldrBrightness,ldrRange]);
 
 
-     useEffect(() => {
-         if (requestState.url === "/calibrateLdr") {
-             runRequest(requestState);
-             dispatchRequest({ type: 'RESET' });
-         }
-     }, [requestState]);
-
-    useEffect(() => {
-        if (response !== null) {
-            if (response.config.url === "/calibrateLdr") {
-                setLdrCalibrated([response.data.min, response.data.max]);
-            }
-        }
-    }, [response]);
-
-    const tick = () => {
-        setSeconds(prevSeconds => prevSeconds - 1);
-        dispatchRequest({ type: "calibrateLdr" });
-    }
-
-    useEffect(() => {
-        if (doCalibrate) {
-            intervalRef.current = setInterval(tick, 1000);
-        } else if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-            setSeconds(calibrationTime); // reset timer
-            setLdrRange(ldrCalibrated);
-        }
-        return () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-            }
-        };
-    }, [doCalibrate]);
-
-    useEffect(() => {
-        if (seconds <= 0 && intervalRef.current) {
-            clearInterval(intervalRef.current);
-            setSeconds(calibrationTime); // reset timer
-            setDoCalibrate(false);
-        }
-    }, [seconds]);
 
     function calibrateLdr() {
         setDoCalibrate(true);
@@ -126,8 +81,8 @@ function LDRBrightness(props) {
             </div> */}
  
     
-            <BrightnessRangePicker id="ldrRange" currentVal={ldrRange} min={0} max={100} minDistance={1} onBrightnessChoice={treatLdrRange} />
-            <BrightnessRangePicker id="ldrBrightness" currentVal={ldrBrightness} onBrightnessChoice={treatLdrBrightness} />
+            <label>Omgevingslicht</label><BrightnessRangePicker id="ldrRange" currentVal={ldrRange} min={0} max={1000} minDistance={1} onBrightnessChoice={treatLdrRange} />
+            <label>Helderheid</label><BrightnessRangePicker id="ldrBrightness" currentVal={ldrBrightness} onBrightnessChoice={treatLdrBrightness} />
 
         </div>
     );

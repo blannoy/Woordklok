@@ -1,21 +1,36 @@
 import React, { useState, useContext, useEffect } from "react";
-import { configContext, queryProviderContext } from "../Context/Context";
+import { clockContext } from "../Context/Context";
 import LDRBrightness from "../Components/Brightness/LDRBrightness";
 import FixedBrightness from "../Components/Brightness/FixedBrightness";
 import TimeBrightness from "../Components/Brightness/TimeBrightness";
+import { useSetBrightnessMutation, useLazyGetConfigQuery, useTestBrightnessMutation } from "../Components/ClockAPI";
+import { has } from "lodash";
 // import LDRBrightness from "../Components/LDRBrightness";
 
 function Brightness() {
-  const [config, setConfig] = useContext(configContext);
-  const [requestState, dispatchRequest] = useContext(queryProviderContext);
-
+  const [fullConfig, setFullConfig] = useContext(clockContext);
+  const [config, setConfig] = useState(fullConfig ? fullConfig.config : undefined);
+  const [setBrightness,] = useSetBrightnessMutation();
+  const [testBrightness,] = useTestBrightnessMutation();
+  const [getConfig, { data: configData, error: configError, isLoading: configIsLoading }] = useLazyGetConfigQuery();
   const [brightnessConfig, setBrightnessConfig] = useState(config && config.brightness);
   const [selectedOption, setSelectedOption] = useState(config ? config.brightness.brightnessMode : "fixedBrightness");
 
   const [fixedBrightnessConfig, setFixedBrightnessConfig] = useState({});
   const [ldrBrightnessConfig, setLdrBrightnessConfig] = useState({});
   const [timeBrightnessConfig, settimeBrightnessConfig] = useState({});
-
+  const [hasLDR, setHasLDR] = useState(false);
+ useEffect(() => {
+     if (fullConfig !== undefined && fullConfig.config !== undefined) {
+       setConfig({ ...fullConfig.config });
+      if (
+        Array.isArray(fullConfig.config.sensors) &&
+        fullConfig.config.sensors.some(sensor => sensor.name === "ldr")
+      ) {
+        setHasLDR(true);
+      }
+      }
+   }, [fullConfig]); 
 
   function onValueChange(event) {
     setSelectedOption(event.target.value);
@@ -23,7 +38,7 @@ function Brightness() {
   }
   // keep config in sync when changed
   useEffect(() => {
-    if (config !== null) {
+    if (config !== null && config !== undefined && config.brightness !== undefined) {
       setBrightnessConfig({ ...config.brightness });
     }
   }, [config])
@@ -32,13 +47,13 @@ function Brightness() {
     setSelectedOption(brightnessConfig.brightnessMode);
     let settings = { ...brightnessConfig.settings };
     setFixedBrightnessConfig(settings.fixedBrightness);
-    setLdrBrightnessConfig(settings.ldrBrightness);
+    if (hasLDR) {setLdrBrightnessConfig(settings.ldrBrightness)};
     settimeBrightnessConfig(settings.timeBrightness);
   }
 
   function mapVarToBrightnessConfig() {
     let newConfig = {};
-    newConfig[selectedOption] = {...brightnessConfig.settings[selectedOption]};
+    newConfig[selectedOption] = { ...brightnessConfig.settings[selectedOption] };
     return newConfig;
   }
 
@@ -48,34 +63,47 @@ function Brightness() {
     }
   }, [brightnessConfig])
 
-  function testConfig() {
-    dispatchRequest({ type: "setBrightness", params: { test: true }, body: mapVarToBrightnessConfig() });
-  }
 
-  function resetConfig() {
-    dispatchRequest({ type: 'LOADCONFIG' });
-  }
+    async function resetConfig() {
+    ////dispatchRequest({ type: 'LOADCONFIG' });
+    try {
+      const payload = await getConfig().unwrap();
+      setFullConfig({...payload});
+    } catch { }
 
-  function submitConfig() {
-    dispatchRequest({ type: "setBrightness", body: mapVarToBrightnessConfig() });
+  }
+  
+  async function submitConfig() {
+        try {
+      const payload=await setBrightness(mapVarToBrightnessConfig()).unwrap();
+      
+    } catch (error) {
+      console.error("Error testing brightness config:", error);
+    }
+
   }
 
   function onBrightnessChoice(val) {
-    let tempConfig = { ...brightnessConfig };
-    tempConfig.settings[selectedOption] = { ...val };
+    var tempConfig = { ...brightnessConfig, settings: { ...brightnessConfig.settings, [selectedOption]: {...val} } };
+    //var tempConfig = { ...brightnessConfig };
+
+ //   tempConfig.settings[selectedOption] = { ...val };
     setBrightnessConfig(tempConfig);
   }
 
   return (
     <div>
-
       <h2>Helderheid</h2>
       <p>Stel de helderheid in! </p>
       Kies de helderheidsmode:
       <div>
-        <button name="Test" type="button" onClick={testConfig}>Test</button><button name="Reset" type="button" onClick={resetConfig}>Reset</button><button name="Submit" type="button" onClick={submitConfig}>Submit</button></div>
+        {/* <button name="Test" type="button" onClick={testConfig}>Test</button> */}
+        <button name="Reset" type="button" onClick={resetConfig}>Reset</button><button name="Submit" type="button" onClick={submitConfig}>Submit</button></div>
       <input type="radio" value="fixedBrightness" name="brightnessMode" checked={selectedOption === "fixedBrightness"} onChange={onValueChange} /> <label>Vaste helderheid</label>
-      <input type="radio" value="ldrBrightness" name="brightnessMode" checked={selectedOption === "ldrBrightness"} onChange={onValueChange} /><label>Helderheid volgens omgevingslicht</label>
+      { hasLDR &&
+      <>
+        <input type="radio" value="ldrBrightness" name="brightnessMode" checked={selectedOption === "ldrBrightness"} onChange={onValueChange} /><label>Helderheid volgens omgevingslicht</label>
+      </>}
       <input type="radio" value="timeBrightness" name="brightnessMode" checked={selectedOption === "timeBrightness"} onChange={onValueChange} /><label>Helderheid volgens tijdstip</label>
       <div style={{ marginTop: "20px" }}>
         {{

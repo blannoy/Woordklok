@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import SingleColor from "../Components/Color/SingleColor";
 import { clockContext } from "../Context/Context";
 import RainbowColor from "../Components/Color/RainbowColor";
@@ -6,8 +6,7 @@ import WordColor from "../Components/Color/WordColor";
 import HourlyColor from "../Components/Color/HourlyColor";
 import ClockFace from "../Components/ClockFace";
 import { useMediaQuery } from 'react-responsive';
-import { useGetConfigQuery, useSetColorMutation, useTestColorMutation, useLazyGetConfigQuery } from "../Components/ClockAPI";
-import { get } from "lodash";
+import { useSetColorMutation, useTestColorMutation, useLazyGetConfigQuery } from "../Components/ClockAPI";
 
 
 function LEDColors() {
@@ -20,6 +19,7 @@ function LEDColors() {
   const [showPreview, setShowPreview] = useState(false);
   const [clockColors, setClockColors] = useState({})
   const [getConfig, { data: configData, error: configError, isLoading: configIsLoading }] = useLazyGetConfigQuery();
+  const [isTestRunning, setIsTestRunning] = useState(false);
 
   const isTooSmall = !useMediaQuery({
     query: '(min-width: 830px)'
@@ -37,11 +37,13 @@ function LEDColors() {
 
   useEffect(() => {
     if (config !== undefined && fullConfig.colorMap === undefined) {
-      setColorConfig({ ...config.colors.ledConfig[selectedOption] });
-        console.log("LEDColors config/selectedoption effect", JSON.stringify({...config.colors.ledConfig[selectedOption]} ));
-        
+      setColorConfig({ ...config.colors.ledConfig[config.colors.ledMode] });
+      if (config.colors.ledMode !== undefined && config.colors.ledMode !== selectedOption) {
+      setSelectedOption(config.colors.ledMode);
+      }
     }
-  }, [config,selectedOption])
+  }, [config])
+
 
   function onValueChange(event) {
     setSelectedOption(event.target.value);
@@ -49,19 +51,24 @@ function LEDColors() {
   }
 
   async function testConfig() {
-    //    var body={...config.colors};
     let body = {};
-    //body.ledMode=selectedOption;
     body[selectedOption] = { ...colorConfig };
-    ////dispatchRequest({ type: "setColor", params: { test: true }, body: body });
     try {
       const payload = await testColor(body).unwrap();
+      setIsTestRunning(true);
     } catch { }
-
   }
 
+useEffect(() => {
+    if (isTestRunning) {
+      const timer = setTimeout(() => {
+        setIsTestRunning(false);
+      }, (selectedOption==="hourlyColor"?48000:30000));
+      return () => clearTimeout(timer);
+    }
+  }, [isTestRunning]);
+
   async function resetConfig() {
-    ////dispatchRequest({ type: 'LOADCONFIG' });
     try {
       const payload = await getConfig().unwrap();
       setFullConfig({...payload});
@@ -70,19 +77,14 @@ function LEDColors() {
   }
 
   async function submitConfig() {
-    //  var body={...config.colors};
     let body = {};
-    //body.ledMode=selectedOption;
     body[selectedOption] = { ...colorConfig };
     try {
       const payload = await setColor(body).unwrap();
+      setFullConfig({...payload});
     } catch { }
-    ////dispatchRequest({ type: "setColor", body: body });
   }
 
-  useEffect(() => {
-    console.log("LEDColors colorConfig effect", JSON.stringify(colorConfig));
-  }, [colorConfig]);
 
   /**
    * Reconstruct color config and pass it to parent 
@@ -95,11 +97,12 @@ function LEDColors() {
     var changedPar = { ...colorConfig };
     changedPar[configChoice["id"]] = configChoice.value;
     setColorConfig(changedPar);
-    console.log("LEDColors configHandler changedPar", JSON.stringify(changedPar));
     }
 
   return (
     <div>
+            {isTestRunning ? <div id="overlay">
+        <div className='spinner'></div> </div> : null}
       <h2>Colors</h2>
       <p>Stel hier de kleuren in!</p>
       {colorConfig && <div>
@@ -114,9 +117,9 @@ function LEDColors() {
           <div>
             {{
                           singleColor: <SingleColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors} />,
-              //            rainbowColor: <RainbowColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors} />,
-              //            wordColor: <WordColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors} />,
-              //            hourlyColor: <HourlyColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors} />,
+                          rainbowColor: <RainbowColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors} clockVisible={showPreview}/>,
+                          wordColor: <WordColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors} />,
+                          hourlyColor: <HourlyColor colorConfig={colorConfig} onColorConfig={configHandler} setClockColors={setClockColors} />,
             }[selectedOption]}
 
             {(selectedOption !== "hourlyColor" && !isTooSmall) && (

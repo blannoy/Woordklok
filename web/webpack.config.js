@@ -16,7 +16,7 @@ module.exports = (env, argv) => {
         entry: './src/index.js',
         output: {
             filename: 'bundle.js',
-            path: isProduction ? path.resolve(__dirname, '../../data') : path.resolve(__dirname, 'dist'),
+            path: isProduction ? path.resolve(__dirname, '../data') : path.resolve(__dirname, 'dist'),
             clean: true,
         },
 
@@ -53,10 +53,11 @@ module.exports = (env, argv) => {
             }),
             new CopyWebpackPlugin({
                 patterns: [
-                    { from: path.resolve(__dirname, '../../config'), to: path.resolve(__dirname, '../../data'),
+                    { from: path.resolve(__dirname, '../config'), to: path.resolve(__dirname, '../data'),
                         noErrorOnMissing: true,
                          globOptions: {
-                             ignore: isProduction ? [] : ['*.*'],
+                             deep: 1,
+                             ignore: isProduction ? ['examples'] : ['*.*'],
                            },
                      },
                 ],

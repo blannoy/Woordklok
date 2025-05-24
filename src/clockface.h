@@ -298,22 +298,38 @@ bool isActiveCheck(isActiveMethod isActive, uint8_t hour, uint8_t minute)
     return fiveMinuteMethod(hour, minute);
     break;
   case isActiveMethod::tenMinute:
-    return tenMinuteMethod(hour, minute);
+    if (config.clockfaceLayout.hasTwenty){
+      return tenMinuteMethod_20(hour, minute);
+    } else {
+      return tenMinuteMethod(hour, minute);
+    }
     break;
   case isActiveMethod::quarter:
     return quarterMethod(hour, minute);
     break;
   case isActiveMethod::past:
+  if (config.clockfaceLayout.hasTwenty){
+    return pastMethod_20(hour, minute);
+  } else {
     return pastMethod(hour, minute);
+  }
     break;
   case isActiveMethod::before:
+  if (config.clockfaceLayout.hasTwenty){
+    return beforeMethod_20(hour, minute); 
+  } else {
     return beforeMethod(hour, minute);
+  }
     break;
   case isActiveMethod::wholeHour:
     return wholeHourMethod(hour, minute);
     break;
   case isActiveMethod::halfHour:
+  if (config.clockfaceLayout.hasTwenty){
+    return halfHourMethod_20(hour, minute);
+  } else {
     return halfHourMethod(hour, minute);
+  }
     break;
       case isActiveMethod::tenMinute_20:
     return tenMinuteMethod_20(hour, minute);

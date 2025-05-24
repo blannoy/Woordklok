@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ColorPicker from "./ColorPicker";
-import { calculateComplementary } from "../../Utils/Utils";
 import { useContext } from "react";
 import { clockContext } from "../../Context/Context";
 import isEqual from 'lodash/isEqual';
@@ -14,25 +13,21 @@ import isEqual from 'lodash/isEqual';
 export default function SingleColor(props) {
   const [colorConfig, setColorConfig] = useState(props.colorConfig);
   const [fullConfig, setFullConfig] = useContext(clockContext);
-  const [clockFaceConfig, setClockFaceConfig] = useState(undefined);
   const [colorMap, setColorMap] = useState(null);
 
 
   // change in passed property, triggers update of state
   useEffect(() => {
-    console.log("SingleColor: props.colorConfig", JSON.stringify(props.colorConfig), "-", JSON.stringify(colorConfig));
     setColorConfig({ ...props.colorConfig });
     props.setClockColors({ 'singleColor': { 'foreground': colorConfig.color, 'background': colorConfig.backgroundColor } });
   }, [props.colorConfig]);
 
   useEffect(() => {
-    console.log("SingleColor: colorConfig", JSON.stringify(colorConfig));
     if (fullConfig !== undefined && fullConfig.clockface !== undefined) {
       let colorMapArray = Array(fullConfig.clockface.metadata.nrWords).fill(colorConfig.color);
       colorMapArray[fullConfig.clockface.metadata.backgroundIndex] = colorConfig.backgroundColor;
       if (isEqual(colorMapArray, colorMap) === false) {
         setColorMap(colorMapArray);
-        //setClockFaceConfig({ ...clockFaceConfig, "colorMap": colorMapArray });
         setFullConfig({ ...fullConfig, colorMap: colorMapArray });
       }
     }

@@ -34,6 +34,7 @@ RunningAverage LDRSensorRA;
 void setupSensors()
 {
 #ifdef HASTOUCHBUTTON
+  debug_println("Setting up touch button");
   button = new OneButton();
   button->attachClick(fClicked, &button);
   button->attachDoubleClick(fDoubleClicked, &button);
@@ -57,13 +58,15 @@ void sensorLoop()
   LDRvalue = LDRSensorRA.getAverage((long)analogRead(LDRPIN));
 #endif
 #ifdef HASTOUCHBUTTON
+
   bool isPressed = (touchRead(TOUCHPIN) > config.touchThreshold) ? true : false;
-  if (millis() - previoustouchtimer > touchinterval)
-  {
-    previoustouchtimer = millis();
-    //debug_printf("%d;%d\n", touchRead(TOUCHPIN), LDRvalue);
-    // changeState(states::TOUCHED);
-  }
+
+  // if (millis() - previoustouchtimer > touchinterval)
+  // {
+  //   previoustouchtimer = millis();
+  //   //debug_printf("%d;%d\n", touchRead(TOUCHPIN), LDRvalue);
+  //   // changeState(states::TOUCHED);
+  // }
 
   button->tick(isPressed);
 #endif

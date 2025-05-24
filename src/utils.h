@@ -228,10 +228,15 @@ void hexToColorDef(const char *hex,colorDef* rgb)
   rgb->r = (uint8_t) (number >> 16);
   rgb->g = (uint8_t) (number >> 8 & 0xFF);
   rgb->b = (uint8_t) (number & 0xFF);
+  rgb->complementary = false;
   }
 
 void copyColorToJson(const colorDef& color,JsonObject& jsonColor, const char* key){
    char hexColor[8];
+    if (color.complementary){
+      jsonColor[key]=F("#xxxxxx");
+      return;
+    }
    sprintf(hexColor,"#%02X%02X%02X",color.r,color.g,color.b);
    jsonColor[key]=hexColor;
 }

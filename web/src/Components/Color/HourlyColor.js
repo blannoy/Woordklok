@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import ColorPicker from "./ColorPicker";
-import { configContext } from "../../Context/Context";
+
 const deepEqual = require('deep-equal');
 /**
  * Builds screen for selection of a color for each clock-word and a global background color for non active LEDs
@@ -46,7 +46,7 @@ export default function HourlyColor(props) {
       <div>
       { [...Array(24)].map((value,index)=> {
         const colorIndex="color_"+String(index);
-      return <div className="section"><div className="smallLabelCell"> <label>{String(index)+":00"}</label></div><div className="wideBodyCell"><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
+      return <div className="section" key={colorIndex}><div className="smallLabelCell"> <label>{String(index)+":00"}</label></div><div className="wideBodyCell"><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
 })}
       </div> }
     </div>

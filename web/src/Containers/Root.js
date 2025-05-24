@@ -2,10 +2,8 @@ import React, {useState, useEffect,useReducer} from "react";
 import Main from "./Main";
 
 
-import {configContext, queryProviderContext, clockFaceContext, requestProviderContext,clockContext} from "../Context/Context";
-import {mapClockFace} from "../Utils/ClockFaceMapper";
-import useRequest, {requestReducer,defaultRequest } from "../Context/Reducer";
-import {useGetClockfaceQuery, useGetConfigQuery} from "../Components/ClockAPI";
+import {clockContext} from "../Context/Context";
+import {useGetConfigQuery} from "../Components/ClockAPI";
 
 export default function Root() {
     const [fullConfig,setFullConfig]=useState(undefined)

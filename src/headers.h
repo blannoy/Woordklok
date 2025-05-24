@@ -8,7 +8,7 @@
 #include <LittleFS.h>
 
 #define numReadings 20
-#define BACKGROUNDDIMFACTOR 100
+#define BACKGROUNDDIMFACTOR 30
 
 #ifdef HASTOUCHBUTTON
 #define TOUCH_THRESHOLD 50000
@@ -88,7 +88,7 @@ struct ClockfaceLayout
   bool hasTwenty;
 };
 #define BOOTANIMTIME 5000
-String version = "0.9";
+String version = "1.0";
 
 extern uint8_t PixelCount;
 
@@ -130,8 +130,8 @@ struct BrightnessDef
 
 struct LdrRangeDef
 {
-  uint8_t dark;
-  uint8_t bright;
+  uint32_t dark;
+  uint32_t bright;
 };
 
 struct WifiConfig

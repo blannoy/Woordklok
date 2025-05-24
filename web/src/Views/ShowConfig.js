@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { configContext } from "../Context/Context";
+import { clockContext } from "../Context/Context";
 
 
 export default function ShowConfig() {
-   const config=useContext(configContext);
+ const [fullConfig, setFullConfig] = useContext(clockContext);
+ 
    return (
     <div>
     
 
-                    <div><pre>{JSON.stringify(config,0,2)}</pre></div>
+                    <div><pre>{JSON.stringify(fullConfig,0,2)}</pre></div>
     </div>
   );
 }

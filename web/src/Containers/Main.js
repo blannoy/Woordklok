@@ -27,7 +27,7 @@ export default function Main() {
             <li><NavLink to="/brightness">Brightness</NavLink></li>
             <li><NavLink to="/admin">Admin</NavLink></li>
             <li><NavLink to="/config">Config</NavLink></li>
-            <li><NavLink to="/firmware">Firmware</NavLink></li>
+            {/* <li><NavLink to="/firmware">Firmware</NavLink></li> */}
             <li><NavLink to="/sensor">Sensors</NavLink></li>
             {/* <li><NavLink to="/clockface">Clockface</NavLink></li> */}
           </ul>
@@ -38,7 +38,7 @@ export default function Main() {
             <Route path="/brightness" element={<Brightness/>}/>
             <Route path="/admin" element={<Admin/>}/>
             <Route path="/config" element={<ShowConfig/>}/>
-            <Route path="/firmware" element={<Firmware/>}/>
+            {/* <Route path="/firmware" element={<Firmware/>}/> */}
             <Route path="/sensor" element={<Sensors/>}/>
             {/* <Route path="/clockface" element={<ClockFace/>}/> */}
             </Routes>

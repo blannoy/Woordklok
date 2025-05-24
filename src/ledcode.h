@@ -289,7 +289,7 @@ void ledShowClockface()
     break;
   case rainbowColor:
     color = HueToRgbColor(ledRandomHue);
-    backgroundColor = colorDefToRgb(config.hourlyColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
+    backgroundColor = colorDefToRgb(config.rainbowColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
     break;
   case wordColor:
     backgroundColor = colorDefToRgb(config.wordColor.backgroundColor).Dim(BACKGROUNDDIMFACTOR);
@@ -504,6 +504,12 @@ void showFace(bool doTransit)
     // }
     strip.Show();
   }
+}
+
+void showFaceSimple()
+{
+  targetKlokImage.Blt(klokImage, 0);
+  klokImage.Render<BrightnessShader<NeoGrbFeature>>(strip, shader);
 }
 
 void setStatusLeds()

@@ -30,6 +30,14 @@ export const ClockAPI = createApi({
     getSensorValue: builder.query({
       query: ({ sensor }) => `/getSensorValue?sensor=${sensor}`,
     }),
+    setSensor: builder.mutation({
+      query: (body) => ({
+        url: '/sensors',
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['config'],
+    }),
     setBrightness: builder.mutation({
       query: (body) => ({
         url: '/brightness',
@@ -37,6 +45,13 @@ export const ClockAPI = createApi({
         body,
       }),
       invalidatesTags: ['config'],
+    }),
+        testBrightness: builder.mutation({
+      query: (body) => ({
+        url: '/brightness?test=true',
+        method: 'PUT',
+        body,
+      }),
     }),
     getStatus: builder.query({
       query: () => '/status',
@@ -63,8 +78,10 @@ export const {
   useGetConfigQuery,
   useGetClockfaceQuery,
   useLazyGetSensorValueQuery,
+  useSetSensorMutation,
   useGetStatusQuery,
   useSetBrightnessMutation,
+  useTestBrightnessMutation,
   useSetColorMutation,
   useTestColorMutation,
   useLazyGetConfigQuery

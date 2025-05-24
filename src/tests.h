@@ -70,10 +70,13 @@ bool testMinutes()
   debug_printf("Testing clockface minutes\n");
   debug_printf("--- Start ---\n");
   uint8_t currentHour = dateHours;
-
+  strip.ClearTo(black);
+  strip.Show();
+  clearLEDS();
+  delay(1000);
   for (uint8_t minutes = 0; minutes < 60; minutes++)
   {
-   HslColor color = HslColor(red);
+    HslColor color = HslColor(red);
     for (uint8_t iWord = 0; iWord < config.clockfaceLayout.totalWords + 1; iWord++)
     {
       ClockfaceWord word = config.clockface[iWord];
@@ -127,28 +130,30 @@ bool testPixel()
 bool testWordColors()
 {
   // Show all words with color at brightness 30
-  clearLEDS();
-
-    for (uint8_t iWord = 0; iWord < config.clockfaceLayout.totalWords + 1; iWord++)
-    {
-      ClockfaceWord word = config.clockface[iWord];
+  //clearLEDS();
+    clearLEDTo(targetKlokImage, black);
+  for (uint8_t iWord = 0; iWord < config.clockfaceLayout.totalWords + 1; iWord++)
+  {
+    ClockfaceWord word = config.clockface[iWord];
     if (word.colorCodeInTable == config.clockfaceLayout.totalWords)
     {
 
-        for (uint8_t pos = 0; pos < strlen(word.label); pos++)
-        {
-          setColor(word.leds[pos], (colorDefToRgb(config.wordColor.backgroundColor)).Dim(100));
+      for (uint8_t pos = 0; pos < strlen(word.label); pos++)
+      {
+        setColor(word.leds[pos], (colorDefToRgb(config.wordColor.backgroundColor)).Dim(100));
       }
     }
     else
     {
-        for (uint8_t pos = 0; pos < strlen(word.label); pos++)
-        {
-          setColor(word.leds[pos], colorDefToRgb(config.wordColor.color[word.colorCodeInTable]));
+      for (uint8_t pos = 0; pos < strlen(word.label); pos++)
+      {
+        setColor(word.leds[pos], colorDefToRgb(config.wordColor.color[word.colorCodeInTable]));
       }
     }
   }
   showFace(false);
+
+  clearLEDS();
   return true;
 }
 
@@ -159,14 +164,14 @@ bool testHourlyColors()
 
   for (uint8_t hours = 1; hours < 25; hours++)
   {
-    clearLEDS();
+    clearLEDTo(targetKlokImage, black);
     RgbColor color = colorDefToRgb(config.hourlyColor.color[hours - 1]);
     RgbColor backgroundColor = colorDefToRgb(config.hourlyColor.backgroundColor).Dim(BACKGROUNDDIMFACTOR);
     for (uint8_t iWord = 0; iWord < config.clockfaceLayout.totalWords + 1; iWord++)
     {
       ClockfaceWord word = config.clockface[iWord];
-    if (word.colorCodeInTable == config.clockfaceLayout.totalWords)
-    {
+      if (word.colorCodeInTable == config.clockfaceLayout.totalWords)
+      {
 
         for (uint8_t pos = 0; pos < strlen(word.label); pos++)
         {
@@ -175,26 +180,30 @@ bool testHourlyColors()
       }
       else
       {
-        if (isActiveCheck(word.isActive,hours % 12, 20))
+        if (isActiveCheck(word.isActive, hours % 12, 20))
         {
 
-        for (uint8_t pos = 0; pos < strlen(word.label); pos++)
-        {
-          setColor(word.leds[pos], color);
+          for (uint8_t pos = 0; pos < strlen(word.label); pos++)
+          {
+            setColor(word.leds[pos], color);
           }
         }
         else
         {
 
-        for (uint8_t pos = 0; pos < strlen(word.label); pos++)
-        {
-          setColor(word.leds[pos], backgroundColor);
+          for (uint8_t pos = 0; pos < strlen(word.label); pos++)
+          {
+                                if (getColor(targetKlokImage,word.leds[pos])==black){
+            setColor(word.leds[pos], backgroundColor);
+                                }
           }
         }
       }
     }
+    //    strip.Show();
+    //    showFaceSimple();
     showFace(false);
-    debug_printf("%d:02%d:02\n", hours, 20);
+    debug_printf("%d:%d\n", hours, 20);
     delay(1000);
   }
   debug_printf("--- End ---\n");

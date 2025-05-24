@@ -18,13 +18,6 @@
 WiFiManager wifiManager;
 void APModeCallback (WiFiManager* myWiFiManager);
 
-//default custom static IP
-
-/*char static_ip[16] = "192.168.0.55";
-char static_gw[16] = "192.168.0.1";
-char static_sn[16] = "255.255.255.0";
-char static_dns1[16] = "8.8.8.8";
-char static_dns2[16] = "8.8.4.4";*/
 char static_ip[16] = "";
 char static_gw[16] = "";
 char static_sn[16] = "";
@@ -52,7 +45,6 @@ void wifiSetup() {
   debug_println("wifiSetup");
   
   wifiManager.setAPCallback(APModeCallback);
- // wifiManager.setConfigPortalBlocking(false);
   wifiManager.setSaveConfigCallback(saveConfigCallback);
  wifiManager.setConnectTimeout(180);
 if (!strcmp(static_ip,"")){
@@ -75,16 +67,13 @@ if (!strcmp(static_ip,"")){
   esp_wifi_set_protocol(WIFI_IF_STA, WIFI_PROTOCOL_11G);
   #endif
   
-  //delay(5000);
   wifiManager.setShowStaticFields(true);
   wifiManager.setShowDnsFields(true); 
-  //wifiManager.resetSettings();
 
   bool res;
   res = wifiManager.autoConnect("Woordklok-AP");
   if (!res) {
     debug_print("Failed to connect");
-    // ESP.restart();
   }
   else {
     //if you get here you have connected to the WiFi
@@ -98,7 +87,6 @@ if (!strcmp(static_ip,"")){
   
 }
 void wifiLoop(){
-  //wifiManager.process();
   
   if (WiFi.status() == WL_CONNECTED && (state==BOOT || state==STARTUP) && !wifiConnected){
     debug_println("WIFI OK");
@@ -110,9 +98,6 @@ void wifiLoop(){
 void configWifi(){
         server.send(200, "text/plain", "Starting wifi config portal");
         wifiManager.resetSettings();
-      /*  if (LittleFS.exists("/config.json")) {
-          LittleFS.remove("/config.json");
-         }*/
       ESP.restart();
       delay(5000);
 }

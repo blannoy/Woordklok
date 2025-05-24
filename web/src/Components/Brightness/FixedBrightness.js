@@ -12,7 +12,6 @@ function FixedBrightness(props) {
     },[props.currentVal]);
 
     const onBrightnessChoice = (value) => {
-        //console.log("onBrightnessChoice: " + value);
         if (value !== fixedBrightnessValue){
             props.onBrightnessChoice({ "brightness": value });
             setFixedBrightnessValue(value);

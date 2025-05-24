@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import ColorPicker from "./ColorPicker";
-import { configContext, clockFaceContext } from "../../Context/Context";
+import { clockContext } from "../../Context/Context";
+import isEqual from 'lodash/isEqual';
+
 const deepEqual = require('deep-equal');
+
 /**
  * Builds screen for selection of a color for each clock-word and a global background color for non active LEDs
  * @param {*} props Should receive the JSON representation of a "wordColor" configuration
@@ -9,12 +12,18 @@ const deepEqual = require('deep-equal');
  */
 export default function WordColor(props) {
   const [colorConfig, setColorConfig] = useState(props.colorConfig);
-  const [clockFaceConfig, setClockFaceConfig] = useContext(clockFaceContext);
-  const [config, setConfig] = useContext(configContext);
+  const [fullConfig, setFullConfig] = useContext(clockContext);
+  const [clockFaceConfig,setClockFaceConfig]=useState((fullConfig!==undefined)?fullConfig.clockface:undefined);
+
   const [clockWords, setClockWords] = useState((clockFaceConfig ? clockFaceConfig.layout : []));
   const [colorList, setColorList] = useState(colorConfig.color ? colorConfig.color : []);
+  const [colorMap, setColorMap] = useState(null);
 
-
+    useEffect(() => {
+      if (fullConfig !== undefined && fullConfig.clockFaceConfig !== undefined) {
+        setClockFaceConfig({ ...fullConfig.clockface });
+      }
+  }, [fullConfig]); 
   // change in passed property, triggers update of state
   useEffect(() => {
     if (!deepEqual(props.colorConfig, colorConfig)) {
@@ -28,11 +37,14 @@ export default function WordColor(props) {
   }, [clockFaceConfig])
 
   useEffect(() => {
-    if (clockFaceConfig) {
+        if (fullConfig !== undefined && fullConfig.clockface !== undefined) {
       let colorMapArray = colorList;
-      //colorMapArray[clockFaceConfig.metadata.backgroundIndex] = colorConfig.backgroundColor;
-      setClockFaceConfig({ ...clockFaceConfig, "colorMap": colorMapArray });
-    }
+          if (isEqual(colorMapArray, colorMap) === false) {
+            setColorMap(colorMapArray);
+            //setClockFaceConfig({ ...clockFaceConfig, "colorMap": colorMapArray });
+            setFullConfig({ ...fullConfig, colorMap: colorMapArray });
+          }
+        }
   }, [colorList, colorConfig]);
 
   function transformConfig(event) {
@@ -61,7 +73,7 @@ export default function WordColor(props) {
         {clockWords.map((clockWord, index) => {
           const colorIndex = "color_" + String(index);
           if (clockWord.word) {
-            return <div className="section"><div className="smallLabelCell"> <label>{clockWord.word}</label></div><div className="wideBodyCell"><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
+            return <div className="section" key={clockWord.word+String(index)} ><div className="smallLabelCell"> <label>{clockWord.word}</label></div><div className="wideBodyCell"><ColorPicker id={colorIndex} currentVal={colorList[index]} onColorChoice={transformConfig} /></div></div>
 
         }
         })}

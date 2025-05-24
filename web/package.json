@@ -34,7 +34,7 @@
     "webpack-dev-server": "webpack-dev-server",
     "start": "npm run webpack-dev-server -- --node-env=development",
     "start:acc": "npm run webpack-dev-server -- --node-env=acceptance",
-    "build": "npm run webpack -- --node-env=production && pushd ..\\.. && %USERPROFILE%\\.platformio\\penv\\bin\\pio run -e WemosS3Mini --target buildfs"
+    "build": "npm run webpack -- --node-env=production && pushd .. && pio run -e WemosS3Mini --target buildfs"
   },
   "eslintConfig": {
     "extends": [

@@ -1,7 +1,7 @@
 {
     "system": {
         "ntp_server": "pool.ntp.org",
-        "hostname": "woordkloktest"
+        "hostname": "woordklok20"
     },
     "clockface": {
         "wordGridCols" : 11,

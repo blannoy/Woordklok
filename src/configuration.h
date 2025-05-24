@@ -10,7 +10,7 @@ void verifyConfigFile()
 {
 
   debug_println(F("Verifying config"));
-  File configFile = LittleFS.open("/miniconfig.json", "r");
+  File configFile = LittleFS.open("/config.json", "r");
   if (configFile)
   {
     auto deserializeError = deserializeJson(json, configFile);
@@ -71,6 +71,11 @@ const char *createString(JsonVariantConst variant)
 void copyColor(JsonVariantConst variant, colorDef &configVal)
 {
   const char *value = variant.as<const char *>();
+  if (strcmp(value, "#xxxxxx") == 0)
+  {
+    configVal.complementary = true;
+    return;
+  } 
   hexToColorDef(value, &configVal);
 }
 
@@ -399,8 +404,8 @@ bool JSON2config(const JsonDocument &doc, Configuration &conf)
     conf.fixedBrightness.brightness = (uint8_t)jsonBrightnessSettings[F("fixedBrightness")][F("brightness")].as<int>();
     conf.ldrBrightness.brightness.min = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("brightness")][F("min")].as<int>();
     conf.ldrBrightness.brightness.max = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("brightness")][F("max")].as<int>();
-    conf.ldrBrightness.ldrRange.dark = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("ldrRange")][F("dark")].as<int>();
-    conf.ldrBrightness.ldrRange.bright = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("ldrRange")][F("bright")].as<int>();
+    // conf.ldrBrightness.ldrRange.dark = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("ldrRange")][F("dark")].as<int>();
+    // conf.ldrBrightness.ldrRange.bright = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("ldrRange")][F("bright")].as<int>();
     conf.timeBrightness.brightness.min = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("brightness")][F("min")].as<int>();
     conf.timeBrightness.brightness.max = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("brightness")][F("max")].as<int>();
     conf.timeBrightness.timeSlot.startHour = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("timeSlot")][F("startHour")].as<int>();
@@ -443,6 +448,18 @@ bool JSON2config(const JsonDocument &doc, Configuration &conf)
           }
           strlcpy(conf.sensors[i].attributeNames[j], attribute[F("name")], ATTRIBUTENAME_MAX);
           conf.sensors[i].attributeValues[j] = attribute[F("value")];
+          if ((strcmp(conf.sensors[i].name, "touch") == 0)&&(strcmp(conf.sensors[i].attributeNames[j], "threshold") == 0))
+          {
+            conf.touchThreshold = conf.sensors[i].attributeValues[j];
+          } 
+          if ((strcmp(conf.sensors[i].name, "ldr") == 0)&&(strcmp(conf.sensors[i].attributeNames[j], "ldrDark") == 0))
+          {
+            conf.ldrBrightness.ldrRange.dark = conf.sensors[i].attributeValues[j];
+          }
+          if ((strcmp(conf.sensors[i].name, "ldr") == 0)&&(strcmp(conf.sensors[i].attributeNames[j], "ldrBright") == 0))
+          {
+            conf.ldrBrightness.ldrRange.bright = conf.sensors[i].attributeValues[j];
+          }
         }
       }
     }
@@ -564,7 +581,7 @@ void loadConfiguration(Configuration *conf)
 
   debug_println(F("Loading configuration from filesystem"));
   validJSON = false;
-  File configFile = LittleFS.open("/miniconfig.json", "r");
+  File configFile = LittleFS.open("/config.json", "r");
   if (configFile)
   {
     Serial.println(F("opened config file"));
@@ -662,7 +679,7 @@ void saveConfiguration(Configuration &conf)
 {
 
   debug_println(F("Need to save configuration to Filesystem"));
-  File configFile = LittleFS.open("/miniconfig.json", "w");
+  File configFile = LittleFS.open("/config.json", "w");
   if (!configFile)
   {
     debug_println(F("failed to open config file for writing"));

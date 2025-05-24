@@ -1,11 +1,10 @@
-//@todo Touch as button
+
 //@todo configuration.h: JSON validation rules: clockface fully defined, Check JSON words == wordcolors; total number of referenced leds <= totalleds
-//@todo configuration.h: accept JSON with only clockface & generate default values for missing part
 //@todo ledcode.h: check if not more than maxleds
 //@todo wifi.h: remove config.json logic
 //@todo weather representation
 
-#define DEBUG true
+#define DEBUG  false
 #define DEBUGMEM false
 
 #define LEDSTRIPPIN 13

@@ -305,8 +305,27 @@ void setBrightness()
       debug_println("Setting ldr brightness");
       config.ldrBrightness.ldrRange.dark = json[brightnessMode][F("ldrRange")][F("dark")].as<int>();
       config.ldrBrightness.ldrRange.bright = json[brightnessMode][F("ldrRange")][F("bright")].as<int>();
+      for (uint8_t i = 0; i < config.sensorCount; i++)
+      {
+        if (strcmp(config.sensors[i].name, "ldr") == 0)
+        {
+          for (uint8_t j = 0; j < config.sensors[i].attributeCount; j++)
+          {
+            if (strcmp(config.sensors[i].attributeNames[j], "ldrDark") == 0)
+            {
+              config.sensors[i].attributeValues[j]= config.ldrBrightness.ldrRange.dark;
+            }
+                        if (strcmp(config.sensors[i].attributeNames[j], "ldrBright") == 0)
+            {
+              config.sensors[i].attributeValues[j]= config.ldrBrightness.ldrRange.dark;
+            }
+          }
+          break;
+        }
+      }
+
       config.ldrBrightness.brightness.min = json[brightnessMode][F("brightness")][F("min")].as<int>();
-      config.ldrBrightness.brightness.min = json[brightnessMode][F("brightness")][F("max")].as<int>();
+      config.ldrBrightness.brightness.max = json[brightnessMode][F("brightness")][F("max")].as<int>();
       config.brightnessMode = BrightnessMode::ldrBrightness;
     }
     else if (brightnessMode.equals("timeBrightness"))
@@ -324,7 +343,83 @@ void setBrightness()
       return;
     }
   }
+  saveConfiguration(config);
   getConfig();
+}
+
+void setSensors(){
+  String body = server.arg(F("plain"));
+  if (body.length() > 0)
+  {
+    DynamicJsonDocument json(768);
+    deserializeJson(json, body);
+    serializeJsonPretty(json, Serial);
+    if (json["sensors"].isNull())
+    {
+      apiSendError("Missing sensors parameter");
+      return;
+    }
+    JsonArray array = json["sensors"].as<JsonArray>();
+    if (array.size() == config.sensorCount)
+    {
+      JsonArrayConst sensors = json[F("sensors")].as<JsonArrayConst>();
+      config.sensors = (Sensor *)malloc(config.sensorCount * sizeof(Sensor));
+      if (!config.sensors)
+      {
+        Serial.println("ERROR malloc conf.sensors");
+      }
+      for (uint8_t i = 0; i < config.sensorCount; i++)
+      {
+        JsonObjectConst sensor = sensors[i].as<JsonObjectConst>();
+        config.sensors[i].name = (char *)malloc(SENSORNAME_MAX * sizeof(char));
+        strlcpy(config.sensors[i].name, sensors[i][F("name")], SENSORNAME_MAX);
+
+        config.sensors[i].attributeCount = sensor[F("attributes")].size();
+        config.sensors[i].attributeNames = (char **)malloc(config.sensors[i].attributeCount * sizeof(char *));
+        if (!config.sensors[i].attributeNames)
+        {
+          Serial.println("ERROR malloc conf.sensors[i].attributeNames");
+        }
+        config.sensors[i].attributeValues = (uint32_t *)malloc(config.sensors[i].attributeCount * sizeof(uint32_t));
+        if (!config.sensors[i].attributeValues)
+        {
+          Serial.println("ERROR malloc conf.sensors[i].attributeValues");
+        }
+        for (uint8_t j = 0; j < config.sensors[i].attributeCount; j++)
+        {
+          JsonObjectConst attribute = sensor[F("attributes")][j].as<JsonObjectConst>();
+          config.sensors[i].attributeNames[j] = (char *)malloc(ATTRIBUTENAME_MAX * sizeof(char));
+          if (!config.sensors[i].attributeNames[j])
+          {
+            Serial.println("ERROR malloc conf.sensors[i].attributeNames[j]");
+          }
+          strlcpy(config.sensors[i].attributeNames[j], attribute[F("name")], ATTRIBUTENAME_MAX);
+          config.sensors[i].attributeValues[j] = attribute[F("value")];
+          if ((strcmp(config.sensors[i].name, "touch") == 0)&&(strcmp(config.sensors[i].attributeNames[j], "threshold") == 0))
+          {
+            config.touchThreshold = config.sensors[i].attributeValues[j];
+          }          
+          if ((strcmp(config.sensors[i].name, "ldr") == 0)&&(strcmp(config.sensors[i].attributeNames[j], "ldrDark") == 0))
+          {
+            config.ldrBrightness.ldrRange.dark = config.sensors[i].attributeValues[j];
+          }
+          if ((strcmp(config.sensors[i].name, "ldr") == 0)&&(strcmp(config.sensors[i].attributeNames[j], "ldrBright") == 0))
+          {
+            config.ldrBrightness.ldrRange.bright = config.sensors[i].attributeValues[j];
+          }
+        }
+      }
+    }
+    else
+    {
+      char errorMessage[64];
+      snprintf(errorMessage, sizeof(errorMessage), "Expected %d sensors, got %d\n", config.sensorCount, array.size());
+      apiSendError(errorMessage);
+    }
+  }
+  saveConfiguration(config);
+  getConfig();
+ //   server.send(200, "text/plain", "OK");
 }
 
 void getSensorValue()
@@ -341,7 +436,7 @@ void getSensorValue()
   bool sensorFound = false;
   for (int i = 0; i < config.sensorCount; i++)
   {
-    if (strcmp(sensorArg, config.availableSensors[i]) == 0)
+    if (strcmp(sensorArg, config.sensors[i].name) == 0)
     {
       sensorFound = true;
       break;
@@ -353,7 +448,7 @@ void getSensorValue()
     return;
   }
   uint32_t sensorValue = readSensor(sensorArg);
-  debug_printf("Sensor %s value: %d\n", sensorArg, sensorValue);
+  //debug_printf("Sensor %s value: %d\n", sensorArg, sensorValue);
   root["sensorValue"] = sensorValue;
   apiSendJSON(200, root);
   json.clear();
@@ -378,6 +473,7 @@ void webServerSetup()
     server.on("/api/color", setLedColor);
     server.on("/api/brightness", setBrightness);
     server.on("/api/getSensorValue", getSensorValue);
+    server.on("/api/sensors", setSensors);
 
     // server.on("/api/log", getLog);
     server.onNotFound(handleNotFound);
