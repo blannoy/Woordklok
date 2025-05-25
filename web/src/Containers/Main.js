@@ -1,4 +1,3 @@
-import React,{useReducer,useEffect, useState, useContext} from "react";
 import {
     Route,
     NavLink,
@@ -10,7 +9,6 @@ import LEDColors from "../Views/LEDColors";
 import Brightness from "../Views/Brightness";
 import ShowConfig from "../Views/ShowConfig";
 import Admin from "../Views/Admin";
-import Firmware from "../Views/Firmware";
 import Sensors from "../Views/Sensors";
 
 
@@ -27,9 +25,7 @@ export default function Main() {
             <li><NavLink to="/brightness">Brightness</NavLink></li>
             <li><NavLink to="/admin">Admin</NavLink></li>
             <li><NavLink to="/config">Config</NavLink></li>
-            {/* <li><NavLink to="/firmware">Firmware</NavLink></li> */}
             <li><NavLink to="/sensor">Sensors</NavLink></li>
-            {/* <li><NavLink to="/clockface">Clockface</NavLink></li> */}
           </ul>
           <div className="content">
             <Routes>
@@ -38,9 +34,7 @@ export default function Main() {
             <Route path="/brightness" element={<Brightness/>}/>
             <Route path="/admin" element={<Admin/>}/>
             <Route path="/config" element={<ShowConfig/>}/>
-            {/* <Route path="/firmware" element={<Firmware/>}/> */}
             <Route path="/sensor" element={<Sensors/>}/>
-            {/* <Route path="/clockface" element={<ClockFace/>}/> */}
             </Routes>
           </div>
         </div>

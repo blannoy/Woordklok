@@ -12,6 +12,8 @@ function colorToType(color) {
     switch (color) {
         case "#ffffff":
             return "White";
+        case "#FFFFFF":
+            return "White";
         case "#000000":
             return "Black";
         case "#xxxxxx":
@@ -91,14 +93,6 @@ export default function ColorPicker(props) {
     const colorChange = e => {
         setHasColor(e.target.value);
         setColorChoice(typeToColor(e.target.value, tinycolor({ h: currentHue, s: 100, l: 50 }).toHexString()));
-     /*   if (e.target.value === "Complementary"){
-            setColorChoice(calculateComplementary(foregroundColor));
-           setColorChoice(typeToColor)
-        } else 
-        {
-            setColorChoice(typeToColor(e.target.value, tinycolor({ h: currentHue, s: 100, l: 50 }).toHexString()));
-        }*/
-
     }
 
         /**

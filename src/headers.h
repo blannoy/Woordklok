@@ -1,6 +1,6 @@
 
 #pragma once
-#include "Arduino.h"
+#include <Arduino.h>
 #include <ArduinoJson.h>
 #include <NeoPixelBus.h>
 #include <NeoPixelAnimator.h>
@@ -211,6 +211,7 @@ struct Configuration
   WordColorConfig wordColor;
   HourlyColorConfig hourlyColor;
   BrightnessMode brightnessMode;
+  uint8_t backgroundDimFactor= BACKGROUNDDIMFACTOR;
   FixedBrightnessConfig fixedBrightness;
   LDRBrightnessConfig ldrBrightness;
   TimeBrightnessConfig timeBrightness;

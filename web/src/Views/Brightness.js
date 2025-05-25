@@ -3,15 +3,15 @@ import { clockContext } from "../Context/Context";
 import LDRBrightness from "../Components/Brightness/LDRBrightness";
 import FixedBrightness from "../Components/Brightness/FixedBrightness";
 import TimeBrightness from "../Components/Brightness/TimeBrightness";
-import { useSetBrightnessMutation, useLazyGetConfigQuery, useTestBrightnessMutation } from "../Components/ClockAPI";
-import { has } from "lodash";
-// import LDRBrightness from "../Components/LDRBrightness";
+import { useSetBrightnessMutation, useLazyGetConfigQuery } from "../Components/ClockAPI";
+import BrightnessPicker from "../Components/Brightness/BrightnessPicker";
+import { set } from "lodash";
+
 
 function Brightness() {
   const [fullConfig, setFullConfig] = useContext(clockContext);
   const [config, setConfig] = useState(fullConfig ? fullConfig.config : undefined);
   const [setBrightness,] = useSetBrightnessMutation();
-  const [testBrightness,] = useTestBrightnessMutation();
   const [getConfig, { data: configData, error: configError, isLoading: configIsLoading }] = useLazyGetConfigQuery();
   const [brightnessConfig, setBrightnessConfig] = useState(config && config.brightness);
   const [selectedOption, setSelectedOption] = useState(config ? config.brightness.brightnessMode : "fixedBrightness");
@@ -19,6 +19,7 @@ function Brightness() {
   const [fixedBrightnessConfig, setFixedBrightnessConfig] = useState({});
   const [ldrBrightnessConfig, setLdrBrightnessConfig] = useState({});
   const [timeBrightnessConfig, settimeBrightnessConfig] = useState({});
+  const [backgroundDimFactor, setBackgroundDimFactor] = useState(255);
   const [hasLDR, setHasLDR] = useState(false);
  useEffect(() => {
      if (fullConfig !== undefined && fullConfig.config !== undefined) {
@@ -40,6 +41,7 @@ function Brightness() {
   useEffect(() => {
     if (config !== null && config !== undefined && config.brightness !== undefined) {
       setBrightnessConfig({ ...config.brightness });
+
     }
   }, [config])
 
@@ -49,10 +51,11 @@ function Brightness() {
     setFixedBrightnessConfig(settings.fixedBrightness);
     if (hasLDR) {setLdrBrightnessConfig(settings.ldrBrightness)};
     settimeBrightnessConfig(settings.timeBrightness);
+    setBackgroundDimFactor(brightnessConfig.backgroundDimFactor);
   }
 
   function mapVarToBrightnessConfig() {
-    let newConfig = {};
+    let newConfig = {backgroundDimFactor: backgroundDimFactor};
     newConfig[selectedOption] = { ...brightnessConfig.settings[selectedOption] };
     return newConfig;
   }
@@ -65,7 +68,6 @@ function Brightness() {
 
 
     async function resetConfig() {
-    ////dispatchRequest({ type: 'LOADCONFIG' });
     try {
       const payload = await getConfig().unwrap();
       setFullConfig({...payload});
@@ -83,11 +85,13 @@ function Brightness() {
 
   }
 
-  function onBrightnessChoice(val) {
-    var tempConfig = { ...brightnessConfig, settings: { ...brightnessConfig.settings, [selectedOption]: {...val} } };
-    //var tempConfig = { ...brightnessConfig };
-
- //   tempConfig.settings[selectedOption] = { ...val };
+  function onBrightnessChoice(val,background=false) {
+    var tempConfig={};
+    if (background) {
+      tempConfig = { ...brightnessConfig, backgroundDimFactor: val };
+    } else {
+      tempConfig = { ...brightnessConfig, settings: { ...brightnessConfig.settings, [selectedOption]: { ...val } } };
+    }  
     setBrightnessConfig(tempConfig);
   }
 
@@ -113,6 +117,11 @@ function Brightness() {
         }[selectedOption]}
 
       </div>
+      <div>
+        <label>Helderheid achtergrond</label>
+                <BrightnessPicker id="backgroundBrightnessValue" min={0} max={255} currentVal={backgroundDimFactor} onBrightnessChoice={(e)=>{}} onChange={(e)=>{onBrightnessChoice(e,true)}} />
+      </div>
+      
     </div>
   );
 }

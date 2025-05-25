@@ -43,7 +43,6 @@ export default function SingleColor(props) {
       <div>
         <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} foregroundColor={colorConfig.color} onColorChoice={props.onColorConfig} />
       </div>
-      {JSON.stringify(colorMap)}
     </div>
   );
 }

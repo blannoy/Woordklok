@@ -1,6 +1,6 @@
 #pragma once
 
-#include <headers.h>
+#include "headers.h"
 
 #include <ElegantOTA.h>
 
@@ -286,14 +286,30 @@ void setBrightness()
     deserializeJson(json, body);
     serializeJsonPretty(json, Serial);
     JsonObject::iterator it = json.as<JsonObject>().begin();
-    String brightnessMode = it->key().c_str();
+    String brightnessMode = "";
+
+    for (JsonPair kv : json.as<JsonObject>()) {
+      if (strcmp(kv.key().c_str(),"fixedBrightness")==0 ||
+          strcmp(kv.key().c_str(), "ldrBrightness")==0 ||
+          strcmp(kv.key().c_str(),"timeBrightness")==0)
+      {
+        brightnessMode = kv.key().c_str();
+        break;
+      }
+    }
+
     // validate
     if (json[brightnessMode][F("brightness")].isNull())
     {
-      apiSendError("Missing brightness parameter");
+      String errorMessage = "Missing brightness parameter in mode: ";
+      errorMessage += brightnessMode;
+      apiSendError(errorMessage);
       return;
     }
-
+    if (!json[F("backgroundDimFactor")].isNull())
+    {
+      config.backgroundDimFactor=json[F("backgroundDimFactor")].as<uint8_t>();
+    }
     if (brightnessMode.equals("fixedBrightness"))
     {
       debug_println("Setting fixed brightness");
@@ -480,6 +496,7 @@ void webServerSetup()
 
     //    flashUpdateServer.setup(&server, String("/api/update/flash"));
     //    fsUpdateServer.setup(&server, String("/api/update/file"));
+    ElegantOTA.setAutoReboot(true);
     ElegantOTA.begin(&server);
     server.begin();
     debug_printf("HTTP server started on %s\n", WiFi.localIP().toString().c_str());

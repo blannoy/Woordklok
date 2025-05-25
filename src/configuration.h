@@ -183,7 +183,7 @@ void config2JSON(Configuration &conf, DynamicJsonDocument &doc)
   default:
     break;
   }
-
+  brightness[F("backgroundDimFactor")] = conf.backgroundDimFactor;
   JsonObject brightness_settings = brightness[F("settings")].to<JsonObject>();
   brightness_settings[F("fixedBrightness")][F("brightness")] = conf.fixedBrightness.brightness;
 
@@ -386,6 +386,7 @@ bool JSON2config(const JsonDocument &doc, Configuration &conf)
     copyColor(jsonColors[F("ledConfig")][F("rainbowColor")][F("backgroundColor")], conf.rainbowColor.backgroundColor);
 
     JsonVariantConst jsonBrightnessMode = json[F("brightness")][F("brightnessMode")];
+    conf.backgroundDimFactor = json[F("brightness")][F("backgroundDimFactor")].as<uint8_t>();
     const char *brightnessMode = jsonBrightnessMode.as<const char *>();
     if (strcmp(brightnessMode, "fixedBrightness") == 0)
     {

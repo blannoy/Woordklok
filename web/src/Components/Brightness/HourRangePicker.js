@@ -23,20 +23,6 @@ export default function HourRangePicker(props) {
         props.onChange(hours);
     }, [hours]);
 
-    function onValueChange(e) {
-        let inputName = e.target.id;
-        let value = e.target.value;
-        switch (inputName) {
-            case "minHour":
-                setHours([value, hours[1]]);
-                break;
-            case "maxBrightness":
-                setHours([hours[0], value]);
-                break;
-            default:
-                break;
-        }
-    }
     return (
         <div>
 

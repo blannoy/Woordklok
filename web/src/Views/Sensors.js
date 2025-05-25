@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 
 import { useLazyGetSensorValueQuery,useSetSensorMutation } from "../Components/ClockAPI";
 import { clockContext } from "../Context/Context";
@@ -10,16 +10,12 @@ import {
     Tooltip,
     XAxis,
 } from "recharts";
-import { max, min, set } from "lodash";
-import { use } from "react";
 
 
 export default function Sensors() {
     const calibrationTime = 30;
     const intervalTime = 100;
     const [fullConfig, setFullConfig] = useContext(clockContext);
-
-    //const [config, setConfig] = useState(undefined)
     const [getSensorValue, { data: sensorData, error: sensorError, isFetching: sensorLoading }] = useLazyGetSensorValueQuery();
     const [updateSensors,] = useSetSensorMutation();
     const [seconds, setSeconds] = useState(calibrationTime);

@@ -1,6 +1,6 @@
 #pragma once
 #define MAXLEDS 144
-#include <headers.h>
+#include "headers.h"
 #define colorSaturation 64
 #ifdef ESP32
 //NeoPixelBus<NeoGrbFeature, DotStarEsp32DmaSpiMethod> strip(config.clockfaceLayout.totalLeds);
@@ -281,18 +281,18 @@ void ledShowClockface()
   {
   case singleColor:
     color = colorDefToRgb(config.singleColor.color);
-    backgroundColor = colorDefToRgb(config.singleColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
+    backgroundColor = colorDefToRgb(config.singleColor.backgroundColor, color).Dim(config.backgroundDimFactor);
     break;
   case hourlyColor:
     color = colorDefToRgb(config.hourlyColor.color[dateHours]);
-    backgroundColor = colorDefToRgb(config.hourlyColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
+    backgroundColor = colorDefToRgb(config.hourlyColor.backgroundColor, color).Dim(config.backgroundDimFactor);
     break;
   case rainbowColor:
     color = HueToRgbColor(ledRandomHue);
-    backgroundColor = colorDefToRgb(config.rainbowColor.backgroundColor, color).Dim(BACKGROUNDDIMFACTOR);
+    backgroundColor = colorDefToRgb(config.rainbowColor.backgroundColor, color).Dim(config.backgroundDimFactor);
     break;
   case wordColor:
-    backgroundColor = colorDefToRgb(config.wordColor.backgroundColor).Dim(BACKGROUNDDIMFACTOR);
+    backgroundColor = colorDefToRgb(config.wordColor.backgroundColor).Dim(config.backgroundDimFactor);
     break;
   }
   for (uint8_t iWord = 0; iWord < config.clockfaceLayout.totalWords + 1; iWord++)

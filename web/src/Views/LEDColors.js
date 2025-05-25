@@ -134,7 +134,6 @@ useEffect(() => {
           </div>
         </div>
       </div>}
-      {JSON.stringify(colorConfig)}
     </div>
   );
 }

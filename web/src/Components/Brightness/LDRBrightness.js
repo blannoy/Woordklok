@@ -1,19 +1,12 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import BrightnessRangePicker from "./BrightnessRangePicker";
-import { clockContext } from "../../Context/Context";
 import isEqual from 'lodash/isEqual';
 
 function LDRBrightness(props) {
     const [brightnessConfig, setBrightnessConfig] = useState(props.currentVal?props.currentVal:{});
 
-    const calibrationTime = 30;
-    const [seconds, setSeconds] = useState(calibrationTime);
-    const [doCalibrate, setDoCalibrate] = useState(false);
-    const intervalRef = useRef();
-
     const [ldrBrightness, setLdrBrightness] = useState([]);
     const [ldrRange, setLdrRange] = useState([]);
-    const [ldrCalibrated, setLdrCalibrated] = useState([0,100]);
 
     useEffect(() => {
         if (props.currentVal !== null) {
@@ -53,11 +46,6 @@ function LDRBrightness(props) {
     },[ldrBrightness,ldrRange]);
 
 
-
-    function calibrateLdr() {
-        setDoCalibrate(true);
-    }
-
     function treatLdrBrightness(val) {
         if (JSON.stringify(ldrBrightness) !== JSON.stringify(val)){
             setLdrBrightness(val);
@@ -72,18 +60,8 @@ function LDRBrightness(props) {
 
     return (
         <div>
-{/*             <div className="section">
-                <div className="BodyCell">
-                <button id="calibrateLdr" onClick={calibrateLdr}>Calibrate LDR</button>
-                </div>
-                <div className="labelCell"><label>{doCalibrate && "Calibrating...  " + ldrCalibrated[0] + " / " + ldrCalibrated[1]}</label>
-                </div>
-            </div> */}
- 
-    
             <label>Omgevingslicht</label><BrightnessRangePicker id="ldrRange" currentVal={ldrRange} min={0} max={1000} minDistance={1} onBrightnessChoice={treatLdrRange} />
             <label>Helderheid</label><BrightnessRangePicker id="ldrBrightness" currentVal={ldrBrightness} onBrightnessChoice={treatLdrBrightness} />
-
         </div>
     );
 }

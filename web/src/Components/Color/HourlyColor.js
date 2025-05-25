@@ -39,7 +39,7 @@ export default function HourlyColor(props) {
 
       <h3>Kies een achtergrondkleur</h3>
       <div>
-        <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} onColorChoice={props.onColorConfig} />
+        <ColorPicker id="backgroundColor" foregroundColor={'#888888'} currentVal={colorConfig.backgroundColor} onColorChoice={props.onColorConfig} />
       </div>
       <h3>Kies een kleur voor elk uur (0 - 23h)</h3>
       {colorList &&

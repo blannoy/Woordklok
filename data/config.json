@@ -9,6 +9,7 @@
     },
     "brightness" :{
         "brightnessMode" : "ldrBrightness",
+        "backgroundDimFactor" : 30,
         "settings" : {
             "fixedBrightness" : {
                 "brightness" : 150

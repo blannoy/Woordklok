@@ -20,16 +20,16 @@
 #endif
 
 #include <Arduino.h>
-#include <utils.h>
+#include "utils.h"
 #include "filesystem.h"
 #include "clockface.h"
 #include "configuration.h"
 #include "ledcode.h"
-#include <sensors.h>
-#include <wifihelper.h>
-#include <webserverhelper.h>
-#include <timeutils.h>
-#include <tests.h>
+#include "sensors.h"
+#include "wifihelper.h"
+#include "webserverhelper.h"
+#include "timeutils.h"
+#include "tests.h"
 
 states state = BOOT;
 long lastLedUpdate = 0;
@@ -53,12 +53,6 @@ void setup() {
   debug_printf("Running...\n");
   }
 
-void testloop(){
-    timeLoop();
-  webServerLoop();
-  sensorLoop();
-  wifiLoop();
-}
 void loop()
 {
   timeLoop();
