@@ -22,7 +22,7 @@ There are photos of the different parts in the pictures-folder.
   * Light sensitive sensor / LDR for adaptive brightness.
   * You can make the top surface touch sensitive using tin foil with a wire going to a touch pin. If you glue a thin piece of paper (silk paper) in the right color to the tin foil, this makes an 'invisible' button.
 
-  ### Assembly
+### Assembly
 
 ## Main code for the clock works with touch sensor and light sensor
 
