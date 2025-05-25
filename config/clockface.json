@@ -1,0 +1,41 @@
+{
+    "system": {
+        "ntp_server": "pool.ntp.org",
+        "hostname": "woordklok20"
+    },
+    "clockface": {
+        "wordGridCols" : 11,
+        "wordGridRows" : 10,
+        "extraLEDs" : 4,
+        "layout": [
+        {"word" : "het", "leds": [ 113,112,111 ],  "function": "alwaysOn" },
+        {"word" : "is", "leds": [ 109,108 ],  "function": "alwaysOn" },
+        {"word" : "net", "leds": [ 106,105,104 ],  "function": "isJust" },
+        {"word" : "vijf", "leds": [ 98,99,100,101 ],  "function": "fiveMinute" },
+        {"word" : "tien", "leds": [ 93,94,95,96 ],  "function": "tenMinute" },
+        {"word" : "kwart", "leds": [ 91,90,89,88,87 ],  "function": "quarter" },
+        {"word" : "twintig", "leds": [ 87,86,85,84,83,82,81 ],  "function": "twenty" },
+        {"word" : "over", "leds": [ 76,77,78,79 ],  "function": "past" },
+        {"word" : "voor", "leds": [ 71,72,73,74 ],  "function": "before" },
+        {"word" : "uur", "leds": [ 12,13,14 ],  "function": "wholeHour" },
+        {"word" : "half", "leds": [ 69,68,67,66 ],  "function": "halfHour" },
+        {"word" : "1", "leds": [ 3 ],  "function": "firstMinute" },
+        {"word" : "2", "leds": [ 2 ],  "function": "secondMinute" },
+        {"word" : "3", "leds": [ 1 ],  "function": "thirdMinute" },
+        {"word" : "4", "leds": [ 0 ],  "function": "fourthMinute" },
+        {"word" : "een", "leds": [ 64,63,62 ],  "function": "isOneActive" },
+        {"word" : "twee", "leds": [ 24,23,22,21 ],  "function": "isTwoActive" },
+        {"word" : "drie", "leds": [ 49,50,51,52 ],  "function": "isThreeActive" },
+        {"word" : "vier", "leds": [ 55,56,57,58 ],  "function": "isFourActive" },
+        {"word" : "vijf", "leds": [ 41,40,39,38 ],  "function": "isFiveActive" },
+        {"word" : "zes", "leds": [ 61,60,59 ],  "function": "isSixActive" },
+        {"word" : "zeven", "leds": [ 47,46,45,44,43 ],  "function": "isSevenActive" },
+        {"word" : "acht", "leds": [ 26,27,28,29 ],  "function": "isEightActive" },
+        {"word" : "negen", "leds": [ 32,33,34,35,36 ],  "function": "isNineActive" },
+        {"word" : "tien", "leds": [ 29,30,31,32 ],  "function": "isTenActive" },
+        {"word" : "elf", "leds": [ 18,17,16 ],  "function": "isElevenActive" },
+        {"word" : "twaalf", "leds": [ 4,5,6,7,8,9 ],  "function": "isTwelveActive" },
+        {"background" : "kzkogremaktdzoorrbodb", "leds" : [110,107,103,102,97,92,80,75,70,65,54,53,48,42,37,25,20,19,15,11,10]}
+        ]
+    }
+}

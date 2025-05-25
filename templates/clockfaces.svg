@@ -1,0 +1,2290 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="clockfaces.svg"
+   id="svg5616"
+   version="1.2"
+   viewBox="0 0 841.89 1190.55"
+   height="1190.55pt"
+   width="841.89pt">
+  <metadata
+     id="metadata5620">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:cy="1040.5901"
+     inkscape:cx="654.75922"
+     inkscape:zoom="0.91328311"
+     showgrid="false"
+     id="namedview5618"
+     inkscape:window-height="705"
+     inkscape:window-width="1366"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <defs
+     id="defs5243">
+    <g
+       id="g5241">
+      <symbol
+         id="glyph0-0"
+         overflow="visible">
+        <path
+           id="path5166"
+           d="M 3.203125 9.515625 L 34.578125 9.515625 L 34.578125 -37.921875 L 3.203125 -37.921875 Z M 6.71875 6.515625 L 6.71875 -34.921875 L 31.0625 -34.921875 L 31.0625 6.515625 Z M 6.71875 6.515625 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-1"
+         overflow="visible">
+        <path
+           id="path5169"
+           d="M 4.203125 -39.21875 L 4.203125 0 L 10.421875 0 L 10.421875 -18.671875 L 27.359375 -18.671875 L 27.359375 0 L 33.578125 0 L 33.578125 -39.21875 L 27.359375 -39.21875 L 27.359375 -23.125 L 10.421875 -23.125 L 10.421875 -39.21875 Z M 4.203125 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-2"
+         overflow="visible">
+        <path
+           id="path5172"
+           d="M 6.03125 -39.21875 L 6.03125 0 L 33.765625 0 L 33.765625 -4.46875 L 12.234375 -4.46875 L 12.234375 -18.671875 L 32.265625 -18.671875 L 32.265625 -23.125 L 12.234375 -23.125 L 12.234375 -34.75 L 33.203125 -34.75 L 33.203125 -39.21875 Z M 6.03125 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-3"
+         overflow="visible">
+        <path
+           id="path5175"
+           d="M 1.4375 -39.21875 L 1.4375 -34.75 L 15.8125 -34.75 L 15.8125 0 L 22.03125 0 L 22.03125 -34.75 L 36.34375 -34.75 L 36.34375 -39.21875 Z M 1.4375 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-4"
+         overflow="visible">
+        <path
+           id="path5178"
+           d="M 4.203125 -39.21875 L 4.203125 0 L 10.421875 0 L 10.421875 -15.328125 L 15.125 -19.640625 L 30.0625 0 L 37.53125 0 L 19.203125 -23.1875 L 37.03125 -39.21875 L 29.75 -39.21875 L 10.421875 -21.78125 L 10.421875 -39.21875 Z M 4.203125 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-5"
+         overflow="visible">
+        <path
+           id="path5181"
+           d="M 4.265625 -39.21875 L 4.265625 0 L 10.234375 0 L 10.234375 -32.28125 L 25.671875 0 L 33.515625 0 L 33.515625 -39.21875 L 27.546875 -39.21875 L 27.546875 -6.9375 L 12.109375 -39.21875 Z M 4.265625 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-6"
+         overflow="visible">
+        <path
+           id="path5184"
+           d="M 6.15625 -39.21875 L 6.15625 -34.75 L 15.75 -34.75 L 15.75 -4.46875 L 6.15625 -4.46875 L 6.15625 0 L 31.578125 0 L 31.578125 -4.46875 L 21.96875 -4.46875 L 21.96875 -34.75 L 31.578125 -34.75 L 31.578125 -39.21875 Z M 6.15625 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-7"
+         overflow="visible">
+        <path
+           id="path5187"
+           d="M 31 -37.875 C 26.734375 -39.21875 22.84375 -39.921875 19.328125 -39.921875 C 14.75 -39.921875 11.109375 -38.84375 8.34375 -36.75 C 5.65625 -34.640625 4.265625 -31.84375 4.265625 -28.34375 C 4.265625 -22.75 7.90625 -19.578125 16.375 -17.921875 L 19.703125 -17.265625 C 25.671875 -16.140625 27.75 -14.3125 27.75 -10.375 C 27.75 -6.078125 24.109375 -3.546875 17.828125 -3.546875 C 13.5625 -3.546875 9.546875 -4.6875 4.828125 -7.265625 L 4.828125 -1.609375 C 9.15625 -0.046875 13.5625 0.75 17.828125 0.75 C 28.125 0.75 33.640625 -3.234375 33.640625 -10.703125 C 33.640625 -17.109375 29.875 -20.546875 21.34375 -22.265625 L 18.078125 -22.921875 C 11.984375 -24.15625 10.171875 -25.71875 10.171875 -29.15625 C 10.171875 -33.078125 13.8125 -35.609375 19.640625 -35.609375 C 23.46875 -35.609375 27.234375 -34.59375 31 -32.5 Z M 31 -37.875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-8"
+         overflow="visible">
+        <path
+           id="path5190"
+           d="M 18.890625 -34.53125 L 25.421875 -14.46875 L 12.359375 -14.46875 Z M 15.125 -39.21875 L 1.125 0 L 7.53125 0 L 10.859375 -10.21875 L 26.859375 -10.21875 L 30.25 0 L 36.65625 0 L 22.65625 -39.21875 Z M 15.125 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-9"
+         overflow="visible">
+        <path
+           id="path5193"
+           d="M 13.375 -4.359375 L 10.421875 -4.359375 L 10.421875 -34.859375 L 13.375 -34.859375 C 18.578125 -34.859375 22.21875 -33.734375 24.296875 -31.53125 C 26.359375 -29.3125 27.359375 -25.34375 27.359375 -19.578125 C 27.359375 -13.828125 26.296875 -9.84375 24.234375 -7.640625 C 22.15625 -5.4375 18.578125 -4.359375 13.375 -4.359375 Z M 13.5 -39.21875 L 4.203125 -39.21875 L 4.203125 0 L 13.5 0 C 27.484375 0 33.890625 -6.1875 33.890625 -19.578125 C 33.890625 -32.984375 27.484375 -39.21875 13.5 -39.21875 Z M 13.5 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-10"
+         overflow="visible">
+        <path
+           id="path5196"
+           d="M 18.890625 -4.46875 L 8.15625 -39.21875 L 1.75 -39.21875 L 15.125 0 L 22.65625 0 L 36.03125 -39.21875 L 29.625 -39.21875 Z M 18.890625 -4.46875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-11"
+         overflow="visible">
+        <path
+           id="path5199"
+           d="M 5.453125 -39.21875 L 5.453125 -34.75 L 28.0625 -34.75 L 4.765625 -4.03125 L 4.765625 0 L 35.84375 0 L 35.84375 -4.46875 L 11.234375 -4.46875 L 35.15625 -35.1875 L 35.15625 -39.21875 Z M 5.453125 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-12"
+         overflow="visible">
+        <path
+           id="path5202"
+           d="M 3.328125 -1.609375 C 7.59375 0.046875 11.296875 0.75 15.25 0.75 C 20.34375 0.75 23.90625 -0.265625 26.046875 -2.3125 C 28.25 -4.359375 29.3125 -7.859375 29.3125 -12.796875 L 29.3125 -39.21875 L 11.421875 -39.21875 L 11.421875 -34.75 L 23.09375 -34.75 L 23.09375 -12.796875 C 23.09375 -9.25 22.53125 -6.828125 21.34375 -5.484375 C 20.203125 -4.203125 18.203125 -3.546875 15.25 -3.546875 C 10.984375 -3.546875 7.09375 -4.953125 3.328125 -7.796875 Z M 3.328125 -1.609375 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-13"
+         overflow="visible">
+        <path
+           id="path5205"
+           d="M 7.15625 -39.21875 L 7.15625 0 L 13.375 0 L 13.375 -18.71875 L 32.140625 -18.71875 L 32.140625 -23.1875 L 13.375 -23.1875 L 13.375 -34.75 L 34.078125 -34.75 L 34.078125 -39.21875 Z M 7.15625 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-14"
+         overflow="visible">
+        <path
+           id="path5208"
+           d="M 33.828125 -3.234375 L 33.828125 -20.125 L 21.28125 -20.125 L 21.28125 -15.765625 L 27.9375 -15.765625 L 27.9375 -5.21875 C 26.234375 -4.09375 24.234375 -3.546875 21.53125 -3.546875 C 13.4375 -3.546875 9.609375 -8.65625 9.609375 -19.578125 C 9.609375 -30.28125 13.625 -35.609375 21.65625 -35.609375 C 25.609375 -35.609375 29 -34.328125 32.265625 -31.6875 L 32.265625 -37.125 C 29 -39 25.484375 -39.921875 21.65625 -39.921875 C 10.046875 -39.921875 3.140625 -32.328125 3.140625 -19.578125 C 3.140625 -13.1875 4.765625 -8.171875 7.96875 -4.578125 C 11.171875 -1.015625 15.6875 0.75 21.53125 0.75 C 26.296875 0.75 30.5625 -0.59375 33.828125 -3.234375 Z M 33.828125 -3.234375 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-15"
+         overflow="visible">
+        <path
+           id="path5211"
+           d="M 0 -39.21875 L 6.84375 0 L 12.671875 0 L 18.890625 -23.296875 L 25.109375 0 L 30.9375 0 L 37.78125 -39.21875 L 31.765625 -39.21875 L 27.359375 -7.3125 L 22.09375 -28.453125 L 15.625 -28.453125 L 10.421875 -7.375 L 6.03125 -39.21875 Z M 0 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-16"
+         overflow="visible">
+        <path
+           id="path5214"
+           d="M 23.28125 -18.5 C 29.25 -19.203125 32.703125 -22.703125 32.703125 -27.859375 C 32.703125 -35.234375 27.171875 -39.21875 17.140625 -39.21875 L 4.390625 -39.21875 L 4.390625 0 L 10.609375 0 L 10.609375 -16.5625 L 16.5 -16.5625 C 18.578125 -16.5625 20.203125 -16.140625 21.46875 -15.328125 C 22.71875 -14.53125 24.109375 -12.75 25.671875 -9.90625 L 31.125 0 L 37.78125 0 L 31.578125 -10.703125 C 29.875 -13.609375 28.5 -15.546875 27.359375 -16.515625 C 26.234375 -17.484375 24.859375 -18.125 23.28125 -18.5 Z M 10.609375 -34.859375 L 17.140625 -34.859375 C 22.96875 -34.859375 26.171875 -32.390625 26.171875 -27.859375 C 26.171875 -23.1875 23.34375 -20.921875 17.390625 -20.921875 L 10.609375 -20.921875 Z M 10.609375 -34.859375 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-17"
+         overflow="visible">
+        <path
+           id="path5217"
+           d="M 11.296875 -18.71875 L 18.640625 -18.71875 C 25.484375 -18.71875 28.625 -16.40625 28.625 -11.296875 C 28.625 -6.34375 25.859375 -4.359375 18.640625 -4.359375 L 11.296875 -4.359375 Z M 11.296875 -34.859375 L 18.515625 -34.859375 C 24.546875 -34.859375 26.984375 -33.1875 26.984375 -29.265625 C 26.984375 -24.90625 24.484375 -23.03125 18.515625 -23.03125 L 11.296875 -23.03125 Z M 5.078125 -39.21875 L 5.078125 0 L 18.640625 0 C 29.375 0 34.828125 -3.65625 34.828125 -10.765625 C 34.828125 -16.359375 31.25 -20.171875 25.234375 -20.984375 C 30.5625 -21.6875 33.265625 -24.484375 33.265625 -29.265625 C 33.265625 -35.5625 28 -39.21875 18.640625 -39.21875 Z M 5.078125 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-18"
+         overflow="visible">
+        <path
+           id="path5220"
+           d="M 27.75 -19.578125 C 27.75 -8.015625 25.171875 -3.546875 18.890625 -3.546875 C 12.609375 -3.546875 10.046875 -8.125 10.046875 -19.578125 C 10.046875 -31.046875 12.609375 -35.609375 18.890625 -35.609375 C 25.171875 -35.609375 27.75 -31.046875 27.75 -19.578125 Z M 34.203125 -19.578125 C 34.203125 -33.296875 29.1875 -39.921875 18.890625 -39.921875 C 8.59375 -39.921875 3.578125 -33.296875 3.578125 -19.578125 C 3.578125 -5.8125 8.53125 0.75 18.890625 0.75 C 29.1875 0.75 34.203125 -5.859375 34.203125 -19.578125 Z M 34.203125 -19.578125 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-19"
+         overflow="visible">
+        <path
+           id="path5223"
+           d="M 2.640625 -39.21875 L 2.640625 0 L 8.34375 0 L 8.34375 -34.640625 L 16.5 -13.984375 L 21.21875 -13.984375 L 29.375 -34.640625 L 29.375 0 L 35.09375 0 L 35.09375 -39.21875 L 26.796875 -39.21875 L 18.828125 -19.265625 L 10.921875 -39.21875 Z M 2.640625 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-20"
+         overflow="visible">
+        <path
+           id="path5226"
+           d="M 6.59375 -39.21875 L 6.59375 0 L 34.890625 0 L 34.890625 -4.46875 L 12.796875 -4.46875 L 12.796875 -39.21875 Z M 6.59375 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-21"
+         overflow="visible">
+        <path
+           id="path5229"
+           d="M 1.125 -39.21875 L 15.75 -17.59375 L 15.75 0 L 21.96875 0 L 21.96875 -17.59375 L 36.65625 -39.21875 L 30 -39.21875 L 18.890625 -21.890625 L 7.71875 -39.21875 Z M 1.125 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-22"
+         overflow="visible">
+        <path
+           id="path5232"
+           d="M 32.890625 -1.40625 L 32.890625 -6.828125 C 29.875 -4.6875 26.359375 -3.546875 22.78125 -3.546875 C 14.75 -3.546875 10.734375 -8.828125 10.734375 -19.578125 C 10.734375 -30.34375 14.75 -35.609375 22.78125 -35.609375 C 26.296875 -35.609375 29.875 -34.484375 32.890625 -32.328125 L 32.890625 -37.765625 C 29.6875 -39.21875 26.484375 -39.921875 22.78125 -39.921875 C 11.171875 -39.921875 4.265625 -32.328125 4.265625 -19.578125 C 4.265625 -6.671875 11.046875 0.75 22.78125 0.75 C 26.484375 0.75 29.6875 0.046875 32.890625 -1.40625 Z M 32.890625 -1.40625 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-23"
+         overflow="visible">
+        <path
+           id="path5235"
+           d="M 2.640625 -39.21875 L 15.875 -20.765625 L 0.5625 0 L 7.21875 0 L 19.328125 -16.890625 L 30.5625 0 L 37.21875 0 L 22.53125 -20.765625 L 36.21875 -39.21875 L 29.5625 -39.21875 L 19.328125 -24.421875 L 9.296875 -39.21875 Z M 2.640625 -39.21875 "
+           style="stroke:none;" />
+      </symbol>
+      <symbol
+         id="glyph0-24"
+         overflow="visible">
+        <path
+           id="path5238"
+           d="M 4.515625 -15.0625 C 4.515625 -11.078125 4.828125 -8.234375 5.390625 -6.515625 C 5.96875 -4.78125 6.96875 -3.390625 8.40625 -2.3125 C 11.171875 -0.21875 14.625 0.75 18.890625 0.75 C 23.21875 0.75 26.671875 -0.21875 29.375 -2.3125 C 30.8125 -3.4375 31.828125 -4.84375 32.390625 -6.515625 C 32.953125 -8.171875 33.265625 -11.03125 33.265625 -15.0625 L 33.265625 -39.21875 L 27.046875 -39.21875 L 27.046875 -12.59375 C 27.046875 -8.765625 26.796875 -7.53125 26.234375 -6.671875 C 24.921875 -4.578125 22.40625 -3.546875 18.890625 -3.546875 C 15.375 -3.546875 12.859375 -4.578125 11.546875 -6.671875 C 10.984375 -7.53125 10.734375 -8.828125 10.734375 -12.640625 L 10.734375 -39.21875 L 4.515625 -39.21875 Z M 4.515625 -15.0625 "
+           style="stroke:none;" />
+      </symbol>
+    </g>
+  </defs>
+  <text
+     id="text1627"
+     y="399.93076"
+     x="437.70651"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:18.75px;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="stroke-width:0.75px"
+       y="399.93076"
+       x="437.70651"
+       id="tspan1625"
+       sodipodi:role="line"></tspan></text>
+  <g
+     style="display:inline"
+     inkscape:label="basis"
+     id="layer1"
+     inkscape:groupmode="layer">
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-opacity:1;stroke-width:0.04535433;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 92.257813,932.22266 V 280.24609 H 744.23437 v 651.97657 z m 0,0"
+       id="path5245" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-opacity:1;stroke-width:0.04535433;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 341.56641,874.11328 h 11.33984 v -11.33984 h -11.33984 z m 0,0"
+       id="path5607" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-opacity:1;stroke-width:0.04535433;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 388.90625,874.11328 h 11.33984 v -11.33984 h -11.33984 z m 0,0"
+       id="path5609" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-opacity:1;stroke-width:0.04535433;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 436.24609,874.11328 h 11.33985 v -11.33984 h -11.33985 z m 0,0"
+       id="path5611" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-opacity:1;stroke-width:0.04535433;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 483.58594,874.11328 h 11.33984 v -11.33984 h -11.33984 z m 0,0"
+       id="path5613" />
+  </g>
+  <g
+     sodipodi:insensitive="true"
+     style="display:none"
+     inkscape:label="oud"
+     id="layer3"
+     inkscape:groupmode="layer">
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5249">
+      <use
+         xlink:href="#glyph0-1"
+         x="186.327"
+         y="416.56299"
+         id="use5247"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5253">
+      <use
+         xlink:href="#glyph0-2"
+         x="233.66701"
+         y="416.56299"
+         id="use5251"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5257">
+      <use
+         xlink:href="#glyph0-3"
+         x="281.00601"
+         y="416.56299"
+         id="use5255"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5261">
+      <use
+         xlink:href="#glyph0-4"
+         x="328.345"
+         y="416.56299"
+         id="use5259"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5265">
+      <use
+         xlink:href="#glyph0-5"
+         x="375.68399"
+         y="416.56299"
+         id="use5263"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5269">
+      <use
+         xlink:href="#glyph0-6"
+         x="423.02301"
+         y="416.56299"
+         id="use5267"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5273">
+      <use
+         xlink:href="#glyph0-7"
+         x="470.362"
+         y="416.20001"
+         id="use5271"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5277">
+      <use
+         xlink:href="#glyph0-8"
+         x="517.70099"
+         y="416.56299"
+         id="use5275"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5281">
+      <use
+         xlink:href="#glyph0-9"
+         x="565.04102"
+         y="416.56299"
+         id="use5279"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5285">
+      <use
+         xlink:href="#glyph0-10"
+         x="612.38"
+         y="416.56299"
+         id="use5283"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5289">
+      <use
+         xlink:href="#glyph0-11"
+         x="186.327"
+         y="469.005"
+         id="use5287"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5293">
+      <use
+         xlink:href="#glyph0-10"
+         x="233.66701"
+         y="469.005"
+         id="use5291"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5297">
+      <use
+         xlink:href="#glyph0-6"
+         x="281.00601"
+         y="469.005"
+         id="use5295"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5301">
+      <use
+         xlink:href="#glyph0-12"
+         x="328.345"
+         y="468.642"
+         id="use5299"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5305">
+      <use
+         xlink:href="#glyph0-13"
+         x="375.68399"
+         y="469.005"
+         id="use5303"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5309">
+      <use
+         xlink:href="#glyph0-3"
+         x="423.02301"
+         y="469.005"
+         id="use5307"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5313">
+      <use
+         xlink:href="#glyph0-6"
+         x="470.362"
+         y="469.005"
+         id="use5311"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5317">
+      <use
+         xlink:href="#glyph0-2"
+         x="517.70099"
+         y="469.005"
+         id="use5315"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5321">
+      <use
+         xlink:href="#glyph0-5"
+         x="565.04102"
+         y="469.005"
+         id="use5319"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5325">
+      <use
+         xlink:href="#glyph0-14"
+         x="612.38"
+         y="468.642"
+         id="use5323"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5329">
+      <use
+         xlink:href="#glyph0-4"
+         x="186.327"
+         y="521.44702"
+         id="use5327"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5333">
+      <use
+         xlink:href="#glyph0-15"
+         x="233.66701"
+         y="521.44702"
+         id="use5331"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5337">
+      <use
+         xlink:href="#glyph0-8"
+         x="281.00601"
+         y="521.44702"
+         id="use5335"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5341">
+      <use
+         xlink:href="#glyph0-16"
+         x="328.345"
+         y="521.44702"
+         id="use5339"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5345">
+      <use
+         xlink:href="#glyph0-3"
+         x="375.68399"
+         y="521.44702"
+         id="use5343"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5349">
+      <use
+         xlink:href="#glyph0-17"
+         x="423.02301"
+         y="521.44702"
+         id="use5347"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5353">
+      <use
+         xlink:href="#glyph0-18"
+         x="470.362"
+         y="521.08301"
+         id="use5351"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5357">
+      <use
+         xlink:href="#glyph0-10"
+         x="517.70099"
+         y="521.44702"
+         id="use5355"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5361">
+      <use
+         xlink:href="#glyph0-2"
+         x="565.04102"
+         y="521.44702"
+         id="use5359"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5365">
+      <use
+         xlink:href="#glyph0-16"
+         x="612.38"
+         y="521.44702"
+         id="use5363"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5369">
+      <use
+         xlink:href="#glyph0-10"
+         x="186.327"
+         y="573.888"
+         id="use5367"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5373">
+      <use
+         xlink:href="#glyph0-18"
+         x="233.66701"
+         y="573.52502"
+         id="use5371"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5377">
+      <use
+         xlink:href="#glyph0-18"
+         x="281.00601"
+         y="573.52502"
+         id="use5375"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5381">
+      <use
+         xlink:href="#glyph0-16"
+         x="328.345"
+         y="573.888"
+         id="use5379"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5385">
+      <use
+         xlink:href="#glyph0-19"
+         x="375.68399"
+         y="573.888"
+         id="use5383"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5389">
+      <use
+         xlink:href="#glyph0-1"
+         x="423.02301"
+         y="573.888"
+         id="use5387"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5393">
+      <use
+         xlink:href="#glyph0-8"
+         x="470.362"
+         y="573.888"
+         id="use5391"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5397">
+      <use
+         xlink:href="#glyph0-20"
+         x="517.70099"
+         y="573.888"
+         id="use5395"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5401">
+      <use
+         xlink:href="#glyph0-13"
+         x="565.04102"
+         y="573.888"
+         id="use5399"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5405">
+      <use
+         xlink:href="#glyph0-21"
+         x="612.38"
+         y="573.888"
+         id="use5403"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5409">
+      <use
+         xlink:href="#glyph0-8"
+         x="186.327"
+         y="626.33002"
+         id="use5407"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5413">
+      <use
+         xlink:href="#glyph0-22"
+         x="233.66701"
+         y="625.96698"
+         id="use5411"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5417">
+      <use
+         xlink:href="#glyph0-1"
+         x="281.00601"
+         y="626.33002"
+         id="use5415"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5421">
+      <use
+         xlink:href="#glyph0-3"
+         x="328.345"
+         y="626.33002"
+         id="use5419"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5425">
+      <use
+         xlink:href="#glyph0-15"
+         x="375.68399"
+         y="626.33002"
+         id="use5423"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5429">
+      <use
+         xlink:href="#glyph0-2"
+         x="423.02301"
+         y="626.33002"
+         id="use5427"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5433">
+      <use
+         xlink:href="#glyph0-2"
+         x="470.362"
+         y="626.33002"
+         id="use5431"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5437">
+      <use
+         xlink:href="#glyph0-11"
+         x="517.70099"
+         y="626.33002"
+         id="use5435"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5441">
+      <use
+         xlink:href="#glyph0-2"
+         x="565.04102"
+         y="626.33002"
+         id="use5439"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5445">
+      <use
+         xlink:href="#glyph0-7"
+         x="612.38"
+         y="625.96698"
+         id="use5443"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5449">
+      <use
+         xlink:href="#glyph0-9"
+         x="186.327"
+         y="678.77197"
+         id="use5447"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5453">
+      <use
+         xlink:href="#glyph0-16"
+         x="233.66701"
+         y="678.77197"
+         id="use5451"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5457">
+      <use
+         xlink:href="#glyph0-6"
+         x="281.00601"
+         y="678.77197"
+         id="use5455"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5461">
+      <use
+         xlink:href="#glyph0-2"
+         x="328.345"
+         y="678.77197"
+         id="use5459"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5465">
+      <use
+         xlink:href="#glyph0-20"
+         x="375.68399"
+         y="678.77197"
+         id="use5463"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5469">
+      <use
+         xlink:href="#glyph0-13"
+         x="423.02301"
+         y="678.77197"
+         id="use5467"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5473">
+      <use
+         xlink:href="#glyph0-3"
+         x="470.362"
+         y="678.77197"
+         id="use5471"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5477">
+      <use
+         xlink:href="#glyph0-6"
+         x="517.70099"
+         y="678.77197"
+         id="use5475"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5481">
+      <use
+         xlink:href="#glyph0-2"
+         x="565.04102"
+         y="678.77197"
+         id="use5479"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5485">
+      <use
+         xlink:href="#glyph0-5"
+         x="612.38"
+         y="678.77197"
+         id="use5483"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5489">
+      <use
+         xlink:href="#glyph0-23"
+         x="186.327"
+         y="731.21399"
+         id="use5487"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5493">
+      <use
+         xlink:href="#glyph0-11"
+         x="233.66701"
+         y="731.21399"
+         id="use5491"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5497">
+      <use
+         xlink:href="#glyph0-2"
+         x="281.00601"
+         y="731.21399"
+         id="use5495"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5501">
+      <use
+         xlink:href="#glyph0-10"
+         x="328.345"
+         y="731.21399"
+         id="use5499"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5505">
+      <use
+         xlink:href="#glyph0-2"
+         x="375.68399"
+         y="731.21399"
+         id="use5503"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5509">
+      <use
+         xlink:href="#glyph0-5"
+         x="423.02301"
+         y="731.21399"
+         id="use5507"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5513">
+      <use
+         xlink:href="#glyph0-2"
+         x="470.362"
+         y="731.21399"
+         id="use5511"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5517">
+      <use
+         xlink:href="#glyph0-14"
+         x="517.70099"
+         y="730.85101"
+         id="use5515"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5521">
+      <use
+         xlink:href="#glyph0-2"
+         x="565.04102"
+         y="731.21399"
+         id="use5519"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5525">
+      <use
+         xlink:href="#glyph0-5"
+         x="612.38"
+         y="731.21399"
+         id="use5523"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5529">
+      <use
+         xlink:href="#glyph0-10"
+         x="186.327"
+         y="783.65601"
+         id="use5527"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5533">
+      <use
+         xlink:href="#glyph0-6"
+         x="233.66701"
+         y="783.65601"
+         id="use5531"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5537">
+      <use
+         xlink:href="#glyph0-2"
+         x="281.00601"
+         y="783.65601"
+         id="use5535"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5541">
+      <use
+         xlink:href="#glyph0-16"
+         x="328.345"
+         y="783.65601"
+         id="use5539"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5545">
+      <use
+         xlink:href="#glyph0-3"
+         x="375.68399"
+         y="783.65601"
+         id="use5543"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5549">
+      <use
+         xlink:href="#glyph0-15"
+         x="423.02301"
+         y="783.65601"
+         id="use5547"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5553">
+      <use
+         xlink:href="#glyph0-8"
+         x="470.362"
+         y="783.65601"
+         id="use5551"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5557">
+      <use
+         xlink:href="#glyph0-8"
+         x="517.70099"
+         y="783.65601"
+         id="use5555"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5561">
+      <use
+         xlink:href="#glyph0-20"
+         x="565.04102"
+         y="783.65601"
+         id="use5559"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5565">
+      <use
+         xlink:href="#glyph0-13"
+         x="612.38"
+         y="783.65601"
+         id="use5563"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5569">
+      <use
+         xlink:href="#glyph0-2"
+         x="186.327"
+         y="836.09698"
+         id="use5567"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5573">
+      <use
+         xlink:href="#glyph0-2"
+         x="233.66701"
+         y="836.09698"
+         id="use5571"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5577">
+      <use
+         xlink:href="#glyph0-5"
+         x="281.00601"
+         y="836.09698"
+         id="use5575"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5581">
+      <use
+         xlink:href="#glyph0-10"
+         x="328.345"
+         y="836.09698"
+         id="use5579"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5585">
+      <use
+         xlink:href="#glyph0-6"
+         x="375.68399"
+         y="836.09698"
+         id="use5583"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5589">
+      <use
+         xlink:href="#glyph0-12"
+         x="423.02301"
+         y="835.73401"
+         id="use5587"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5593">
+      <use
+         xlink:href="#glyph0-13"
+         x="470.362"
+         y="836.09698"
+         id="use5591"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5597">
+      <use
+         xlink:href="#glyph0-24"
+         x="517.70099"
+         y="835.73401"
+         id="use5595"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5601">
+      <use
+         xlink:href="#glyph0-24"
+         x="565.04102"
+         y="835.73401"
+         id="use5599"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g5605">
+      <use
+         xlink:href="#glyph0-16"
+         x="612.38"
+         y="836.09698"
+         id="use5603"
+         width="100%"
+         height="100%" />
+    </g>
+  </g>
+  <g
+     style="display:inline"
+     inkscape:label="nieuw"
+     id="layer2"
+     inkscape:groupmode="layer">
+    <text
+       id="text1317"
+       y="415.51697"
+       x="190.33601"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="415.51697"
+         x="190.33601"
+         id="tspan1315"
+         sodipodi:role="line">H</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="238.1698"
+       y="415.51697"
+       id="text1317-6"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4"
+         x="238.1698"
+         y="415.51697"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">E</tspan></text>
+    <text
+       id="text1317-6-6"
+       y="415.51697"
+       x="286.3956"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="415.51697"
+         x="286.3956"
+         id="tspan1315-4-5"
+         sodipodi:role="line">T</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="332.10138"
+       y="415.51697"
+       id="text1317-6-6-5"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2"
+         x="332.10138"
+         y="415.51697"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="426.51093"
+       y="573.50751"
+       id="text1317-0"><tspan
+         sodipodi:role="line"
+         id="tspan1315-6"
+         x="426.51093"
+         y="573.50751"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">H</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="284.99561"
+       y="626.7276"
+       id="text1317-69"><tspan
+         sodipodi:role="line"
+         id="tspan1315-40"
+         x="284.99561"
+         y="626.7276"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">H</tspan></text>
+    <text
+       id="text1317-6-9"
+       y="469.77173"
+       x="521.59375"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="469.77173"
+         x="521.59375"
+         id="tspan1315-4-7"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-3"
+       y="522.18695"
+       x="569.61804"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="522.18695"
+         x="569.61804"
+         id="tspan1315-4-8"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-8"
+       y="626.7276"
+       x="569.61804"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="626.7276"
+         x="569.61804"
+         id="tspan1315-4-6"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-1"
+       y="626.7276"
+       x="473.96341"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="626.7276"
+         x="473.96341"
+         id="tspan1315-4-4"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-2"
+       y="626.7276"
+       x="427.01492"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="626.7276"
+         x="427.01492"
+         id="tspan1315-4-70"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-0"
+       y="678.62274"
+       x="332.82938"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="678.62274"
+         x="332.82938"
+         id="tspan1315-4-43"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-82"
+       y="678.62274"
+       x="569.61804"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="678.62274"
+         x="569.61804"
+         id="tspan1315-4-3"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-60"
+       y="731.60767"
+       x="569.61804"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="731.60767"
+         x="569.61804"
+         id="tspan1315-4-46"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-80"
+       y="731.60767"
+       x="473.96341"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="731.60767"
+         x="473.96341"
+         id="tspan1315-4-63"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-95"
+       y="731.60767"
+       x="380.06027"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="731.60767"
+         x="380.06027"
+         id="tspan1315-4-79"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-7"
+       y="731.60767"
+       x="285.4996"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="731.60767"
+         x="285.4996"
+         id="tspan1315-4-49"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-88"
+       y="783.7663"
+       x="285.4996"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="783.7663"
+         x="285.4996"
+         id="tspan1315-4-52"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-956"
+       y="835.7536"
+       x="238.1698"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="835.7536"
+         x="238.1698"
+         id="tspan1315-4-87"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       id="text1317-6-22"
+       y="835.7536"
+       x="190.84001"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="835.7536"
+         x="190.84001"
+         id="tspan1315-4-86"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="427.91092"
+       y="469.77173"
+       id="text1317-6-6-3"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-4"
+         x="427.91092"
+         y="469.77173"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">T</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="380.95627"
+       y="522.18695"
+       id="text1317-6-6-2"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-8"
+         x="380.95627"
+         y="522.18695"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">T</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="333.72537"
+       y="626.7276"
+       id="text1317-6-6-6"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-85"
+         x="333.72537"
+         y="626.7276"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">T</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="474.85941"
+       y="678.62274"
+       id="text1317-6-6-8"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-3"
+         x="474.85941"
+         y="678.62274"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">T</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="380.95627"
+       y="783.7663"
+       id="text1317-6-6-38"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-6"
+         x="380.95627"
+         y="783.7663"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">T</tspan></text>
+    <text
+       id="text1317-6-6-5-9"
+       y="522.18695"
+       x="190.11201"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="522.18695"
+         x="190.11201"
+         id="tspan1315-4-5-2-0"
+         sodipodi:role="line">K</tspan></text>
+    <text
+       id="text1317-6-6-5-8"
+       y="415.51697"
+       x="379.13626"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="415.51697"
+         x="379.13626"
+         id="tspan1315-4-5-2-3"
+         sodipodi:role="line">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="568.69403"
+       y="469.77173"
+       id="text1317-6-6-5-8-3"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-8"
+         x="568.69403"
+         y="469.77173"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="615.0498"
+       y="678.62274"
+       id="text1317-6-6-5-8-1"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-6"
+         x="615.0498"
+         y="678.62274"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="615.0498"
+       y="731.60767"
+       id="text1317-6-6-5-8-34"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-5"
+         x="615.0498"
+         y="731.60767"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="284.57559"
+       y="835.7536"
+       id="text1317-6-6-5-8-4"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-68"
+         x="284.57559"
+         y="835.7536"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="426.09091"
+       y="731.60767"
+       id="text1317-6-6-5-8-6"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-55"
+         x="426.09091"
+         y="731.60767"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="435.86292"
+       y="415.51697"
+       id="text1317-6-6-5-8-33"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3"
+         x="435.86292"
+         y="415.51697"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">I</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-5"
+       y="469.77173"
+       x="482.8114"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="469.77173"
+         x="482.8114"
+         id="tspan1315-4-5-2-3-3-5"
+         sodipodi:role="line">I</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1"
+       y="469.77173"
+       x="294.3476"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="469.77173"
+         x="294.3476"
+         id="tspan1315-4-5-2-3-3-3"
+         sodipodi:role="line">I</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-0"
+       y="678.62274"
+       x="294.3476"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="678.62274"
+         x="294.3476"
+         id="tspan1315-4-5-2-3-3-58"
+         sodipodi:role="line">I</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-8"
+       y="678.62274"
+       x="530.44177"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="678.62274"
+         x="530.44177"
+         id="tspan1315-4-5-2-3-3-2"
+         sodipodi:role="line">I</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-2"
+       y="783.7663"
+       x="247.01781"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="783.7663"
+         x="247.01781"
+         id="tspan1315-4-5-2-3-3-37"
+         sodipodi:role="line">I</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-50"
+       y="835.7536"
+       x="388.90826"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="835.7536"
+         x="388.90826"
+         id="tspan1315-4-5-2-3-3-7"
+         sodipodi:role="line">I</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9"
+       y="415.51697"
+       x="473.82339"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="415.51697"
+         x="473.82339"
+         id="tspan1315-4-5-2-3-3-9"
+         sodipodi:role="line">S</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="615.8338"
+       y="626.50885"
+       id="text1317-6-6-5-8-33-9-0"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-9-2"
+         x="615.8338"
+         y="626.50885"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">S</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="522.09778"
+       y="415.51697"
+       id="text1317-6-6-5-8-33-9-4"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-9-1"
+         x="522.09778"
+         y="415.51697"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">A</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-4"
+       y="522.18695"
+       x="286.0036"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="522.18695"
+         x="286.0036"
+         id="tspan1315-4-5-2-3-3-9-1-5"
+         sodipodi:role="line">A</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-8"
+       y="573.50751"
+       x="474.46741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="573.50751"
+         x="474.46741"
+         id="tspan1315-4-5-2-3-3-9-1-8"
+         sodipodi:role="line">A</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-0"
+       y="626.7276"
+       x="191.34401"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="626.7276"
+         x="191.34401"
+         id="tspan1315-4-5-2-3-3-9-1-1"
+         sodipodi:role="line">A</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-3"
+       y="783.7663"
+       x="474.46741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="783.7663"
+         x="474.46741"
+         id="tspan1315-4-5-2-3-3-9-1-4"
+         sodipodi:role="line">A</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-5"
+       y="783.7663"
+       x="522.09778"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="783.7663"
+         x="522.09778"
+         id="tspan1315-4-5-2-3-3-9-1-15"
+         sodipodi:role="line">A</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6"
+       y="415.51697"
+       x="569.00201"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="415.51697"
+         x="569.00201"
+         id="tspan1315-4-5-2-3-3-9-1-2"
+         sodipodi:role="line">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="190.22401"
+       y="678.62274"
+       id="text1317-6-6-5-8-33-9-4-6-0"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-9-1-2-4"
+         x="190.22401"
+         y="678.62274"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="616.44983"
+       y="415.51697"
+       id="text1317-6-6-5-8-33-9-4-6-2"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-9-1-2-5"
+         x="616.44983"
+         y="415.51697"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">V</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6-2-2"
+       y="469.55298"
+       x="238.6458"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="469.55298"
+         x="238.6458"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-9"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6-2-4"
+       y="573.28876"
+       x="191.31601"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="573.28876"
+         x="191.31601"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-7"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6-2-9"
+       y="521.9682"
+       x="522.06976"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="521.9682"
+         x="522.06976"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-5"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6-2-0"
+       y="731.38892"
+       x="333.30539"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="731.38892"
+         x="333.30539"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-4"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6-2-46"
+       y="783.54755"
+       x="191.31601"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="783.54755"
+         x="191.31601"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-52"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6-2-5"
+       y="835.7536"
+       x="333.30539"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="835.7536"
+         x="333.30539"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-6"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-9-4-6-2-52"
+       y="469.77173"
+       x="190.78401"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="469.77173"
+         x="190.78401"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-71"
+         sodipodi:role="line">Z</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="238.1138"
+       y="731.60767"
+       id="text1317-6-6-5-8-33-9-4-6-2-52-8"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-9-1-2-5-71-3"
+         x="238.1138"
+         y="731.60767"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">Z</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="334.59338"
+       y="469.49829"
+       id="text1317-6-6-5-8-33-1-1"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4"
+         x="334.59338"
+         y="469.49829"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">J</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-6"
+       y="835.7536"
+       x="428.77893"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="835.7536"
+         x="428.77893"
+         id="tspan1315-4-5-2-3-3-3-4-9"
+         sodipodi:role="line">J</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9"
+       y="469.77173"
+       x="380.11627"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="469.77173"
+         x="380.11627"
+         id="tspan1315-4-5-2-3-3-3-4-7"
+         sodipodi:role="line">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="427.07092"
+       y="678.62274"
+       id="text1317-6-6-5-8-33-1-1-9-8"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-3"
+         x="427.07092"
+         y="678.62274"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="616.02979"
+       y="783.7663"
+       id="text1317-6-6-5-8-33-1-1-9-0"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-35"
+         x="616.02979"
+         y="783.7663"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="474.01941"
+       y="835.7536"
+       id="text1317-6-6-5-8-33-1-1-9-02"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-6"
+         x="474.01941"
+         y="835.7536"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="615.46979"
+       y="469.49829"
+       id="text1317-6-6-5-8-33-1-1-9-1"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2"
+         x="615.46979"
+         y="469.49829"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">G</tspan></text>
+    <text
+       transform="scale(0.90916026,1.0999161)"
+       id="text1317-6-6-5-8-33-1-1-9-1-5"
+       y="474.55273"
+       x="250.41312"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.913px;line-height:31.8206px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.913px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="474.55273"
+         x="250.41312"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7"
+         sodipodi:role="line">W</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="332.68939"
+       y="522.18695"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5"
+         x="332.68939"
+         y="522.18695"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">R</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-6"
+       y="522.18695"
+       x="615.8338"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="522.18695"
+         x="615.8338"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-9"
+         sodipodi:role="line">R</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-7"
+       y="573.50751"
+       x="332.68939"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="573.50751"
+         x="332.68939"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-4"
+         sodipodi:role="line">R</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-1"
+       y="678.62274"
+       x="238.0298"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="678.62274"
+         x="238.0298"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-41"
+         sodipodi:role="line">R</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-79"
+       y="783.7663"
+       x="332.68939"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="783.7663"
+         x="332.68939"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-42"
+         sodipodi:role="line">R</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67"
+       y="522.18695"
+       x="427.01492"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="522.18695"
+         x="427.01492"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5"
+         sodipodi:role="line">B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="473.45941"
+       y="521.91351"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6"
+         x="473.45941"
+         y="521.91351"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">O</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-8"
+       y="573.23407"
+       x="237.6658"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="573.23407"
+         x="237.6658"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-6"
+         sodipodi:role="line">O</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-0"
+       y="573.23407"
+       x="284.99561"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="573.23407"
+         x="284.99561"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-9"
+         sodipodi:role="line">O</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-6"
+       y="573.50751"
+       x="377.76428"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="573.50751"
+         x="377.76428"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-5"
+         sodipodi:role="line">M</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="521.78973"
+       y="573.50751"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-6-2"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-5-6"
+         x="521.78973"
+         y="573.50751"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">L</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-6-2-1"
+       y="783.7663"
+       x="569.81403"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="783.7663"
+         x="569.81403"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-5-6-3"
+         sodipodi:role="line">L</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-8"
+       y="835.7536"
+       x="615.8338"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="835.7536"
+         x="615.8338"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-2"
+         sodipodi:role="line">R</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-4"
+       y="573.50751"
+       x="569.67407"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="573.50751"
+         x="569.67407"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-6"
+         sodipodi:role="line">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="617.28979"
+       y="573.50751"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-4-4"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-6-5"
+         x="617.28979"
+         y="573.50751"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">Y</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-4-4-9"
+       y="626.45416"
+       x="237.9738"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="626.45416"
+         x="237.9738"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-6-5-0"
+         sodipodi:role="line">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="521.53772"
+       y="626.7276"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-4-4-9-8"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-6-5-0-4"
+         x="521.53772"
+         y="626.7276"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">Z</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-51"
+       y="731.33423"
+       x="521.08972"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="731.33423"
+         x="521.08972"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-5"
+         sodipodi:role="line">G</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-6-2-6"
+       y="678.62274"
+       x="380.25629"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="678.62274"
+         x="380.25629"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-5-6-7"
+         sodipodi:role="line">L</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-6-2-2"
+       y="731.60767"
+       x="191.23201"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="731.60767"
+         x="191.23201"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-5-6-1"
+         sodipodi:role="line">X</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="521.14575"
+       y="835.7536"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-6-2-2-2"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-5-6-1-5"
+         x="521.14575"
+         y="835.7536"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">U</tspan></text>
+    <text
+       id="text1317-6-6-5-8-33-1-1-9-1-5-6-67-5-6-2-2-2-1"
+       y="835.7536"
+       x="569.17004"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:35px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="835.7536"
+         x="569.17004"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-5-5-6-5-6-1-5-4"
+         sodipodi:role="line">U</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.913px;line-height:31.8206px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="412.83698"
+       y="569.59692"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-7"
+       transform="scale(0.90916026,1.0999161)"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-0"
+         x="412.83698"
+         y="569.59692"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.913px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">W</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.913px;line-height:31.8206px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.04535433;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="464.48315"
+       y="712.3703"
+       id="text1317-6-6-5-8-33-1-1-9-1-5-8"
+       transform="scale(0.90916026,1.0999161)"><tspan
+         sodipodi:role="line"
+         id="tspan1315-4-5-2-3-3-3-4-7-2-7-53"
+         x="464.48315"
+         y="712.3703"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.913px;font-family:'Octin Stencil Free';-inkscape-font-specification:'Octin Stencil Free';fill:none;stroke-width:0.04535433;stroke:#ff0000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">W</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,310 @@
+body {
+    background-color: #FFCC00;
+    padding: 20px;
+    margin: 0;
+  }
+  h1, h2, p, ul, li {
+    font-family: sans-serif;
+  }
+  ul.header li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+  }
+  ul.header {
+    background-color: #111;
+    padding: 0;
+  }
+  ul.header li a {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px;
+    display: inline-block;
+  }
+  .content {
+    background-color: #FFF;
+    padding: 20px;
+  }
+  .content h2 {
+    padding: 0;
+    margin: 0;
+  }
+  .content li {
+    margin-bottom: 10px;
+  }
+
+  .active {
+    background-color: #0099FF;
+  }
+
+  main {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  ul,
+ol,
+dd {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .item {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    background-color: rgb(97, 97, 97);
+    color: white;
+    align-content: center;
+    margin: 10px;
+    display: inline-grid;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: monospace;
+  }
+  
+  .item.selected {
+    background-color: red;
+  }  
+
+  .section {
+    width: 80%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    }
+
+
+  div.horizontal-div {
+    width: 100%;
+
+  }
+
+  label {
+      font-weight: bold;
+      text-decoration: none;
+
+  }
+.section .section {
+  width: 100%;
+}
+  .section .labelCell {
+    flex: 0.4;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; /* Center the content horizontally */
+  }
+    .section .smallLabelCell {
+      flex: 0.1;
+      display: flex;
+      align-items: center; 
+      justify-content: flex-start; /* Center the content horizontally */
+}
+.section .normalBodyCell {
+  flex: 0.4;
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start; /* Center the content horizontally */
+  
+}
+
+.section .smallBodyCell {
+  flex: 0.1;
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start; /* Center the content horizontally */
+  
+}
+  .section  .bodyCell {
+    flex: 0.6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    vertical-align: middle;
+  }
+  .section  .wideBodyCell {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    vertical-align: middle;
+  }
+  .horizontal-slider {
+    width: 100%;
+    height: 4px;
+    margin-top: 1vh;
+  }
+
+  .horizontal-hue-slider {
+    width: 100%;
+    height: 4px;
+    margin-top: 1vh;
+    background: linear-gradient(to right, 
+    hsl(0, 100%, 50%), 
+    hsl(60, 100%, 50%), 
+    hsl(120, 100%, 50%), 
+    hsl(180, 100%, 50%), 
+    hsl(240, 100%, 50%), 
+    hsl(300, 100%, 50%), 
+    hsl(360, 100%, 50%));
+  }
+
+  .horizontal-brightness-slider {
+    width: 100%;
+    height: 4px;
+    margin-top: 1vh;
+    background: linear-gradient(to right, 
+    hsl(0, 0%, 0%), 
+    hsl(0, 0%, 100%) 
+);
+  }
+  
+    .thumb, .coloredThumb, .thumbMinMax {
+      cursor: pointer;
+      position: relative;
+      bottom:-15px;
+      z-index: 100;
+      width: 30px;
+      height: 30px;
+      background: #ffffff;
+      border: 2px solid #3774ff;
+      border-radius: 100%;
+      display: flex;
+      align-items:center;
+      justify-content: center;
+      box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+      font-size: 0.9em;
+      text-align: center;
+      box-sizing: border-box;
+      
+  }
+
+  .coloredThumb {
+    background: var(--backgroundColor);
+}
+  .thumbMinMax-0 {
+    background: var(--backgroundColorMin);
+}
+.thumbMinMax-1 {
+  background: var(--backgroundColorMax);
+}
+
+
+  .hue-track, .brightness-track, .htrack{
+    position: relative;
+  }
+
+  .single-htrack{
+    position: relative;
+    vertical-align: middle;
+    background: #ddd;  
+  }
+  .single-htrack.single-htrack-0 {
+    background: #83a9ff;
+  }
+  .horizontal-slider .single-htrack, .hue-track{
+    top: 20px;
+    height: 4px;
+  }
+
+  .htrack {
+    position: relative;
+    background: #ddd;
+    height: 4px;
+  }
+.htrack-1, .htrack-3,.htrack-5{
+    background: #83a9ff;
+  }
+
+  button, input[type=button], input[type=submit], input[type=reset],  input[type=file]::file-selector-button {
+    background-color: #0099FF;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  input[type=number] {
+    background-color:none;
+    border: 1px solid #0099FF;
+    color: black;
+    padding: 4px 4px 4px 2px;
+    text-decoration: none;
+    text-align: right;
+    margin: 4px 2px;
+    width: 80px;
+  }
+  button:active, input:active{
+    background-color: #56bafd;
+  }
+.colorFormRow{
+  display: flex;
+  flex-direction: row;
+}
+
+.colorFormColumn{
+  display: flex;
+  flex-direction: column;
+}
+
+#overlay{
+  position: absolute;
+  top:0px;
+  left:0px;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: .7;
+  z-index: 1000;
+}
+
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height:60px;
+  width:60px;
+  margin:0px auto;
+  -webkit-animation: rotation .6s infinite linear;
+  -moz-animation: rotation .6s infinite linear;
+  -o-animation: rotation .6s infinite linear;
+  animation: rotation .6s infinite linear;
+  border-left:6px solid rgba(0,174,239,.15);
+  border-right:6px solid rgba(0,174,239,.15);
+  border-bottom:6px solid rgba(0,174,239,.15);
+  border-top:6px solid rgba(0,174,239,.8);
+  border-radius:100%;
+}
+
+@-webkit-keyframes rotation {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+  from {-moz-transform: rotate(0deg);}
+  to {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+  from {-o-transform: rotate(0deg);}
+  to {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(359deg);}
+}

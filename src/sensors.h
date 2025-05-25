@@ -1,76 +1,90 @@
-#pragma once 
+#pragma once
 
-#include <headers.h>
-#include <utils.h>
-#include <Wire.h>
-#include "Adafruit_MPR121.h"
+#include "headers.h"
+#include "utils.h"
 
+#ifdef HASTOUCHBUTTON
+#include <OneButton.h>
+OneButton *button;
 
-#define INTERRUPTPIN D3
-#ifndef _BV
-#define _BV(bit) (1 << (bit))
+void fClicked(void *oneButton)
+{
+  debug_println("Clicked");
+}
+
+static void fDoubleClicked(void *oneButton)
+{
+  OneButton *button = (OneButton *)oneButton;
+  debug_println("Double Clicked");
+  changeState(states::SPLASH);
+}
+
+static void fLongpressStart(void *oneButton)
+{
+  OneButton *button = (OneButton *)oneButton;
+  debug_println("Long Press Start");
+}
 #endif
 
-// You can have up to 4 on one i2c bus but one is enough for testing!
-Adafruit_MPR121 cap = Adafruit_MPR121();
-
-// Keeps track of the last pins touched
-// so we know when buttons are 'released'
-uint16_t lasttouched = 0;
-uint16_t currtouched = 0;
-
+ 
+#ifdef HASLDR
 long LDRvalue = 0;
-bool touched = false;
-bool touchtrigger = false;
-
 RunningAverage LDRSensorRA;
-void IRAM_ATTR ISR_switch()
-{
-  touchtrigger = true;
- // interrupts();
-}
-
+#endif
 void setupSensors()
 {
-cap.begin(0x5A);
-  delay(1000);
-  if (!cap.begin(0x5A))
-  {
-    Serial.println("MPR121 not found, check wiring?");
-  } else {
-    Serial.println("MPR121 found!");
-      cap.setThresholds(20, 20);
-  pinMode(INTERRUPTPIN, INPUT_PULLUP);
-  attachInterrupt(INTERRUPTPIN, ISR_switch, CHANGE);
-  }
-
+#ifdef HASTOUCHBUTTON
+  debug_println("Setting up touch button");
+  button = new OneButton();
+  button->attachClick(fClicked, &button);
+  button->attachDoubleClick(fDoubleClicked, &button);
+  button->attachLongPressStart(fLongpressStart, &button);
+#endif
+#ifdef HASLDR
+#if defined(ESP32)
+  // set resolution to 10 bits (as for ESP8266)
+  analogReadResolution(10);
+  // set attenuation to 11db (3.3V)
+  analogSetAttenuation(ADC_11db);
+#endif
+#endif
 }
 
+long previoustouchtimer = 0;
+long touchinterval = 200;
 void sensorLoop()
 {
-  LDRvalue = LDRSensorRA.getAverage((long) analogRead(A0));
-  //Serial.println(LDRvalue);
-  /*debug_printf(LDRvalue);
-  debug_printf(" - ");
-  debug_printf(touchSensorValue);*/
-    if (touchtrigger)
-  {
-   // Serial.println("Interrupt");
-    currtouched = cap.touched();
+#ifdef HASLDR
+  LDRvalue = LDRSensorRA.getAverage((long)analogRead(LDRPIN));
+#endif
+#ifdef HASTOUCHBUTTON
 
-    if ((currtouched & _BV(5)) && !(lasttouched & _BV(5)))
-    {
-     // Serial.println(" touched");
-          touched = true;
-    }
-    // if it *was* touched and now *isnt*, alert!
-    if (!(currtouched & _BV(5)) && (lasttouched & _BV(5)))
-    {
-    touched = false;
-    //  Serial.println(" released");
-    }
-    touchtrigger = false;
-    lasttouched = currtouched;
-    //Serial.println(LDRvalue);
+  bool isPressed = (touchRead(TOUCHPIN) > config.touchThreshold) ? true : false;
+
+  // if (millis() - previoustouchtimer > touchinterval)
+  // {
+  //   previoustouchtimer = millis();
+  //   //debug_printf("%d;%d\n", touchRead(TOUCHPIN), LDRvalue);
+  //   // changeState(states::TOUCHED);
+  // }
+
+  button->tick(isPressed);
+#endif
+}
+
+uint32_t readSensor(const char *sensorArg)
+{
+  if (strcmp(sensorArg, "touch") == 0)
+  {
+    return touchRead(TOUCHPIN);
+  }
+  else if (strcmp(sensorArg, "ldr") == 0)
+  {
+    return LDRvalue;
+  }
+  else
+  {
+    debug_println("Unknown sensor");
+    return -1;
   }
 }

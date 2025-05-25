@@ -1,0 +1,39 @@
+{
+    "system": {
+        "ntp_server": "pool.ntp.org",
+        "hostname": "woordklok"
+    },
+    "clockface": {
+        "wordGridCols" : 10,
+        "wordGridRows" : 9,
+        "extraLEDs" : 4,
+        "layout": [
+            {"word": "het", "leds": [84, 85, 86],"function": "alwaysOn"},
+            {"word": "is", "leds": [89, 90],"function": "alwaysOn"},
+            {"word": "vijf", "leds": [82, 81, 80, 79],"function": "fiveMinute"},
+            {"word": "tien", "leds": [78, 77, 76, 75],"function": "tenMinute"},
+            {"word": "kwart", "leds": [64, 65, 66, 67, 68],"function": "quarter"},
+            {"word": "over", "leds": [70, 71, 72, 73],"function": "past"},
+            {"word": "voor", "leds": [63, 62, 61, 60],"function": "before"},
+            {"word": "uur", "leds": [11, 12, 13],"function": "wholeHour"},
+            {"word": "half", "leds": [58, 57, 56, 55],"function": "halfHour"},
+            {"word": "1", "leds": [3],"function": "firstMinute"},
+            {"word": "2", "leds": [2],"function": "secondMinute"},
+            {"word": "3", "leds": [1],"function": "thirdMinute"},
+            {"word": "4", "leds": [0],"function": "fourthMinute"},
+            {"word": "een", "leds": [4, 5, 6],"function": "isOneActive"},
+            {"word": "twee", "leds": [47, 48, 49, 50],"function": "isTwoActive"},
+            {"word": "drie", "leds": [43, 42, 41, 40],"function": "isThreeActive"},
+            {"word": "vier", "leds": [23, 22, 21, 20],"function": "isFourActive"},
+            {"word": "vijf", "leds": [7, 8, 9, 10],"function": "isFiveActive"},
+            {"word": "zes", "leds": [51, 52, 53],"function": "isSixActive"},
+            {"word": "zeven", "leds": [25, 26, 27, 28, 29],"function": "isSevenActive"},
+            {"word": "acht", "leds": [44, 45, 46, 47],"function": "isEightActive"},
+            {"word": "negen", "leds": [29, 30, 31, 32, 33],"function": "isNineActive"},
+            {"word": "tien", "leds": [37, 36, 35, 34],"function": "isTenActive"},
+            {"word": "elf", "leds": [40, 39, 38],"function": "isElevenActive"},
+            {"word": "twaalf", "leds": [19, 18, 17, 16, 15, 14],"function": "isTwelveActive"},
+            {"background" : "knadvzgbmyx", "leds" : [87,88,91,92,93,83,74,69,59,54,24]}
+            ]
+    }
+}

@@ -1,6 +1,9 @@
-#pragma once 
-#include <headers.h>
+#include "headers.h"
 
 void filesystemSetup(){
-    LittleFS.begin();
+    reportmem(__func__);
+    filesystem.begin();
+    debug_printf("Filesystem status %d\n", filesystem.exists("/"));
+    //verifyConfigFile();
 }
+
