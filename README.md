@@ -5,8 +5,8 @@ Word clock originally based on [Bitlair Wordclock](https://github.com/bitlair/wo
 I've built one black plastic one with only an light sensitive sensor (LDR) and an aluminium one with an LDR and a touch sensitive surface on top, which I plan to use as a button. The clockface is in Dutch but the principle is the same for other languages. The software is setup to be generic (thanks to the way Bitlair wrote the initial version).
 
 The clock needs to be connected to WiFi and gets the time from an NTP-server (configurable).
+!['photo of working clocks'](doc/pictures/working_clock.jpg)
 
-`<photo of clock>`
 
 ## Construction
 
