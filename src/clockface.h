@@ -139,9 +139,8 @@ bool isHourActive(int8_t testHour, uint8_t hour, uint8_t minute)
   if ((minute >= 20) && (previousHour == hour))
     return true;
   }
-  // 0 - 24 huidig uur
-  // 25 - 60 vorig uur
-
+  // 0 - 24 current hour
+  // 25 - 60 previous hour
 
   return false;
 }

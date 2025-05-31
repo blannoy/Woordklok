@@ -9,10 +9,13 @@ char *JSONStringRep;
 
 void sendResponse(int code, const char *content_type, const char *message)
 
-{ // server.sendHeader("Access-Control-Allow-Origin", "*");
-  // server.sendHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
-  // server.sendHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
-
+{ 
+  // CORS headers for cross-origin requests
+  #if defined(ESP8266)
+   server.sendHeader("Access-Control-Allow-Origin", "*");
+   server.sendHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+   server.sendHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
+#endif
   server.send(code, content_type, message);
 }
 
@@ -115,7 +118,6 @@ void apiSendJSON(int status, JsonObject object)
 {
   String json;
   serializeJson(object, json);
-  // server.send(status, "application/json", json);
   sendResponse(status, "application/json", json.c_str());
 }
 
@@ -123,8 +125,6 @@ void apiSendJSON(int status, DynamicJsonDocument doc)
 {
   JSONStringRep = (char *)malloc(doc.memoryUsage() + 1);
   serializeJson(doc, JSONStringRep, doc.memoryUsage() + 1);
-  // debug_printf("Sending JSON %s\n", JSONStringRep);
-  //  server.send(status, "application/json", json);
   sendResponse(status, "application/json", JSONStringRep);
   doc.clear();
 }
@@ -285,7 +285,6 @@ void setBrightness()
     DynamicJsonDocument json(768);
     deserializeJson(json, body);
     serializeJsonPretty(json, Serial);
-    JsonObject::iterator it = json.as<JsonObject>().begin();
     String brightnessMode = "";
 
     for (JsonPair kv : json.as<JsonObject>()) {
@@ -333,7 +332,7 @@ void setBrightness()
             }
                         if (strcmp(config.sensors[i].attributeNames[j], "ldrBright") == 0)
             {
-              config.sensors[i].attributeValues[j]= config.ldrBrightness.ldrRange.dark;
+              config.sensors[i].attributeValues[j]= config.ldrBrightness.ldrRange.bright;
             }
           }
           break;
@@ -474,9 +473,9 @@ void webServerSetup()
   debug_println("Webserver setup");
   if (!serverStarted)
   {
-
+    #if defined(ESP32)
     server.enableCORS();
-
+    #endif
     server.on("/api/TestAllPixels", runTestAllPixels);
     server.on("/api/TestPixels", runTestPixels);
     server.on("/api/testClockFaceMinutes", runClockFaceTestMinutes);

@@ -1,0 +1,65 @@
+{    "colors" :{
+        "ledMode" : "singleColor",
+        "ledConfig" : {
+            "singleColor" : { "color": "#12fe12", "backgroundColor": "#554422" },
+            "rainbowColor" : { "cycleTime" : 20, "backgroundColor": "#000000"},
+            "hourlyColor" : {"color":["#ff7300","#00ff99","#0000ff","#ff00f2","#00bfff","#66ff00","#ff5900","#ff0099","#004cff","#00ff26","#ffbf00","#b300ff","#ff4000","#ff00ff","#00ff8c","#ff6600","#0059ff","#ffe500","#7f00ff","#ff00b2","#00ff00","#0066ff","#ff5900","#00ccff"],"backgroundColor":"#000000"},
+            "wordColor" : { "color":["#121214","#458711","#12fe12","#ff004b","#ffeb00","#12fe12","#00dbff","#ec00ff","#ff8000","#00ff83","#0062ff","#6e00ff","#00aaff","#458711","#008dff","#ff0000","#ff9400","#ff00eb","#9aff00","#00afff","#12fe12","#00ff8d","#0006ff","#00ff06","#00b4ff","#ff00bb","#00f8ff"],"backgroundColor":"#001eff"}
+        }
+    },
+    "brightness" :{
+        "brightnessMode" : "ldrBrightness",
+        "backgroundDimFactor" : 30,
+        "settings" : {
+            "fixedBrightness" : {
+                "brightness" : 150
+            },
+            "ldrBrightness" : {
+                "ldrRange" : {
+                    "dark" : 10,
+                    "bright" : 100
+                },
+                "brightness" : {
+                    "min" : 16, 
+                    "max" : 150
+                }
+            },
+            "timeBrightness": {
+                "timeSlot" : {
+                    "startHour" : 8,
+                    "endHour" : 22                
+                },
+                "brightness" : {
+                    "max" : 150, 
+                    "min" : 16
+                }
+            }
+        }
+    },
+    "sensors": [
+      {
+        "name": "touch",
+        "attributes": [
+          {
+            "name": "threshold",
+            "value": 70000
+          }
+        ]
+      },
+      {
+        "name": "ldr",
+        "attributes": [
+          {
+            "name": "ldrDark",
+            "value": 10
+          },
+          {
+            "name": "ldrBright",
+            "value": 100
+          }
+        ]
+      }
+    ]
+}
+
+

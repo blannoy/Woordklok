@@ -225,7 +225,7 @@ Configuration config;
 Configuration workingConfig;
 DynamicJsonDocument json(CONFIGSIZE);
 
-#include <WiFi.h>
+
 #include <WiFiClient.h>
 
 #if defined(ESP8266)
@@ -238,6 +238,7 @@ ESP8266HTTPUpdateServer fsUpdateServer;
 #endif
 
 #if defined(ESP32)
+#include <WiFi.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
 WebServer server(80);

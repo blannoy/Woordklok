@@ -9,10 +9,10 @@
 
 #if defined(ESP32)
 #include <ESPmDNS.h>
+#include <WiFi.h>
 #endif
 
 
-#include <WiFi.h>
 #include <WiFiManager.h>
 
 WiFiManager wifiManager;

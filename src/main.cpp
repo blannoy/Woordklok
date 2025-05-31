@@ -5,19 +5,22 @@
 //@todo weather representation
 
 #define DEBUG  false
-#define DEBUGMEM false
 
 #define LEDSTRIPPIN 13
 
-// clock has light sensor
+// clock has light sensor - uncomment to enable
 #define HASLDR 
+#if defined(ESP32)
 #define LDRPIN A1
+#elif defined(ESP8266)
+#define LDRPIN A0 
+#endif
 
-// clock has touch sensor
-#define HASTOUCHBUTTON
+// clock has touch sensor - uncomment to enable
+/* #define HASTOUCHBUTTON
 #if defined(ESP32)
 #define TOUCHPIN T12
-#endif
+#endif */
 
 #include <Arduino.h>
 #include "utils.h"
@@ -38,7 +41,6 @@ long bootTime = 0;
 void setup() {
   Serial.begin(115200);
   debug_begin(115200);
-  initMemLog();
     debug_printf("Setup filesystem\n");
   filesystemSetup();
     debug_printf("\nConfiguration...\n");

@@ -9,7 +9,6 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
     const isProduction = process.env.NODE_ENV === 'production';
-    console.log(`isProduction: ${isProduction}`);
     const isAcceptance = process.env.NODE_ENV === 'acceptance';
     const dotenvFilename = isProduction ? '.env.production' : (isAcceptance ? '.env.acceptance' :'.env.development');
     return {

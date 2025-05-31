@@ -1,8 +1,6 @@
 #pragma once
 
 #include "headers.h"
-// #define DEBUG true
-// #include "utils.h"
 
 bool validJSON = true;
 
@@ -18,8 +16,6 @@ void verifyConfigFile()
     if (!deserializeError)
     {
       serializeJson(json, Serial);
-      // Configuration conf = JSON2config(json);
-      // printConfig(conf);
     }
     else
     {
@@ -230,27 +226,13 @@ void config2JSON(Configuration &conf, DynamicJsonDocument &doc)
       }
     }
   }
-
-  // json[F("checksum")] = conf.checksum;
 }
 
 bool clockface2config(const JsonDocument &doc, Configuration &conf)
 {
-  reportmem("Start config");
-  // debug_println(F("Got following JSON"));
-  // serializeJson(doc,Serial);
 
   bool validJSON = true;
-  // debug_println(json[F("system")][F("ntp_server")].as<String>());
-  // for (uint8_t i = 0; i < NUMKEYS; i++)
-  // {
-  //   if (!doc.containsKey(configKeys[i]))
-  //   {
-  //     // debug_print(F("Missing key "));
-  //     // debug_println(configKeys[i]);
-  //     validJSON = false;
-  //   }
-  // }
+
   if (validJSON)
   {
     conf.clockfaceLayout.wordGridCols = json[F("clockface")][F("wordGridCols")].as<unsigned int>();
@@ -260,21 +242,18 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
     JsonArray layout = json[F("clockface")][F("layout")];
     conf.clockfaceLayout.totalWords = layout.size() - 1;
     conf.clockfaceLayout.hasTwenty = false;
-    // debug_printf("Total words: %d\n", totalWords);
-    // debug_printf("Total leds: %d\n", totalLeds);
-    reportmem("Conversion started");
 
     if (json[F("system")][F("ntp_server")])
     {
       copyString(json[F("system")][F("ntp_server")], conf.ntp_server);
     }
-    reportmem("ntp");
+
 
     if (json[F("system")][F("hostname")])
     {
       copyString(json[F("system")][F("hostname")], conf.hostname);
     }
-    reportmem("hostname");
+
 
     /// Load clockface
     conf.clockface = (ClockfaceWord *)malloc((conf.clockfaceLayout.totalWords + 1) * sizeof(ClockfaceWord));
@@ -325,9 +304,6 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
 
 bool JSON2config(const JsonDocument &doc, Configuration &conf)
 {
-  reportmem("Start config");
-  // debug_println(F("Got following JSON"));
-  // serializeJson(doc,Serial);
 
   bool validJSON = true;
   // debug_println(json[F("system")][F("ntp_server")].as<String>());
@@ -405,14 +381,11 @@ bool JSON2config(const JsonDocument &doc, Configuration &conf)
     conf.fixedBrightness.brightness = (uint8_t)jsonBrightnessSettings[F("fixedBrightness")][F("brightness")].as<int>();
     conf.ldrBrightness.brightness.min = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("brightness")][F("min")].as<int>();
     conf.ldrBrightness.brightness.max = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("brightness")][F("max")].as<int>();
-    // conf.ldrBrightness.ldrRange.dark = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("ldrRange")][F("dark")].as<int>();
-    // conf.ldrBrightness.ldrRange.bright = (uint8_t)jsonBrightnessSettings[F("ldrBrightness")][F("ldrRange")][F("bright")].as<int>();
     conf.timeBrightness.brightness.min = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("brightness")][F("min")].as<int>();
     conf.timeBrightness.brightness.max = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("brightness")][F("max")].as<int>();
     conf.timeBrightness.timeSlot.startHour = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("timeSlot")][F("startHour")].as<int>();
     conf.timeBrightness.timeSlot.endHour = (uint8_t)jsonBrightnessSettings[F("timeBrightness")][F("timeSlot")][F("endHour")].as<int>();
 
-    reportmem("brightness");
     if (json[F("sensors")])
     {
       JsonArrayConst sensors = json[F("sensors")].as<JsonArrayConst>();
@@ -585,18 +558,10 @@ void loadConfiguration(Configuration *conf)
   File configFile = LittleFS.open("/config.json", "r");
   if (configFile)
   {
-    Serial.println(F("opened config file"));
-    /*size_t size = configFile.size();
-    std::unique_ptr<char[]> buf(new char[size]);
-    configFile.readBytes(buf.get(), size);*/
-    reportmem(F("file voor deserialize"));
     auto deserializeError = deserializeJson(json, configFile);
-    reportmem(F("file na  deserialize"));
     configFile.close();
     if (!deserializeError)
     {
-      // serializeJson(json,Serial);
-      // serializeJsonPretty(json, Serial);
       validJSON = true;
       JSON2config(json, *conf);
     }
@@ -628,18 +593,10 @@ void loadClockface(Configuration *conf)
   File configFile = LittleFS.open("/clockface.json", "r");
   if (configFile)
   {
-    Serial.println(F("opened clockface file"));
-    /*size_t size = configFile.size();
-    std::unique_ptr<char[]> buf(new char[size]);
-    configFile.readBytes(buf.get(), size);*/
-    reportmem(F("file voor deserialize"));
     auto deserializeError = deserializeJson(json, configFile);
-    reportmem(F("file na  deserialize"));
     configFile.close();
     if (!deserializeError)
     {
-      // serializeJson(json,Serial);
-      // serializeJsonPretty(json, Serial);
       validJSON = true;
       clockface2config(json, *conf);
     }
@@ -664,14 +621,6 @@ void loadClockface(Configuration *conf)
 }
 void configurationSetup()
 {
-  reportmem("test");
-  /* config = (Configuration *)malloc(sizeof(Configuration));
-  if (!config)
-  {
-    Serial.println("ERROR malloc configurationSetup");
-  } */
-
-  reportmem("test");
   loadClockface(&config);
   loadConfiguration(&config);
 }

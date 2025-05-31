@@ -37,46 +37,7 @@
     delay(2000);                   \
   } while (0)
 
-#ifdef ESP32
-#define reportmem(...)
-#else
-#define reportmem(...)                                                     \
-  do                                                                       \
-  {                                                                        \
-    if (DEBUGMEM)                                                          \
-    {                                                                      \
-      char stack;                                                          \
-      float ratio = (float)ESP.getFreeContStack() / (float)beginFreeStack; \
-        Serial.print(__VA_ARGS__);                                         \
-        Serial.print(F(" - "));                                            \
-        Serial.print(F(" stack "));                                        \
-        Serial.print(stack_start - &stack);                                \
-        Serial.print(F(" - "));                                            \
-        Serial.print(ESP.getFreeContStack());                              \
-        Serial.print(F(" / "));                                            \
-        Serial.print(beginFreeStack);                                      \
-        Serial.print(F(" heap "));                                         \
-        Serial.print(ESP.getFreeHeap());                                   \
-        Serial.print(F(" !!!!!!WARNING!!!!!"));                            \
-        Serial.print(ratio);                                               \
-        Serial.println();                                                  \
-    }                                                                      \
-  } while (0)
-#endif
 
-char *stack_start;
-uint32_t beginFreeStack;
-
-void initMemLog()
-{
-#ifndef ESP32
-#ifdef DEBUGMEM
-  char stack;
-  stack_start = &stack;
-  beginFreeStack = ESP.getFreeContStack();
-#endif
-#endif
-}
 class RunningAverage
 {
 private:
@@ -173,9 +134,6 @@ void logLoop()
 void flushLog()
 {
   // TODO
-  /*    memset(&logBufferString[0], 0, sizeof(logBufferString));
-      logPointer=0;
-      Log.flush();*/
 }
 
 void putchar_(char character)

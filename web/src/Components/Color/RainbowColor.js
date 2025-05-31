@@ -28,7 +28,7 @@ export default function RainbowColor(props) {
 
   // change in passed property, triggers update of state
   useEffect(() => {
-    console.log("RainbowColor: props.colorConfig", JSON.stringify(props.colorConfig), "-", JSON.stringify(colorConfig));
+  //  console.log("RainbowColor: props.colorConfig", JSON.stringify(props.colorConfig), "-", JSON.stringify(colorConfig));
     setColorConfig({ ...props.colorConfig });
     setCycleTime(props.colorConfig.cycleTime);
     props.setClockColors({ 'rainbowColor': { 'cycleTime': colorConfig.cycleTime, 'backgroundColor': colorConfig.backgroundColor } });
@@ -36,7 +36,7 @@ export default function RainbowColor(props) {
   }, [props.colorConfig])
 
      useEffect(() => {
-      console.log("RainbowColor: colorConfig", JSON.stringify(colorConfig), "-", foregroundColorHex);
+   //   console.log("RainbowColor: colorConfig", JSON.stringify(colorConfig), "-", foregroundColorHex);
       if (fullConfig !== undefined && fullConfig.clockface !== undefined) {
         let colorMapArray = Array(fullConfig.clockface.metadata.nrWords).fill(foregroundColorHex);
         colorMapArray[fullConfig.clockface.metadata.backgroundIndex] = colorConfig.backgroundColor;
@@ -78,7 +78,7 @@ export default function RainbowColor(props) {
     <div>
       <h3>Tijd (in s) waarna de klok terug van kleur verandert.</h3>
       <div>
-        <input type="number" id="cycleTime" value={cycleTime !== undefined ? cycleTime : 0} min="1" max="3600" onChange={cycleTimeChange} />
+        <input type="number" id="cycleTime" value={cycleTime !== undefined ? cycleTime : 0} min="1" max="3600" onChange={e=>cycleTimeChange(e.target.value)} />
       </div>
 
       <h3>Kies een achtergrondkleur</h3>

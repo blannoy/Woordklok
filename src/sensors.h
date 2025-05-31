@@ -74,17 +74,20 @@ void sensorLoop()
 
 uint32_t readSensor(const char *sensorArg)
 {
+#ifdef HASTOUCHBUTTON
   if (strcmp(sensorArg, "touch") == 0)
   {
     return touchRead(TOUCHPIN);
   }
-  else if (strcmp(sensorArg, "ldr") == 0)
+  #endif
+#ifdef HASLDR
+if (strcmp(sensorArg, "ldr") == 0)
   {
     return LDRvalue;
   }
-  else
-  {
+#endif
+  
     debug_println("Unknown sensor");
     return -1;
-  }
+  
 }
