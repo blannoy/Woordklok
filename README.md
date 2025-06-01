@@ -41,7 +41,11 @@ The [BITLAIR presentation](doc/workshopwordclock2019-01.odp) gives you a good id
 The sofware has 2 main parts:
 * Arduino backend that drives the clock and exposes some REST endpoints.
 * ReactJS frontend stored on the board (in LittleFS) that is used to configure the colormode/colors and brightness mode / brightness.
-
+<img src="doc/pictures/web_home.png" width="200" >
+<img src="doc/pictures/web_colors.png" width="200" >
+<img src="doc/pictures/web_brightness.png" width="200" >
+<img src="doc/pictures/web_admin.png" width="200" >
+<img src="doc/pictures/web_sensors.png" width="200" >
 So you will need to write the firmware to the board and also a file system image.
 
 ### Arduino code
@@ -62,15 +66,10 @@ After that it should startup and display the time. You can turn on debug-message
 ### Web Interface
 
 The web/-folder contains a ReactJS interface. Normally you should be able to use the interface that was built in the data/-folder. The user-interface is in Dutch however.
-<img src="doc/pictures/web_home.png" width="200" >
-<img src="doc/pictures/web_colors.png" width="200" >
-<img src="doc/pictures/web_brightness.png" width="200" >
-<img src="doc/pictures/web_admin.png" width="200" >
-<img src="doc/pictures/web_sensors.png" width="200" >
 
 If you would like to build the code yourself, install React in the web/-folder. The build-system uses webpack, that also copies the config-files to data/ at the end.
 
-There are 2 main built-modes:
+There are 2 main build-modes:
 
 * `npm run start:acc `- acceptance mode: run a local version in VSCode that connects to the rest-services of the clock. That way you can adapt the web-code and see how the clock responds. You will need to put the correct address in env.acceptance.
 * `npm run build` - production build: build and minify the code and write it to data/ together with the config files. It also creates the filesystem image to write to the board (hardwired to be Wemos S3 target), but you can change that.
