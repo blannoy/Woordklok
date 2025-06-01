@@ -41,8 +41,10 @@ The [BITLAIR presentation](doc/workshopwordclock2019-01.odp) gives you a good id
 The sofware has 2 main parts:
 * Arduino backend that drives the clock and exposes some REST endpoints.
 * ReactJS frontend stored on the board (in LittleFS) that is used to configure the colormode/colors and brightness mode / brightness.
+
 <img src="doc/pictures/web_home.png" width="200" ><img src="doc/pictures/web_colors.png" width="200" ><img src="doc/pictures/web_brightness.png" width="200" >
 <img src="doc/pictures/web_admin.png" width="200" ><img src="doc/pictures/web_sensors.png" width="200" >
+
 So you will need to write the firmware to the board and also a file system image.
 
 ### Arduino code
