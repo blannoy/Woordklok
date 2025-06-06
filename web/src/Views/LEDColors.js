@@ -15,7 +15,7 @@ function LEDColors() {
   const [testColor,] = useTestColorMutation();
   const [config, setConfig] = useState(fullConfig?fullConfig.config : undefined);
   const [selectedOption, setSelectedOption] = useState(config ? config.colors.ledMode : "singleColor");
-  const [colorConfig, setColorConfig] = useState(config && selectedOption ? { selectedOption: { ...config.colors.ledConfig[selectedOption] } } : {});
+  const [colorConfig, setColorConfig] = useState(config && selectedOption ? { ...config.colors.ledConfig[selectedOption]  } : {});
   const [showPreview, setShowPreview] = useState(false);
   const [clockColors, setClockColors] = useState({})
   const [getConfig, { data: configData, error: configError, isLoading: configIsLoading }] = useLazyGetConfigQuery();

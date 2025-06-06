@@ -4,16 +4,16 @@
 //@todo wifi.h: remove config.json logic
 //@todo weather representation
 
-#define DEBUG  false
+#define DEBUG true
 
 #define LEDSTRIPPIN 13
 
 // clock has light sensor - uncomment to enable
-#define HASLDR 
+#define HASLDR
 #if defined(ESP32)
 #define LDRPIN A1
 #elif defined(ESP8266)
-#define LDRPIN A0 
+#define LDRPIN A0
 #endif
 
 // clock has touch sensor - uncomment to enable
@@ -37,23 +37,25 @@
 states state = BOOT;
 long lastLedUpdate = 0;
 long bootTime = 0;
+long bootRetryTime = 0;
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
   debug_begin(115200);
-    debug_printf("Setup filesystem\n");
+  debug_printf("Setup filesystem\n");
   filesystemSetup();
-    debug_printf("\nConfiguration...\n");
-  configurationSetup();
-   debug_printf("Setup sensors\n");
-  setupSensors();
   debug_printf("Setup led\n");
-  ledSetup();
-  filesystemSetup();
+  statusLedSetup();
+  char * defaultTimeServer = "pool.ntp.org";
+  strlcpy(config.ntp_server, defaultTimeServer, strlen(defaultTimeServer) + 1);
+  //timeSetup();
+  //timeSetup();
   debug_printf("Software version %s", version.c_str());
-  //printConfig(config);
+  // printConfig(config);
   debug_printf("Running...\n");
-  }
+  configLoaded= configurationSetup();
+}
 
 void loop()
 {
@@ -65,12 +67,41 @@ void loop()
   switch (state)
   {
   case BOOT:
-    setStatusLeds();
-    setupRain();
-    wifiSetup();
-    timeSetup();
-    bootTime = millis();
-    changeState(STARTUP);
+    if ((millis() - bootRetryTime > 1000) || (bootRetryTime == 0))
+    {
+      if (!wifiConnected)
+        wifiSetup();
+       if (wifiConnected && !timeConfigSet){
+         timeSetup();
+         timeConfigSet = true;
+       }
+      if (configLoaded)
+      {
+        statusLed(CONFIG, green);
+      }
+      else
+      {
+        statusLed(CONFIG, red);
+      }
+      bootRetryTime = millis();
+    }
+    else
+    {
+      setStatusLeds();
+    }
+    if (wifiConnected && configLoaded && dateYear > 70)
+    {
+      setStatusLeds();
+      debug_println("LED setup");
+      ledSetup();
+      debug_println("Sensor setup");
+      setupSensors();
+      bootTime = millis();
+      debug_println("Rain setup");
+      setupRain();
+      changeState(STARTUP);
+      delay(1000); 
+    }
     break;
   case STARTUP:
     if ((millis() - bootTime) < BOOTANIMTIME)

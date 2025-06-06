@@ -30,7 +30,7 @@ long timeUpdateInterval = 20000; // 20 seconds
 void printLocalTime(){
   struct tm timeinfo;
   if(!getLocalTime(&timeinfo)){
-    Serial.println("Failed to obtain time 1");
+    Serial.println("Failed to obtain time");
     return;
   }
   // debug_printf("%s, %s %02d %04d %02d:%02d:%02d zone %s %s\n", 
@@ -56,13 +56,14 @@ void timeSetup() {
   setenv("TZ",MYTZ,1);  //  Now adjust the TZ.  Clock settings are adjusted to show the new local time
   tzset();
   #endif
-//  debug_printf("Setting time via %s\n",config.ntp_server);
+  debug_printf("Setting time via %s\n",config.ntp_server);
   if(!getLocalTime(&timeinfo)){
     Serial.println("  Failed to obtain time");
     return;
   }
   Serial.println("  Got the time from NTP");
   yield();
+
 }
 
 void timeLoop() {
