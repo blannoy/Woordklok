@@ -117,7 +117,6 @@ void clockface2JSON(Configuration &conf, DynamicJsonDocument &doc)
 void config2JSON(Configuration &conf, DynamicJsonDocument &doc)
 {
   doc.clear();
-  doc.garbageCollect();
   JsonObject colors = doc[F("colors")].to<JsonObject>();
 
   switch (conf.ledMode)
@@ -299,6 +298,8 @@ bool clockface2config(const JsonDocument &doc, Configuration &conf)
       conf.clockface[backgroundKey].colorCodeInTable = backgroundKey;
     }
   }
+
+  clockfaceLEDSetup();
   return true;
 }
 
@@ -550,11 +551,16 @@ void printConfig(Configuration &conf)
   serializeJson(json, Serial);
 }
 
-void loadConfiguration(Configuration *conf)
+bool loadConfiguration(Configuration *conf)
 {
 
   debug_println(F("Loading configuration from filesystem"));
   validJSON = false;
+  if (!LittleFS.exists("/config.json"))
+  {
+    debug_println(F("Config file does not exist"));
+    return false;
+  }
   File configFile = LittleFS.open("/config.json", "r");
   if (configFile)
   {
@@ -582,14 +588,19 @@ void loadConfiguration(Configuration *conf)
     Serial.println(F("Invalid JSON"));
     // loadDefaultConfiguration();
   }
-
+return validJSON;
   // copyConfig(config, oldConfig);
 }
-void loadClockface(Configuration *conf)
+bool loadClockface(Configuration *conf)
 {
 
   debug_println(F("Loading clockface from filesystem"));
   validJSON = false;
+  if (!LittleFS.exists("/clockface.json"))
+  {
+    debug_println(F("Clockface file does not exist"));
+    return false;
+  }
   File configFile = LittleFS.open("/clockface.json", "r");
   if (configFile)
   {
@@ -616,13 +627,14 @@ void loadClockface(Configuration *conf)
     debug_println(F("Invalid clockface JSON"));
     // loadDefaultConfiguration();
   }
-
+return validJSON;
   // copyConfig(config, oldConfig);
 }
-void configurationSetup()
+bool configurationSetup()
 {
-  loadClockface(&config);
-  loadConfiguration(&config);
+  bool clockfaceOK=loadClockface(&config);
+  bool configOK=loadConfiguration(&config);
+  return clockfaceOK && configOK;
 }
 
 void saveConfiguration(Configuration &conf)

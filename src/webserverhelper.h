@@ -4,17 +4,34 @@
 
 #include <ElegantOTA.h>
 
+void handleFileUpload();
+void handleDefaultRoot();
 bool serverStarted = false;
 char *JSONStringRep;
 
+void rebootClock()
+{
+  static const char index_html[] PROGMEM = R"rawliteral(
+  <html>
+  <head>
+     <script type="text/javascript">      setTimeout(function(){        window.location.href = '/';      }, 5000);    </script> 
+  </head>
+  <body>
+    <p>Rebooting and going back to home ...</p>
+    <p>If nothing happens after 5 seconds, go <a href"/">here</a></p>
+  </body>
+</html>)rawliteral";
+  server.send_P(200, "text/html", index_html);
+  ESP.restart();
+}
 void sendResponse(int code, const char *content_type, const char *message)
 
-{ 
-  // CORS headers for cross-origin requests
-  #if defined(ESP8266)
-   server.sendHeader("Access-Control-Allow-Origin", "*");
-   server.sendHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
-   server.sendHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
+{
+// CORS headers for cross-origin requests
+#if defined(ESP8266)
+  server.sendHeader("Access-Control-Allow-Origin", "*");
+  server.sendHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+  server.sendHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
 #endif
   server.send(code, content_type, message);
 }
@@ -91,6 +108,11 @@ bool webserverServeFileFromFS(String path)
     if (LittleFS.exists(compressed_path))
       path += ".gz";
     File file = LittleFS.open(path, "r");
+    #if defined(ESP8266)
+  server.sendHeader("Access-Control-Allow-Origin", "*");
+  server.sendHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+  server.sendHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
+#endif
     size_t sent = server.streamFile(file, content_type);
     file.close();
     debug_printf("sent file: %s \n", path.c_str());
@@ -166,16 +188,21 @@ void getStatus()
   jsonDoc.clear();
 }
 
+
+// Due to memory issues serializing/deserializing, file returned from FS
 void getConfig()
 {
-  config2JSON(config, json);
-  apiSendJSON(200, json);
+  webserverServeFileFromFS("/config.json");
+//  config2JSON(config, json);
+//  apiSendJSON(200, json);
 }
 
+// Due to memory issues serializing/deserializing, file returned from FS
 void getClockface()
 {
-  clockface2JSON(config, json);
-  apiSendJSON(200, json);
+  webserverServeFileFromFS("/clockface.json");
+//  clockface2JSON(config, json);
+//  apiSendJSON(200, json);
 }
 
 void setLedColor()
@@ -262,8 +289,10 @@ void setLedColor()
     {
       debug_println("Test cycle: change state to TESTCOLORS");
       changeState(states::TESTCOLORS);
-    } else {
-    
+    }
+    else
+    {
+
       saveConfiguration(config);
     }
   }
@@ -287,10 +316,11 @@ void setBrightness()
     serializeJsonPretty(json, Serial);
     String brightnessMode = "";
 
-    for (JsonPair kv : json.as<JsonObject>()) {
-      if (strcmp(kv.key().c_str(),"fixedBrightness")==0 ||
-          strcmp(kv.key().c_str(), "ldrBrightness")==0 ||
-          strcmp(kv.key().c_str(),"timeBrightness")==0)
+    for (JsonPair kv : json.as<JsonObject>())
+    {
+      if (strcmp(kv.key().c_str(), "fixedBrightness") == 0 ||
+          strcmp(kv.key().c_str(), "ldrBrightness") == 0 ||
+          strcmp(kv.key().c_str(), "timeBrightness") == 0)
       {
         brightnessMode = kv.key().c_str();
         break;
@@ -307,7 +337,7 @@ void setBrightness()
     }
     if (!json[F("backgroundDimFactor")].isNull())
     {
-      config.backgroundDimFactor=json[F("backgroundDimFactor")].as<uint8_t>();
+      config.backgroundDimFactor = json[F("backgroundDimFactor")].as<uint8_t>();
     }
     if (brightnessMode.equals("fixedBrightness"))
     {
@@ -328,11 +358,11 @@ void setBrightness()
           {
             if (strcmp(config.sensors[i].attributeNames[j], "ldrDark") == 0)
             {
-              config.sensors[i].attributeValues[j]= config.ldrBrightness.ldrRange.dark;
+              config.sensors[i].attributeValues[j] = config.ldrBrightness.ldrRange.dark;
             }
-                        if (strcmp(config.sensors[i].attributeNames[j], "ldrBright") == 0)
+            if (strcmp(config.sensors[i].attributeNames[j], "ldrBright") == 0)
             {
-              config.sensors[i].attributeValues[j]= config.ldrBrightness.ldrRange.bright;
+              config.sensors[i].attributeValues[j] = config.ldrBrightness.ldrRange.bright;
             }
           }
           break;
@@ -362,7 +392,8 @@ void setBrightness()
   getConfig();
 }
 
-void setSensors(){
+void setSensors()
+{
   String body = server.arg(F("plain"));
   if (body.length() > 0)
   {
@@ -410,15 +441,15 @@ void setSensors(){
           }
           strlcpy(config.sensors[i].attributeNames[j], attribute[F("name")], ATTRIBUTENAME_MAX);
           config.sensors[i].attributeValues[j] = attribute[F("value")];
-          if ((strcmp(config.sensors[i].name, "touch") == 0)&&(strcmp(config.sensors[i].attributeNames[j], "threshold") == 0))
+          if ((strcmp(config.sensors[i].name, "touch") == 0) && (strcmp(config.sensors[i].attributeNames[j], "threshold") == 0))
           {
             config.touchThreshold = config.sensors[i].attributeValues[j];
-          }          
-          if ((strcmp(config.sensors[i].name, "ldr") == 0)&&(strcmp(config.sensors[i].attributeNames[j], "ldrDark") == 0))
+          }
+          if ((strcmp(config.sensors[i].name, "ldr") == 0) && (strcmp(config.sensors[i].attributeNames[j], "ldrDark") == 0))
           {
             config.ldrBrightness.ldrRange.dark = config.sensors[i].attributeValues[j];
           }
-          if ((strcmp(config.sensors[i].name, "ldr") == 0)&&(strcmp(config.sensors[i].attributeNames[j], "ldrBright") == 0))
+          if ((strcmp(config.sensors[i].name, "ldr") == 0) && (strcmp(config.sensors[i].attributeNames[j], "ldrBright") == 0))
           {
             config.ldrBrightness.ldrRange.bright = config.sensors[i].attributeValues[j];
           }
@@ -434,7 +465,7 @@ void setSensors(){
   }
   saveConfiguration(config);
   getConfig();
- //   server.send(200, "text/plain", "OK");
+  //   server.send(200, "text/plain", "OK");
 }
 
 void getSensorValue()
@@ -463,7 +494,7 @@ void getSensorValue()
     return;
   }
   uint32_t sensorValue = readSensor(sensorArg);
-  //debug_printf("Sensor %s value: %d\n", sensorArg, sensorValue);
+  // debug_printf("Sensor %s value: %d\n", sensorArg, sensorValue);
   root["sensorValue"] = sensorValue;
   apiSendJSON(200, root);
   json.clear();
@@ -473,9 +504,9 @@ void webServerSetup()
   debug_println("Webserver setup");
   if (!serverStarted)
   {
-    #if defined(ESP32)
+#if defined(ESP32)
     server.enableCORS();
-    #endif
+#endif
     server.on("/api/TestAllPixels", runTestAllPixels);
     server.on("/api/TestPixels", runTestPixels);
     server.on("/api/testClockFaceMinutes", runClockFaceTestMinutes);
@@ -489,13 +520,29 @@ void webServerSetup()
     server.on("/api/brightness", setBrightness);
     server.on("/api/getSensorValue", getSensorValue);
     server.on("/api/sensors", setSensors);
+    server.on("/api/reboot", rebootClock);
+    server.on("/api/uploadConfig", HTTP_POST, // if the client posts to the upload page
+              []() {},
+              handleFileUpload // Receive and save the file
+    );
+    if (!LittleFS.exists("/index.html"))
+    {
+      server.on("/", handleDefaultRoot); // if the root page is requested, send the index.html file
+    }
 
     // server.on("/api/log", getLog);
     server.onNotFound(handleNotFound);
 
-    //    flashUpdateServer.setup(&server, String("/api/update/flash"));
-    //    fsUpdateServer.setup(&server, String("/api/update/file"));
-    ElegantOTA.setAutoReboot(true);
+    ElegantOTA.onEnd([](bool success)
+                     {
+                      if (success) {
+                        debug_println("Update succesful");
+                        delay(3000);
+                        rebootClock();
+                      } else {
+                        debug_println("Error updating");
+                      } 
+                    });
     ElegantOTA.begin(&server);
     server.begin();
     debug_printf("HTTP server started on %s\n", WiFi.localIP().toString().c_str());
@@ -524,4 +571,79 @@ void webServerLoop()
     MDNS.update();
 #endif
   }
+}
+
+void handleFileUpload()
+{ // upload a new file to the SPIFFS
+  HTTPUpload &upload = server.upload();
+  static File fsUploadFile; // Static file object to hold the file being uploaded
+  if (upload.status == UPLOAD_FILE_START)
+  {
+    String filename = upload.filename;
+    if (!(filename.equals("config.json") || filename.equals("clockface.json")))
+    {
+      Serial.println("Invalid file name for upload, only config.json and clockface.json are allowed");
+      server.send(400, "text/plain", "400: invalid file name");
+      return;
+    }
+    if (!filename.startsWith("/"))
+      filename = "/" + filename;
+
+    Serial.print("handleFileUpload Name: ");
+    Serial.println(filename);
+    fsUploadFile = LittleFS.open(filename, "w+"); // Open the file for writing (overwrite if it exists)
+  }
+  else if (upload.status == UPLOAD_FILE_WRITE)
+  {
+    if (fsUploadFile)
+      fsUploadFile.write(upload.buf, upload.currentSize); // Write the received bytes to the file
+  }
+  else if (upload.status == UPLOAD_FILE_END)
+  {
+    if (fsUploadFile)
+    {                       // If the file was successfully created
+      fsUploadFile.close(); // Close the file again
+      Serial.print("handleFileUpload Size: ");
+      Serial.println(upload.totalSize);
+      //server.send(200, "text/plain", "File loaded"); // Redirect the client to the success page
+      rebootClock();
+    }
+    else
+    {
+      Serial.println("File upload failed");
+      server.send(500, "text/plain", "500: couldn't create file");
+    }
+  }
+}
+
+void handleDefaultRoot()
+{
+  static const char index_html[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wordclock initial config</title>
+</head>
+<body>
+    <h1>Config files to upload</h1>
+    <p>Check which json files are present and upload a new one. Reboot after finishing the upload. You can also upload a full filesystem image.</p>
+    <h2><a href="/clockface.json" >Clockface</a></h2>
+    <form method="POST" action="/api/uploadConfig" enctype="multipart/form-data">
+        <input type="file" name="clockface.json" accept=".json">
+        <input class="button" type="submit" value="Upload Clockface">
+    </form>
+    <h2><a href="/config.json" >Configuration</a></h2>
+        <form method="POST" action="/api/uploadConfig" enctype="multipart/form-data">
+        <input type="file" name="config.json" accept=".json">
+        <input class="button" type="submit" value="Upload config">
+    </form>
+            <form method="POST" action="/api/reboot" enctype="multipart/form-data">
+        <input class="button" type="submit" value="Reboot">
+</form>
+    <h1>Firmware/Image upload</h1>
+    <iframe src="/update" style="width: 100%; height: 500px;"></iframe>
+</body>
+</html>
+)rawliteral";
+  server.send_P(200, "text/html", index_html);
 }

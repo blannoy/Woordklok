@@ -3,16 +3,18 @@
 #include "headers.h"
 #define colorSaturation 64
 #ifdef ESP32
-//NeoPixelBus<NeoGrbFeature, DotStarEsp32DmaSpiMethod> strip(config.clockfaceLayout.totalLeds);
-NeoPixelBus<NeoGrbFeature, NeoEsp32Rmt0800KbpsMethod> strip(MAXLEDS,LEDSTRIPPIN);
+// NeoPixelBus<NeoGrbFeature, DotStarEsp32DmaSpiMethod> strip(config.clockfaceLayout.totalLeds);
+NeoPixelBus<NeoGrbFeature, NeoEsp32Rmt0800KbpsMethod> strip(MAXLEDS, LEDSTRIPPIN);
 #else
 NeoPixelBus<NeoGrbFeature, NeoEsp8266Dma800KbpsMethod> strip(MAXLEDS);
+//NeoPixelBus<NeoGrbFeature, NeoEsp8266Dma800KbpsMethod> statusStrip(4);
 #endif
 NeoBuffer<NeoBufferMethod<NeoGrbFeature>> klokImage(MAXLEDS, 1, NULL);
 NeoBuffer<NeoBufferMethod<NeoGrbFeature>> targetKlokImage(MAXLEDS, 1, NULL);
 NeoPixelAnimator animations(MAXLEDS, NEO_CENTISECONDS);
 NeoPixelAnimator rainAnimations(MAXDROPS + 1);
 
+RgbColor orange(colorSaturation, colorSaturation/2, 0);
 RgbColor red(colorSaturation, 0, 0);
 RgbColor green(0, colorSaturation, 0);
 RgbColor blue(0, 0, colorSaturation);
@@ -90,11 +92,8 @@ private:
 // create an instance of our shader object with the same feature as our buffer
 BrightnessShader<NeoGrbFeature> shader;
 
-void ledSetup()
+void clockfaceLEDSetup()
 {
-  randomSeed(analogRead(LDRPIN));
-  strip.Begin();
-  clearLEDS();
   remapLEDS = (byte **)malloc(config.clockfaceLayout.wordGridRows * sizeof(byte *));
   for (uint8_t i = 0; i < config.clockfaceLayout.wordGridRows; i++)
     remapLEDS[i] = (byte *)malloc(config.clockfaceLayout.wordGridCols * sizeof(byte));
@@ -103,9 +102,20 @@ void ledSetup()
     RCCoord coord = calcCoord(ledNr);
     remapLEDS[coord.row][coord.col] = ledNr;
   }
+}
 
+void statusLedSetup(){
+  strip.Begin();
   statusLed(WIFI, red);
-  statusLed(Time, red);
+  statusLed(CONFIG, red);
+  statusLed(TIME, red);
+  strip.Show();
+}
+void ledSetup()
+{
+  randomSeed(analogRead(LDRPIN));
+  clearLEDS();
+  showFace(false);
 }
 
 // LEDs are chained from the bottom right -> left, left -> right, right -> left, ...
@@ -329,9 +339,10 @@ void ledShowClockface()
         for (uint8_t pos = 0; pos < strlen(word.label); pos++)
         {
           {
-                    if (getColor(targetKlokImage,word.leds[pos])==black){
-            setColor(word.leds[pos], backgroundColor);
-                    }
+            if (getColor(targetKlokImage, word.leds[pos]) == black)
+            {
+              setColor(word.leds[pos], backgroundColor);
+            }
           }
         }
       }
@@ -361,22 +372,7 @@ void clockLoop()
   }
 }
 
-void statusLed(statusLedList status, NeoBufferMethod<NeoGrbFeature>::ColorObject color)
-{
-  // Serial.println("StatusLED ");
-  switch (status)
-  {
-  case WIFI:
-    setColor(3, color);
-    break;
-  case Time:
-    setColor(2, color);
-    break;
-  case AP:
-    setColor(0, color);
-    break;
-  }
-}
+
 
 byte calculateTimeBrightness()
 {
@@ -511,34 +507,66 @@ void showFaceSimple()
   targetKlokImage.Blt(klokImage, 0);
   klokImage.Render<BrightnessShader<NeoGrbFeature>>(strip, shader);
 }
-
+void statusLed(statusLedList status, NeoBufferMethod<NeoGrbFeature>::ColorObject color)
+{
+  // Serial.println("StatusLED ");
+  switch (status)
+  {
+  case WIFI:
+    strip.SetPixelColor(3, color);
+    break;
+  case CONFIG:
+    strip.SetPixelColor(2, color);
+    break;
+  case TIME:
+    strip.SetPixelColor(1, color);
+    break;
+  }
+  strip.Show();
+}
 void setStatusLeds()
 {
-  if (WiFi.status() == WL_CONNECTED)
-  {
-    statusLed(WIFI, green);
-  }
-  else
-  {
-    statusLed(WIFI, red);
-  }
-  if (dateYear > 70)
-  {
-    statusLed(Time, green);
-  }
-  else
-  {
-    statusLed(Time, red);
-  }
   if ((WiFi.getMode() != WIFI_STA))
   {
-    statusLed(AP, red);
+    statusLed(WIFI, blue);
   }
   else
   {
-    statusLed(AP, black);
+    if (WiFi.status() == WL_CONNECTED)
+    {
+      statusLed(WIFI, green);
+    }
+    else
+    {
+      statusLed(WIFI, red);
+    }
   }
-  showFace(false);
+  if (configLoaded)
+  {
+    statusLed(CONFIG, green);
+  }
+  else
+  {
+    statusLed(CONFIG, red);
+  }
+
+  if (dateYear > 70)
+  {
+    statusLed(TIME, green);
+  }
+  else
+  {
+    if (millis()/1000 % 2 == 0)
+    {
+      statusLed(TIME, orange);
+    }
+    else
+    {
+      statusLed(TIME, red);
+    }
+  }
+
+  //strip.Show();
 }
 
 RgbColor HueToRgbColor(uint8_t colorValue)

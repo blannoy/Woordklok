@@ -7,7 +7,6 @@ I've built one black plastic one with only an light sensitive sensor (LDR) and a
 The clock needs to be connected to WiFi and gets the time from an NTP-server (configurable).
 !['photo of working clocks'](doc/pictures/working_clock.jpg)
 
-
 ## Construction
 
 The clock was built following the Bitlair instructions. I've made some additional material but this could still be considered a work in progress. Various documentation can be found in the [doc](doc/)-folder.
@@ -29,6 +28,7 @@ The clock was built following the Bitlair instructions. I've made some additiona
 ### Assembly
 
 The [BITLAIR presentation](doc/workshopwordclock2019-01.odp) gives you a good idea of the different steps. There are photos of my implementation in the [pictures](doc/pictures)-folder.
+
 * Cut the led strip to the right amount of LEDs for each row and wire the together. The wiring starts at the last led and goes up. Best you use a template to glue the led strip to the right position. Attach power and ground and attach the signal wire to the arduino board to the correct pin (RX for NodeMCU and 13 for ESP32)
 * Optional: Mount the LDR to the frame and wire it to the arduino board, typically A0 (ESP8266) or A1 (I used this for ESP32) pin.
 * I did not wire everything directly to the arduino board to be able to detach the board for programming.
@@ -39,6 +39,7 @@ The [BITLAIR presentation](doc/workshopwordclock2019-01.odp) gives you a good id
 ## Software
 
 The sofware has 2 main parts:
+
 * Arduino backend that drives the clock and exposes some REST endpoints.
 * ReactJS frontend stored on the board (in LittleFS) that is used to configure the colormode/colors and brightness mode / brightness.
 
@@ -58,9 +59,15 @@ These files should be in the data/ folder when you create the filesystem image. 
 
 You should be able to build it with PlatformIO. Libraries used are: NeoPixelBus (to drive the LED), ArduinoJson (handling the configuration files), WiFiManager (WiFi access portal for configuration), ElegantOTA (firmware/filesystem update tool) and OneButton (only used for my touch based clock).
 
-On first boot without any WiFi preconfigured, an AP ("Woordklok-AP") will be visible to configure the WiFi. Connect your phone to it and configure the WiFi.
+On first boot without any WiFi preconfigured, an AP ("Woordklok-AP") will be visible to configure the WiFi. Connect your phone to it and configure the WiFi (go to http://192.168.4.1)
 
-After that it should startup and display the time. You can turn on debug-messages in the code and see some info through the serial-console.
+There are 3 status leds (first 3 "minute"-leds):
+
+* First led: WIFI - if blue, you need to configure the wifi via the "Woorklok-AP", red = it cannot connect, green = ok
+* Second LED: red = cannot load config files - you should upload the filesystem image via the admin-page if you can connect to the web interface, if LittleFS was already present, you can upload the separate json-files.
+* Third LED: red/orange blinking = connecting to an NTP server (this can take up to a minute)
+
+After that it should startup (Matrix-style splash screen) and display the time. You can turn on debug-messages in the code and see some info through the serial-console.
 
 ### Web Interface
 

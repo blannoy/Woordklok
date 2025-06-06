@@ -36,6 +36,7 @@ void saveConfigCallback () {
 void APModeCallback (WiFiManager* myWiFiManager) {
   Serial.println("Entered config mode");
   wifiConnected=false;
+  statusLed(WIFI, blue);
   //setStatusLeds();
   stopServer();
   serverStarted=false;
@@ -78,7 +79,7 @@ if (!strcmp(static_ip,"")){
   else {
     //if you get here you have connected to the WiFi
     debug_println("connected...yeey :)");
-    //statusLed(WIFI,green);
+    statusLed(WIFI,green);
     //wifiConnected=true;
     if (MDNS.begin(config.hostname)) {
       debug_println("MDNS responder started");

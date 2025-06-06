@@ -91,11 +91,12 @@ struct ClockfaceLayout
 String version = "1.0";
 
 extern uint8_t PixelCount;
-
+bool configLoaded = false;
+bool timeConfigSet=false;
 enum statusLedList {
   WIFI,
-  Time,
-  AP
+  CONFIG,
+  TIME
 };
 
 
@@ -275,6 +276,7 @@ struct RCCoord {
   uint8_t row = 0;
   uint8_t col = 0;
 };
+void clockfaceLEDSetup();
 void ledSetup();
 void clearLEDS();
 void FadeAll(uint8_t);

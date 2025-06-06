@@ -2,6 +2,17 @@
     "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
         "string": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "optional": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "functional": "cpp",
+        "regex": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "variant": "cpp"
     }
 }
