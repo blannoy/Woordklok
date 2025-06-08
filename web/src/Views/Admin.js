@@ -20,6 +20,8 @@ function Admin() {
                     </div>
                 </form>
             </div>
+
+
             <Firmware />
         </div>
     );

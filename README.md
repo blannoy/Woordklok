@@ -59,9 +59,15 @@ These files should be in the data/ folder when you create the filesystem image. 
 
 You should be able to build it with PlatformIO. Libraries used are: NeoPixelBus (to drive the LED), ArduinoJson (handling the configuration files), WiFiManager (WiFi access portal for configuration), ElegantOTA (firmware/filesystem update tool) and OneButton (only used for my touch based clock).
 
-On first boot without any WiFi preconfigured, an AP ("Woordklok-AP") will be visible to configure the WiFi. Connect your phone to it and configure the WiFi.
+On first boot without any WiFi preconfigured, an AP ("Woordklok-AP") will be visible to configure the WiFi. Connect your phone to it and configure the WiFi (go to http://192.168.4.1)
 
-After that it should startup and display the time. You can turn on debug-messages in the code and see some info through the serial-console.
+There are 3 status leds (first 3 "minute"-leds):
+
+* First led: WIFI - if blue, you need to configure the wifi via the "Woorklok-AP", red = it cannot connect, green = ok
+* Second LED: red = cannot load config files - you should upload the filesystem image via the admin-page if you can connect to the web interface, if LittleFS was already present, you can upload the separate json-files.
+* Third LED: red/orange blinking = connecting to an NTP server (this can take up to a minute)
+
+After that it should startup (Matrix-style splash screen) and display the time. You can turn on debug-messages in the code and see some info through the serial-console.
 
 ### Web Interface
 
