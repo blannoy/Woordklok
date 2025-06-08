@@ -1,0 +1,68 @@
+{
+  "currentStatus": "Current status",
+  "clock": "Clock",
+  "version": "Version",
+  "woordklokTitle": "Word clock",
+  "nav": {
+    "home": "Home",
+    "colors": "Colors",
+    "brightness": "Brightness",
+    "admin": "Admin",
+    "config": "Config",
+    "sensors": "Sensors"
+  },
+  "admin": {
+    "title": "Admin",
+    "resetWifi": "Reset wifi & start AP:",
+    "configWifiBtn": "Config Wifi"
+  },
+  "brightness": {
+    "title": "Brightness",
+    "description": "",
+    "chooseMode": "Choose the brightness mode:",
+    "reset": "Reset",
+    "submit": "Submit",
+    "fixed": "Fixed brightness",
+    "ldr": "Brightness by ambient light",
+    "time": "Brightness by time",
+    "background": "Background brightness",
+    "ambientLight": "Ambient light",
+    "brightness": "Brightness",
+    "chooseBrightnessRange": "Choose minimum and maximum brightness",
+    "chooseTimeRange": "Choose time range for maximum brightness"
+  },
+  "colors": {
+    "title": "Colors",
+    "description": "",
+    "test": "Test",
+    "reset": "Reset",
+    "submit": "Submit",
+    "single": "Single color",
+    "rainbow": "Rainbow",
+    "word": "Word color",
+    "hourly": "Color per hour",
+    "preview": "Show preview",
+    "chooseBackground": "Pick a background color",
+    "chooseHourly": "Pick a color for each hour (0 - 23h)",
+    "chooseCycleTime" :"Time (in s) to change color.",
+    "chooseSingleColor": "Pick a single color for all LEDs",
+    "chooseWordColor": "Pick a color for each word",
+    "white": "White",
+    "black": "Black",
+    "complementary": "Complementary",
+    "color": "Color"
+  },
+  "sensors": {
+    "calibrationTitle": "Sensor calibration",
+    "selectSensor": "Select Sensor:",
+    "selectSensorOption": "Select a sensor",
+    "startCalibration": "Start Calibration",
+    "stopCalibration": "Stop Calibration",
+    "calibrationInProgress": "Calibration in progress for {{seconds}} seconds",
+    "minimum": "Minimum",
+    "maximum": "Maximum",
+    "threshold": "Threshold",
+    "saveLdr": "Save as LDR range",
+    "saveTouch": "Save as touch threshold"
+  }
+}

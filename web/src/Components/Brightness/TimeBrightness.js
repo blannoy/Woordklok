@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
-import { configContext, queryProviderContext } from "../../Context/Context";
+import React, { useState,  useEffect} from "react";
 import BrightnessRangePicker from "./BrightnessRangePicker";
 import isEqual from 'lodash/isEqual';
 import HourRangePicker from "./HourRangePicker";
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 function TimeBrightness(props) {
     const [brightnessConfig, setBrightnessConfig] = useState(props.currentVal?props.currentVal:undefined);
 
     const [timeBrightness, setTimeBrightness] = useState([]);
     const [hourRange, setHourRange] = useState([]);
-
+    const { t } = useTranslation(); 
     useEffect(() => {
         if (props.currentVal !== null) {
             setBrightnessConfig({ ...props.currentVal });
@@ -60,8 +60,10 @@ function TimeBrightness(props) {
 
 
     return (
-        <div>  
+        <div>
+                    <label>{t("brightness.chooseTimeRange")}</label>  
             <HourRangePicker id="hourRange" currentVal={hourRange} onChange={treatHourRange} />
+                                <label>{t("brightness.chooseBrightnessRange")}</label>  
             <BrightnessRangePicker id="timeBrightness" currentVal={timeBrightness} onBrightnessChoice={treattimeBrightness} />
 
         </div>

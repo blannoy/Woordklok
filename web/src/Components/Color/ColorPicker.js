@@ -3,6 +3,7 @@ import ReactSlider from "react-slider";
 import { calculateComplementary } from "../../Utils/Utils";
 import tinycolor from "tinycolor2";
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from "react-i18next"; // Add this import
 /**
  * Determine hasColor property based on color
  * @param {*} color 
@@ -54,6 +55,7 @@ export default function ColorPicker(props) {
     const [hasColor, setHasColor] = useState(colorToType(props.currentVal));
     const [currentHue, setCurrentHue] = useState(Math.round(tinycolor(props.currentVal).toHsl().h));
     const [currentColor, setCurrentColor] = useState(props.currentVal);
+    const { t } = useTranslation(); 
     const isTooSmall = !useMediaQuery({
         query: '(min-width: 830px)'
         })
@@ -116,10 +118,10 @@ export default function ColorPicker(props) {
                         height: '20px'
                     }}></div>
                     <form className={foregroundColor&&isTooSmallComp?"colorFormColumn":isTooSmall?"colorFormColumn":"colorFormRow"}>
-                        <label><input type="radio" value="White" name="color" checked={hasColor === "White"} onChange={colorChange} />Wit</label>
-                        <label><input type="radio" value="Black" name="color" checked={hasColor === "Black"} onChange={colorChange} />Zwart</label>
-                        {foregroundColor && <label><input type="radio" value="Complementary" name="color" checked={hasColor === "Complementary"} onChange={colorChange} />Complementary</label>}
-                        <label><input type="radio" value="Color" name="color" checked={hasColor === "Color"} onChange={colorChange} />Kleur</label>
+                        <label><input type="radio" value="White" name="color" checked={hasColor === "White"} onChange={colorChange} />{t("colors.white")}</label>
+                        <label><input type="radio" value="Black" name="color" checked={hasColor === "Black"} onChange={colorChange} />{t("colors.black")}</label>
+                        {foregroundColor && <label><input type="radio" value="Complementary" name="color" checked={hasColor === "Complementary"} onChange={colorChange} />{t("colors.complementary")}</label>}
+                        <label><input type="radio" value="Color" name="color" checked={hasColor === "Color"} onChange={colorChange} />{t("colors.color")}</label>
                     </form>
                 </div>
 

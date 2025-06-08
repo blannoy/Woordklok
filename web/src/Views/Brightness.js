@@ -6,9 +6,10 @@ import TimeBrightness from "../Components/Brightness/TimeBrightness";
 import { useSetBrightnessMutation, useLazyGetConfigQuery } from "../Components/ClockAPI";
 import BrightnessPicker from "../Components/Brightness/BrightnessPicker";
 import { set } from "lodash";
-
+import { useTranslation } from "react-i18next"; // Add this import
 
 function Brightness() {
+  const { t } = useTranslation(); // Add this line
   const [fullConfig, setFullConfig] = useContext(clockContext);
   const [config, setConfig] = useState(fullConfig ? fullConfig.config : undefined);
   const [setBrightness,] = useSetBrightnessMutation();
@@ -97,18 +98,20 @@ function Brightness() {
 
   return (
     <div>
-      <h2>Helderheid</h2>
-      <p>Stel de helderheid in! </p>
-      Kies de helderheidsmode:
+      <h2>{t("brightness.title")}</h2>
+      <p>{t("brightness.description")}</p>
+      {t("brightness.chooseMode")}
       <div>
         {/* <button name="Test" type="button" onClick={testConfig}>Test</button> */}
-        <button name="Reset" type="button" onClick={resetConfig}>Reset</button><button name="Submit" type="button" onClick={submitConfig}>Submit</button></div>
-      <input type="radio" value="fixedBrightness" name="brightnessMode" checked={selectedOption === "fixedBrightness"} onChange={onValueChange} /> <label>Vaste helderheid</label>
+        <button name="Reset" type="button" onClick={resetConfig}>{t("brightness.reset")}</button>
+        <button name="Submit" type="button" onClick={submitConfig}>{t("brightness.submit")}</button>
+      </div>
+      <input type="radio" value="fixedBrightness" name="brightnessMode" checked={selectedOption === "fixedBrightness"} onChange={onValueChange} /> <label>{t("brightness.fixed")}</label>
       { hasLDR &&
       <>
-        <input type="radio" value="ldrBrightness" name="brightnessMode" checked={selectedOption === "ldrBrightness"} onChange={onValueChange} /><label>Helderheid volgens omgevingslicht</label>
+        <input type="radio" value="ldrBrightness" name="brightnessMode" checked={selectedOption === "ldrBrightness"} onChange={onValueChange} /><label>{t("brightness.ldr")}</label>
       </>}
-      <input type="radio" value="timeBrightness" name="brightnessMode" checked={selectedOption === "timeBrightness"} onChange={onValueChange} /><label>Helderheid volgens tijdstip</label>
+      <input type="radio" value="timeBrightness" name="brightnessMode" checked={selectedOption === "timeBrightness"} onChange={onValueChange} /><label>{t("brightness.time")}</label>
       <div style={{ marginTop: "20px" }}>
         {{
           fixedBrightness: brightnessConfig && <FixedBrightness currentVal={fixedBrightnessConfig} onBrightnessChoice={onBrightnessChoice} />,
@@ -118,8 +121,8 @@ function Brightness() {
 
       </div>
       <div>
-        <label>Helderheid achtergrond</label>
-                <BrightnessPicker id="backgroundBrightnessValue" min={0} max={255} currentVal={backgroundDimFactor} onBrightnessChoice={(e)=>{}} onChange={(e)=>{onBrightnessChoice(e,true)}} />
+        <label>{t("brightness.background")}</label>
+        <BrightnessPicker id="backgroundBrightnessValue" min={0} max={255} currentVal={backgroundDimFactor} onBrightnessChoice={(e)=>{}} onChange={(e)=>{onBrightnessChoice(e,true)}} />
       </div>
       
     </div>

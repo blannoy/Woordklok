@@ -7,7 +7,6 @@ I've built one black plastic one with only an light sensitive sensor (LDR) and a
 The clock needs to be connected to WiFi and gets the time from an NTP-server (configurable).
 !['photo of working clocks'](doc/pictures/working_clock.jpg)
 
-
 ## Construction
 
 The clock was built following the Bitlair instructions. I've made some additional material but this could still be considered a work in progress. Various documentation can be found in the [doc](doc/)-folder.
@@ -29,6 +28,7 @@ The clock was built following the Bitlair instructions. I've made some additiona
 ### Assembly
 
 The [BITLAIR presentation](doc/workshopwordclock2019-01.odp) gives you a good idea of the different steps. There are photos of my implementation in the [pictures](doc/pictures)-folder.
+
 * Cut the led strip to the right amount of LEDs for each row and wire the together. The wiring starts at the last led and goes up. Best you use a template to glue the led strip to the right position. Attach power and ground and attach the signal wire to the arduino board to the correct pin (RX for NodeMCU and 13 for ESP32)
 * Optional: Mount the LDR to the frame and wire it to the arduino board, typically A0 (ESP8266) or A1 (I used this for ESP32) pin.
 * I did not wire everything directly to the arduino board to be able to detach the board for programming.
@@ -39,6 +39,7 @@ The [BITLAIR presentation](doc/workshopwordclock2019-01.odp) gives you a good id
 ## Software
 
 The sofware has 2 main parts:
+
 * Arduino backend that drives the clock and exposes some REST endpoints.
 * ReactJS frontend stored on the board (in LittleFS) that is used to configure the colormode/colors and brightness mode / brightness.
 
@@ -64,7 +65,7 @@ After that it should startup and display the time. You can turn on debug-message
 
 ### Web Interface
 
-The web/-folder contains a ReactJS interface. Normally you should be able to use the interface that was built in the data/-folder. The user-interface is in Dutch however.
+The web/-folder contains a ReactJS interface. Normally you should be able to use the interface that was built in the data/-folder. The user-interface is in Dutch or English (with translation files).
 
 If you would like to build the code yourself, install React in the web/-folder. The build-system uses webpack, that also copies the config-files to data/ at the end.
 

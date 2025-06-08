@@ -7,9 +7,11 @@ import HourlyColor from "../Components/Color/HourlyColor";
 import ClockFace from "../Components/ClockFace";
 import { useMediaQuery } from 'react-responsive';
 import { useSetColorMutation, useTestColorMutation, useLazyGetConfigQuery } from "../Components/ClockAPI";
+import { useTranslation } from "react-i18next"; // Add this import
 
 
 function LEDColors() {
+  const { t } = useTranslation(); // Add this line
   const [fullConfig, setFullConfig] = useContext(clockContext);
   const [setColor,] = useSetColorMutation();
   const [testColor,] = useTestColorMutation();
@@ -103,15 +105,19 @@ useEffect(() => {
     <div>
             {isTestRunning ? <div id="overlay">
         <div className='spinner'></div> </div> : null}
-      <h2>Colors</h2>
-      <p>Stel hier de kleuren in!</p>
+      <h2>{t("colors.title")}</h2>
+      <p>{t("colors.description")}</p>
       {colorConfig && <div>
         <div>
-          <div>      <button name="Test" type="button" onClick={testConfig}>Test</button><button name="Reset" type="button" onClick={resetConfig}>Reset</button><button name="Submit" type="button" onClick={submitConfig}>Submit</button></div>
-          <input type="radio" value="singleColor" name="colorMode" checked={selectedOption === "singleColor"} onChange={onValueChange} /> <label>Eén kleur</label>
-          <input type="radio" value="rainbowColor" name="colorMode" checked={selectedOption === "rainbowColor"} onChange={onValueChange} /><label>Regenboog</label>
-          <input type="radio" value="wordColor" name="colorMode" checked={selectedOption === "wordColor"} onChange={onValueChange} /><label>Woordkleur</label>
-          <input type="radio" value="hourlyColor" name="colorMode" checked={selectedOption === "hourlyColor"} onChange={onValueChange} /><label>Kleur per uur</label>
+          <div>
+            <button name="Test" type="button" onClick={testConfig}>{t("colors.test")}</button>
+            <button name="Reset" type="button" onClick={resetConfig}>{t("colors.reset")}</button>
+            <button name="Submit" type="button" onClick={submitConfig}>{t("colors.submit")}</button>
+          </div>
+          <input type="radio" value="singleColor" name="colorMode" checked={selectedOption === "singleColor"} onChange={onValueChange} /> <label>{t("colors.single")}</label>
+          <input type="radio" value="rainbowColor" name="colorMode" checked={selectedOption === "rainbowColor"} onChange={onValueChange} /><label>{t("colors.rainbow")}</label>
+          <input type="radio" value="wordColor" name="colorMode" checked={selectedOption === "wordColor"} onChange={onValueChange} /><label>{t("colors.word")}</label>
+          <input type="radio" value="hourlyColor" name="colorMode" checked={selectedOption === "hourlyColor"} onChange={onValueChange} /><label>{t("colors.hourly")}</label>
         </div>
         <div>
           <div>
@@ -125,7 +131,7 @@ useEffect(() => {
             {(selectedOption !== "hourlyColor" && !isTooSmall) && (
               <div>
                 <div>
-                  <input type="checkbox" value="preview" name="showPreview" checked={showPreview} onChange={previewChangeHandler} /><label>Toon voorbeeld</label>
+                  <input type="checkbox" value="preview" name="showPreview" checked={showPreview} onChange={previewChangeHandler} /><label>{t("colors.preview")}</label>
                 </div>
                 <div>
                   {showPreview && <ClockFace />}

@@ -10,22 +10,24 @@ import Brightness from "../Views/Brightness";
 import ShowConfig from "../Views/ShowConfig";
 import Admin from "../Views/Admin";
 import Sensors from "../Views/Sensors";
-
-
+import LanguageSwitcher from "../Components/LanguageSwitcher";
+import { useTranslation } from "react-i18next"; // Add this import
 
 export default function Main() {
+    const { t } = useTranslation(); // Add this line
 
     return (
         <HashRouter>
         <div>
-          <h1>Woordklok</h1>
+          <h1>{t("woordklokTitle")}</h1>
+          <LanguageSwitcher />
           <ul className="header">
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/colors">Colors</NavLink></li>
-            <li><NavLink to="/brightness">Brightness</NavLink></li>
-            <li><NavLink to="/admin">Admin</NavLink></li>
-            <li><NavLink to="/config">Config</NavLink></li>
-            <li><NavLink to="/sensor">Sensors</NavLink></li>
+            <li><NavLink to="/">{t("nav.home")}</NavLink></li>
+            <li><NavLink to="/colors">{t("nav.colors")}</NavLink></li>
+            <li><NavLink to="/brightness">{t("nav.brightness")}</NavLink></li>
+            <li><NavLink to="/admin">{t("nav.admin")}</NavLink></li>
+            <li><NavLink to="/config">{t("nav.config")}</NavLink></li>
+            <li><NavLink to="/sensor">{t("nav.sensors")}</NavLink></li>
           </ul>
           <div className="content">
             <Routes>

@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import ColorPicker from "./ColorPicker";
+import { useTranslation } from "react-i18next"; // Add this import
 
 const deepEqual = require('deep-equal');
 /**
@@ -8,8 +9,9 @@ const deepEqual = require('deep-equal');
  * @returns 
  */
 export default function HourlyColor(props) {
-  const [colorConfig,setColorConfig]=useState(props.colorConfig);
-  const [colorList,setColorList]=useState(colorConfig.color?colorConfig.color:[]);
+  const { t } = useTranslation(); // Add this line
+  const [colorConfig, setColorConfig] = useState(props.colorConfig);
+  const [colorList, setColorList] = useState(colorConfig.color ? colorConfig.color : []);
 
 
   // change in passed property, triggers update of state
@@ -37,11 +39,11 @@ export default function HourlyColor(props) {
   return (
     <div>
 
-      <h3>Kies een achtergrondkleur</h3>
+      <h3>{t("colors.chooseBackground")}</h3>
       <div>
         <ColorPicker id="backgroundColor" foregroundColor={'#888888'} currentVal={colorConfig.backgroundColor} onColorChoice={props.onColorConfig} />
       </div>
-      <h3>Kies een kleur voor elk uur (0 - 23h)</h3>
+      <h3>{t("colors.chooseHourly")}</h3>
       {colorList &&
       <div>
       { [...Array(24)].map((value,index)=> {

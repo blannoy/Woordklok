@@ -1,0 +1,68 @@
+{
+  "currentStatus": "Huidige status",
+  "clock": "Klok",
+  "version": "Versie",
+  "woordklokTitle": "Woordklok",
+  "nav": {
+    "home": "Home",
+    "colors": "Kleuren",
+    "brightness": "Helderheid",
+    "admin": "Beheer",
+    "config": "Configuratie",
+    "sensors": "Sensoren"
+  },
+  "admin": {
+    "title": "Beheer",
+    "resetWifi": "Reset wifi & start AP:",
+    "configWifiBtn": "Configureer Wifi"
+  },
+  "brightness": {
+    "title": "Helderheid",
+    "description": "",
+    "chooseMode": "Kies de helderheidsmode:",
+    "reset": "Reset",
+    "submit": "Opslaan",
+    "fixed": "Vaste helderheid",
+    "ldr": "Helderheid volgens omgevingslicht",
+    "time": "Helderheid volgens tijdstip",
+    "background": "Helderheid achtergrond",
+    "ambientLight": "Omgevingslicht",
+    "brightness": "Helderheid",
+    "chooseBrightnessRange": "Kies minimum en maximum helderheid",
+    "chooseTimeRange": "Kies tijdsbereik voor maximum helderheid"
+  },
+  "colors": {
+    "title": "Kleuren",
+    "description": "",
+    "test": "Test",
+    "reset": "Reset",
+    "submit": "Opslaan",
+    "single": "Eén kleur",
+    "rainbow": "Regenboog",
+    "word": "Woordkleur",
+    "hourly": "Kleur per uur",
+    "preview": "Toon voorbeeld",
+    "chooseBackground": "Kies een achtergrondkleur",
+    "chooseHourly": "Kies een kleur voor elk uur (0 - 23u)",
+    "chooseCycleTime" :"Tijd (in s) waarna de klok terug van kleur verandert.",
+    "chooseSingleColor": "Kies één kleur voor alle LEDs",
+    "chooseWordColor": "Kies een kleur voor elk woord",
+    "white": "Wit",
+    "black": "Zwart",
+    "complementary": "Complementair",
+    "color": "Kleur"
+  },
+  "sensors": {
+    "calibrationTitle": "Sensor calibratie",
+    "selectSensor": "Selecteer sensor:",
+    "selectSensorOption": "Selecteer een sensor",
+    "startCalibration": "Start calibratie",
+    "stopCalibration": "Stop calibratie",
+    "calibrationInProgress": "Calibratie bezig voor {{seconds}} seconden",
+    "minimum": "Minimum",
+    "maximum": "Maximum",
+    "threshold": "Drempelwaarde",
+    "saveLdr": "Opslaan als LDR-bereik",
+    "saveTouch": "Opslaan als touch-drempel"
+  }
+}

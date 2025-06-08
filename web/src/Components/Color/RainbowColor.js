@@ -3,6 +3,7 @@ import { clockContext } from "../../Context/Context";
 import ColorPicker from "./ColorPicker";
 import tinycolor from "tinycolor2";
 import isEqual from 'lodash/isEqual';
+import { useTranslation } from "react-i18next"; // Add this import
 
 /**
  * Builds screen for selection of the rainbow cycle time and  background color for non active LEDs
@@ -23,7 +24,7 @@ export default function RainbowColor(props) {
   const firstColor=tinycolor({ h: prng(), s: 1, l: .5 });
   const [foregroundColor, setForegroundColor] = useState(firstColor);
   const [foregroundColorHex, setForegroundColorHex] = useState(firstColor.toHexString());
- 
+  const { t } = useTranslation(); 
 
 
   // change in passed property, triggers update of state
@@ -76,12 +77,12 @@ export default function RainbowColor(props) {
 
   return (
     <div>
-      <h3>Tijd (in s) waarna de klok terug van kleur verandert.</h3>
+      <h3>{t("colors.chooseCycleTime")}</h3>
       <div>
         <input type="number" id="cycleTime" value={cycleTime !== undefined ? cycleTime : 0} min="1" max="3600" onChange={e=>cycleTimeChange(e.target.value)} />
       </div>
 
-      <h3>Kies een achtergrondkleur</h3>
+      <h3>{t("colors.chooseBackground")}</h3>
       <div>
          <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} foregroundColor={foregroundColorHex} onColorChoice={props.onColorConfig} /> 
       </div>

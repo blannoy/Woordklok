@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useGetStatusQuery } from "../Components/ClockAPI";
-
+import { useTranslation } from "react-i18next";
 
 function Home() {
-  const { data: statusData, error: statusError, isLoading: statusIsLoading } = useGetStatusQuery();
+  const { t } = useTranslation();
+  const { data: statusData } = useGetStatusQuery();
 
   const [clock, setClock] = useState(null);
   const [version, setVersion] = useState(null);
@@ -15,23 +16,23 @@ function Home() {
     }
   }, [statusData]);
 
-      return (
-        <div>
-          <h2>Huidige status</h2>
-          <div className="section">
-            <div className="labelCell">
-              <label>Klok </label>
-            </div>
-            <div className="smallBodyCell">{clock}</div>
-          </div>
-          <div className="section">
-            <div className="labelCell">
-              <label>Versie </label>
-            </div>
-            <div className="smallBodyCell">{version}</div>
-          </div>
-          </div>
-      );
-    }
+  return (
+    <div>
+      <h2>{t("currentStatus")}</h2>
+      <div className="section">
+        <div className="labelCell">
+          <label>{t("clock")} </label>
+        </div>
+        <div className="smallBodyCell">{clock}</div>
+      </div>
+      <div className="section">
+        <div className="labelCell">
+          <label>{t("version")} </label>
+        </div>
+        <div className="smallBodyCell">{version}</div>
+      </div>
+    </div>
+  );
+}
 
-    export default React.memo(Home);
+export default React.memo(Home);

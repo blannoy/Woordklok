@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import ColorPicker from "./ColorPicker";
 import { clockContext } from "../../Context/Context";
 import isEqual from 'lodash/isEqual';
-
+import { useTranslation } from "react-i18next"; // Add this import
 const deepEqual = require('deep-equal');
 
 /**
@@ -18,7 +18,7 @@ export default function WordColor(props) {
   const [clockWords, setClockWords] = useState((clockFaceConfig ? clockFaceConfig.layout : []));
   const [colorList, setColorList] = useState(colorConfig.color ? colorConfig.color : []);
   const [colorMap, setColorMap] = useState(null);
-
+  const { t } = useTranslation();
     useEffect(() => {
       if (fullConfig !== undefined && fullConfig.clockFaceConfig !== undefined) {
         setClockFaceConfig({ ...fullConfig.clockface });
@@ -63,11 +63,11 @@ export default function WordColor(props) {
   return (
     <div>
 
-      <h3>Kies een achtergrondkleur</h3>
+      <h3>{t("colors.chooseBackground")}</h3>
       <div>
         <ColorPicker id="backgroundColor" currentVal={colorConfig.backgroundColor} onColorChoice={props.onColorConfig} />
       </div>
-      <h3>Kies een kleur voor elk woord</h3>
+      <h3>{t("colors.chooseWordColor")}</h3>
       { clockWords &&
       <div>
         {clockWords.map((clockWord, index) => {

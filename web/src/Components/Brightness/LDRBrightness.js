@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import BrightnessRangePicker from "./BrightnessRangePicker";
 import isEqual from 'lodash/isEqual';
+import { useTranslation } from "react-i18next"; // Add this import
 
 function LDRBrightness(props) {
+    const { t } = useTranslation(); // Add this line
     const [brightnessConfig, setBrightnessConfig] = useState(props.currentVal?props.currentVal:{});
 
     const [ldrBrightness, setLdrBrightness] = useState([]);
@@ -60,8 +62,10 @@ function LDRBrightness(props) {
 
     return (
         <div>
-            <label>Omgevingslicht</label><BrightnessRangePicker id="ldrRange" currentVal={ldrRange} min={0} max={1000} minDistance={1} onBrightnessChoice={treatLdrRange} />
-            <label>Helderheid</label><BrightnessRangePicker id="ldrBrightness" currentVal={ldrBrightness} onBrightnessChoice={treatLdrBrightness} />
+            <label>{t("brightness.ambientLight")}</label>
+            <BrightnessRangePicker id="ldrRange" currentVal={ldrRange} min={0} max={1000} minDistance={1} onBrightnessChoice={treatLdrRange} />
+            <label>{t("brightness.brightness")}</label>
+            <BrightnessRangePicker id="ldrBrightness" currentVal={ldrBrightness} onBrightnessChoice={treatLdrBrightness} />
         </div>
     );
 }
